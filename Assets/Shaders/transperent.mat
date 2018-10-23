@@ -4,10 +4,10 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: transperent
-  m_Shader: {fileID: 4800000, guid: 98ae34625416c91469735401fc595692, type: 3}
+  m_Shader: {fileID: 4800000, guid: 2fc4ef6392fc0ec4c93c1c3a1d17fda6, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
