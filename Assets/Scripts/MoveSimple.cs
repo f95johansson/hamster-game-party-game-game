@@ -26,7 +26,7 @@ public class MoveSimple : MonoBehaviour
 
 		transform.transform.Translate(new Vector3(dx, _ySpeed, dz) * Time.deltaTime);
 
-		if (Track.GroundAt(transform.position) && transform.position.y - _radius < Track.transform.position.y)
+		if (Track.GroundAt(transform.position) && AtGroundLevel())
 		{
 			_ySpeed = 0;
 			
@@ -42,5 +42,17 @@ public class MoveSimple : MonoBehaviour
 		{
 			_ySpeed += Gravity;
 		}
+	}
+
+	private bool AtGroundLevel()
+	{
+		var top = transform.position.y + _radius;
+		var bottom = transform.position.y - _radius;
+		var ty = Track.transform.position.y;
+
+		if (bottom > ty) return false;
+		if (top < ty) return false;
+
+		return true;
 	}
 }
