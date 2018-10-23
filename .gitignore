@@ -1,3 +1,9 @@
+# Platform specific
+.DS_Store
+Thumbs.db
+.vscode
+
+# Unity stuff
 [Ll]ibrary/
 [Tt]emp/
 [Oo]bj/
