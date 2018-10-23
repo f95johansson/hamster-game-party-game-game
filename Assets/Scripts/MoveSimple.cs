@@ -7,6 +7,7 @@ public class MoveSimple : MonoBehaviour
 	public float Gravity = -0.5f;
 	public float Speed = 2;
 	private float _radius;
+	public Transform Hamster;
 
 	private void Start()
 	{
@@ -24,7 +25,18 @@ public class MoveSimple : MonoBehaviour
 		var dx = Input.GetAxis("Horizontal") * Speed;
 		var dz = Input.GetAxis("Vertical") * Speed;
 
-		transform.transform.Translate(new Vector3(dx, _ySpeed, dz) * Time.deltaTime);
+		var sp = new Vector3(dx, _ySpeed, dz);
+
+		var horizontalSpeed = new Vector3(dx, 0, dz);
+		
+		if (horizontalSpeed.magnitude > 0.1)
+		{
+			var goal = Quaternion.LookRotation(horizontalSpeed);
+
+			Hamster.transform.rotation = Quaternion.Lerp(Hamster.transform.rotation, goal, 0.2f);
+		}
+		
+		transform.Translate(sp * Time.deltaTime);
 
 		if (Track.GroundAt(transform.position) && AtGroundLevel())
 		{
