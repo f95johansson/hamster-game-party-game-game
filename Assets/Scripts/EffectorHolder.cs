@@ -34,6 +34,7 @@ public class EffectorHolder : MonoBehaviour
 		_eventSystem = FindObjectOfType<EventSystem>();
 		_camera = Camera.main;
 
+		// Should these maybe be changed to run in update?
 		OnEvent(EventTriggerType.PointerDown, TurnButton, e =>
 		{
 			if (!_selected)
