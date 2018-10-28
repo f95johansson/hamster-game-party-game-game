@@ -58,6 +58,7 @@ public class PushEffector : MonoBehaviour
 
 	public Vector3 GetPushForce(Vector3 position3D)
 	{
+		if (_points == null) return Vector3.zero;
 		
 		float distance;
 		if (!ContainsPoint(position3D, out distance))
