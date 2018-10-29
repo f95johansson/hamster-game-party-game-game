@@ -700,7 +700,7 @@ MonoBehaviour:
   Gravity: -0.5
   Speed: 1
   Friction: 0.15
-  TurnSpeed: 0.1
+  TurnSpeed: 0.05
   EffectorHolder: {fileID: 0}
 --- !u!135 &135453619720010064
 SphereCollider:
