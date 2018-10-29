@@ -70,13 +70,18 @@ public class EffectorHolder : MonoBehaviour
 		trigger.triggers.Add(eventType);
 	}
 
-	private Vector3 GetMousePos()
+	private Vector3 GetMousePos() // could be optimized by caching the plane but I don't think it is worth it
 	{
-		var mousePos = Input.mousePosition;
-		mousePos.z = _camera.transform.position.y;
-		mousePos = _camera.ScreenToWorldPoint(mousePos);
-		mousePos.y = transform.position.y;
-		return mousePos;
+		var plane = new Plane(Vector3.up, transform.position);
+		var ray = _camera.ScreenPointToRay(Input.mousePosition);
+
+		float distance;
+		if (plane.Raycast(ray, out distance)){
+			return ray.GetPoint(distance);
+		}
+
+		Debug.Log("We missed the y-plane, this should be impossible");
+		return new Vector3(-1, -1, -1);
 	}
 
 	public void Update()
