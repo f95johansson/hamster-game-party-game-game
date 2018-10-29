@@ -44,10 +44,10 @@ public class PushEffector : MonoBehaviour
 		var farVector = VectorMath.VectorFromDegree2D(dir) * Far;
 		
 		_points = new Vector2[4];
-		_points[0] = right;
-		_points[1] = left;
-		_points[2] = left + farVector;
-		_points[3] = right + farVector;
+		_points[0] = left;
+		_points[1] = right;
+		_points[2] = right + farVector;
+		_points[3] = left + farVector;
 
 		_line.positionCount = _points.Length;
 		for (var i = 0; i < _points.Length; i++)
@@ -74,11 +74,11 @@ public class PushEffector : MonoBehaviour
 
 	private bool ContainsPoint(Vector3 position, out float distance)
 	{
-		//positions order is {right, left, leftFar, rightFar}
-		var right = _points[0];
-		var left = _points[1];
-		var leftFar = _points[2];
-		var rightFar = _points[3];
+		//positions order is {left, right, rightFar, leftFar}
+		var left = _points[0];
+		var right = _points[1];
+		var rightFar = _points[2];
+		var leftFar = _points[3];
 		
 		var relativePosition = VectorMath.ToXZ(position - transform.position);
 
