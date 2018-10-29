@@ -26,8 +26,13 @@ public class EffectorHolder : MonoBehaviour
 	private List<TurnEffector> _turnEffectors;
 	private List<PushEffector> _pushEffectors;
 
+	private Vector3 _trashNormal;
+	public float TrashOffset;
+
 	private void Start()
 	{
+		_trashNormal = Trash.transform.position;
+		
 		_turnEffectors = new List<TurnEffector>();
 		_pushEffectors = new List<PushEffector>();
 
@@ -86,6 +91,10 @@ public class EffectorHolder : MonoBehaviour
 
 	public void Update()
 	{
+
+		var offset = _selected ? Vector3.zero : new Vector3(0, TrashOffset, 0);
+		Trash.transform.position = Vector3.Lerp(Trash.transform.position, _trashNormal + offset, 0.1f);
+
 		var mousePos = GetMousePos();
 		var overGui = _eventSystem && _eventSystem.IsPointerOverGameObject();
 		
