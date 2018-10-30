@@ -4,7 +4,6 @@ using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 public class EffectorHolder : MonoBehaviour
 {
@@ -39,7 +38,7 @@ public class EffectorHolder : MonoBehaviour
 		_camera = Camera.main;
 
 		// Should these maybe be changed to run in update?
-		OnEvent(EventTriggerType.PointerDown, TurnButton, e =>
+		Events.OnEvent(EventTriggerType.PointerDown, TurnButton, e =>
 		{
 			if (!_grabbed)
 			{
@@ -47,21 +46,13 @@ public class EffectorHolder : MonoBehaviour
 			}
 		});
 		
-		OnEvent(EventTriggerType.PointerDown, PushButton, e =>
+		Events.OnEvent(EventTriggerType.PointerDown, PushButton, e =>
 		{
 			if (!_grabbed)
 			{
 				_grabbed = CreatePusher(ToWorldPoint(Input.mousePosition));
 			}
 		});
-	}
-
-	private static void OnEvent(EventTriggerType ett, Component s, UnityAction<BaseEventData> action)
-	{
-		var trigger = s.gameObject.AddComponent<EventTrigger>();
-		var eventType = new EventTrigger.Entry {eventID = ett};
-		eventType.callback.AddListener(action);
-		trigger.triggers.Add(eventType);
 	}
 
 	private Vector3 ToWorldPoint(Vector3 screenPos) // could be optimized by caching the plane but I don't think it is worth it
