@@ -4,6 +4,7 @@ using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class EffectorHolder : MonoBehaviour
 {
@@ -13,26 +14,24 @@ public class EffectorHolder : MonoBehaviour
 
 	public Component TurnButton;
 	public Component PushButton;
-	public Component Trash;
+	public Trash Trash;
 	
 	private Camera _camera;
 	
 	[CanBeNull]
-	private GameObject _selected;
+	private GameObject _grabbed;
+	private Vector3 _grabOffset;
+	
 	private EventSystem _eventSystem;
-
-	private bool _isOnTrash;
 	
 	private List<TurnEffector> _turnEffectors;
 	private List<PushEffector> _pushEffectors;
 
-	private Vector3 _trashNormal;
-	public float TrashOffset;
+
+	public Canvas Canvas;
 
 	private void Start()
-	{
-		_trashNormal = Trash.transform.position;
-		
+	{	
 		_turnEffectors = new List<TurnEffector>();
 		_pushEffectors = new List<PushEffector>();
 
@@ -42,28 +41,18 @@ public class EffectorHolder : MonoBehaviour
 		// Should these maybe be changed to run in update?
 		OnEvent(EventTriggerType.PointerDown, TurnButton, e =>
 		{
-			if (!_selected)
+			if (!_grabbed)
 			{
-				_selected = CreateTurner(GetMousePos());
+				_grabbed = CreateTurner(ToWorldPoint(Input.mousePosition));
 			}
 		});
 		
 		OnEvent(EventTriggerType.PointerDown, PushButton, e =>
 		{
-			if (!_selected)
+			if (!_grabbed)
 			{
-				_selected = CreatePusher(GetMousePos());
+				_grabbed = CreatePusher(ToWorldPoint(Input.mousePosition));
 			}
-		});
-		
-		//PointerUp does not work unless we PointerDown was also registered on the object (which is stupid)
-		OnEvent(EventTriggerType.PointerEnter, Trash, e =>
-		{
-			_isOnTrash = true;
-		});
-		OnEvent(EventTriggerType.PointerExit, Trash, e =>
-		{
-			_isOnTrash = false;
 		});
 	}
 
@@ -75,10 +64,10 @@ public class EffectorHolder : MonoBehaviour
 		trigger.triggers.Add(eventType);
 	}
 
-	private Vector3 GetMousePos() // could be optimized by caching the plane but I don't think it is worth it
+	private Vector3 ToWorldPoint(Vector3 screenPos) // could be optimized by caching the plane but I don't think it is worth it
 	{
 		var plane = new Plane(Vector3.up, transform.position);
-		var ray = _camera.ScreenPointToRay(Input.mousePosition);
+		var ray = _camera.ScreenPointToRay(screenPos);
 
 		float distance;
 		if (plane.Raycast(ray, out distance)){
@@ -91,36 +80,52 @@ public class EffectorHolder : MonoBehaviour
 
 	public void Update()
 	{
-
-		var offset = _selected ? Vector3.zero : new Vector3(0, TrashOffset, 0);
-		Trash.transform.position = Vector3.Lerp(Trash.transform.position, _trashNormal + offset, 0.1f);
-
-		var mousePos = GetMousePos();
-		var overGui = _eventSystem && _eventSystem.IsPointerOverGameObject();
+		var mousePos = Input.mousePosition;
 		
-		var left = Input.GetMouseButtonDown(0);	
-		var leftUp = Input.GetMouseButtonUp(0);	
+		var mousePosWorld = ToWorldPoint(mousePos);
+		var overGui = _eventSystem && _eventSystem.IsPointerOverGameObject();
 
-		if (_selected != null)
+		var canvasMousePos = ScreenToCanvas(mousePos);
+		
+		Trash.UpdateTrashCan(canvasMousePos, _grabbed != null && !_grabbed.GetComponent<Handle>());
+
+		if (_grabbed != null)
 		{
-			_selected.transform.position = mousePos;
-			
-			if (leftUp) {
-				if (!overGui)
+			_grabbed.transform.position = Trash.IsClose() ? CanvasToWorld(Trash.transform.position) : mousePosWorld + _grabOffset;
+
+			if (Input.GetMouseButtonUp(0))
+			{
+				if (Trash.IsClose())
 				{
-					_selected = null;
-					
-				} else if (_isOnTrash)
+					Remove(_grabbed);
+					_grabbed = null;
+				}
+				else
 				{
-					Remove(_selected);
-					_selected = null;
-				}		
+					_grabbed = null;
+				}
 			}
 		}
-		else if (left && !overGui)
+		else if (Input.GetMouseButtonDown(0) && !overGui)
 		{
-			_selected = Closest(mousePos, 2f);
+			_grabbed = Closest(mousePosWorld, 2f);
+
+			if (_grabbed != null)
+			{
+				_grabOffset = _grabbed.transform.position - mousePosWorld;	
+			}
 		}
+	}
+
+	private Vector3 ScreenToCanvas(Vector3 screenPoint)
+	{
+		screenPoint.z = Canvas.planeDistance;
+		return _camera.ScreenToWorldPoint(screenPoint);
+	}
+	
+	private Vector3 CanvasToWorld(Vector3 canvasPoint)
+	{
+		return ToWorldPoint(_camera.WorldToScreenPoint(canvasPoint));
 	}
 
 	public Vector3 GetTurnFocus(Vector3 position, float radius)
@@ -195,8 +200,10 @@ public class EffectorHolder : MonoBehaviour
 	{
 		if (obj.GetComponent<Handle>()) return;
 		
+		//sort of hack-ish, if an object does not have the desired component it returns null and removing null does not do anything
 		_pushEffectors.Remove(obj.GetComponent<PushEffector>());
 		_turnEffectors.Remove(obj.GetComponent<TurnEffector>());
+		
 		Destroy(obj);
 	}
 }
