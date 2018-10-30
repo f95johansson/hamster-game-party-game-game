@@ -9,6 +9,7 @@ public class GameControl : MonoBehaviour {
 
     public static GameControl control;
 
+    public float highScore;
     public float health;
     public float experience;
 
@@ -35,6 +36,7 @@ public class GameControl : MonoBehaviour {
         playerData data = new playerData();
         data.health = health;
         data.experience = experience;
+        data.highScore = highScore;
 
         bf.Serialize(file, data);
         file.Close();
@@ -48,6 +50,7 @@ public class GameControl : MonoBehaviour {
             file.Close();
             health = data.health;
             experience = data.experience;
+            highScore = data.highScore;
         }
     }
 }
@@ -56,5 +59,6 @@ public class GameControl : MonoBehaviour {
 class playerData {
     public float health;
     public float experience;
+    public float highScore;
 }
 
