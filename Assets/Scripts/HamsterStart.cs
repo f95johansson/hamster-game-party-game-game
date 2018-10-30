@@ -6,6 +6,10 @@ public class HamsterStart : MonoBehaviour
 	public Track Track;
 	public EffectorHolder EffectorHolder;
 	private Hamster _currentHamster;
+
+	private void Start() {
+		Spawn();
+	}
 	
 	public void PlayPauseToggle()
 	{
