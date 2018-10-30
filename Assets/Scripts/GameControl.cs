@@ -62,3 +62,8 @@ class playerData {
     public float highScore;
 }
 
+[Serializable]
+class track {
+
+}
+
