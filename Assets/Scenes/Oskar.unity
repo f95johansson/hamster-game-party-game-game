@@ -680,6 +680,8 @@ GameObject:
   - component: {fileID: 691356380}
   - component: {fileID: 691356382}
   - component: {fileID: 691356381}
+  - component: {fileID: 691356384}
+  - component: {fileID: 691356383}
   m_Layer: 5
   m_Name: Push
   m_TagString: Untagged
@@ -739,6 +741,36 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 691356379}
   m_CullTransparentMesh: 0
+--- !u!114 &691356383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 691356379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20aae4354aabc8241a2d9d47db01b437, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HoverName: Hover
+--- !u!95 &691356384
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 691356379}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 98b978b61290d3f43b70849ddede082d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &884770171
 GameObject:
   m_ObjectHideFlags: 0
@@ -837,6 +869,8 @@ GameObject:
   - component: {fileID: 915870221}
   - component: {fileID: 915870223}
   - component: {fileID: 915870222}
+  - component: {fileID: 915870225}
+  - component: {fileID: 915870224}
   m_Layer: 5
   m_Name: Turn
   m_TagString: Untagged
@@ -896,6 +930,36 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 915870220}
   m_CullTransparentMesh: 0
+--- !u!114 &915870224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 915870220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20aae4354aabc8241a2d9d47db01b437, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HoverName: Hover
+--- !u!95 &915870225
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 915870220}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 98b978b61290d3f43b70849ddede082d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1516147164
 GameObject:
   m_ObjectHideFlags: 0
