@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -270,54 +270,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!1 &203184469
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 203184471}
-  - component: {fileID: 203184470}
-  m_Layer: 0
-  m_Name: EffectHolder
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &203184470
+--- !u!114 &203184470 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 203184469}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 114910139569987672, guid: aad3845469a9d43eaa89971d8f5a77c2,
+    type: 2}
+  m_PrefabInternal: {fileID: 1629527735}
   m_Script: {fileID: 11500000, guid: 3d754e84d2a8178418ef28b3da0f1ad9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TurnPrefab: {fileID: 114747335469638224, guid: 0203ae280670c7548bd67b2919c8954f,
-    type: 2}
-  PushPrefab: {fileID: 114843148500004008, guid: 9f56a842655f0a342b8cf4b9f37cbc9d,
-    type: 2}
-  TurnButton: {fileID: 915870221}
-  PushButton: {fileID: 691356380}
-  Trash: {fileID: 261139068}
-  TrashOffset: 0
---- !u!4 &203184471
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 203184469}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &251806408
 GameObject:
   m_ObjectHideFlags: 0
@@ -987,3 +945,60 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1001 &1629527735
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4547846450720078, guid: aad3845469a9d43eaa89971d8f5a77c2, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4547846450720078, guid: aad3845469a9d43eaa89971d8f5a77c2, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4547846450720078, guid: aad3845469a9d43eaa89971d8f5a77c2, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4547846450720078, guid: aad3845469a9d43eaa89971d8f5a77c2, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4547846450720078, guid: aad3845469a9d43eaa89971d8f5a77c2, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4547846450720078, guid: aad3845469a9d43eaa89971d8f5a77c2, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4547846450720078, guid: aad3845469a9d43eaa89971d8f5a77c2, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4547846450720078, guid: aad3845469a9d43eaa89971d8f5a77c2, type: 2}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114910139569987672, guid: aad3845469a9d43eaa89971d8f5a77c2,
+        type: 2}
+      propertyPath: TurnButton
+      value: 
+      objectReference: {fileID: 915870221}
+    - target: {fileID: 114910139569987672, guid: aad3845469a9d43eaa89971d8f5a77c2,
+        type: 2}
+      propertyPath: PushButton
+      value: 
+      objectReference: {fileID: 691356380}
+    - target: {fileID: 114910139569987672, guid: aad3845469a9d43eaa89971d8f5a77c2,
+        type: 2}
+      propertyPath: Trash
+      value: 
+      objectReference: {fileID: 261139068}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: aad3845469a9d43eaa89971d8f5a77c2, type: 2}
+  m_IsPrefabAsset: 0
