@@ -9,7 +9,7 @@ public class Trash : MonoBehaviour
 	private bool _close;
 
 	public Sprite TrashOpen;
-	public Sprite TrashClosed;
+	private Sprite _trashClosed;
 
 	[Range(0, 1)]
 	public float AnimationSpeed = 0.1f;
@@ -20,6 +20,7 @@ public class Trash : MonoBehaviour
 	{
 		_trashStart = transform.position;
 		_image = GetComponent<Image>();
+		_trashClosed = _image.sprite;
 	}
 
 	public void UpdateTrashCan(Vector3 canvasMousePos, bool isSomethingGrabbed)
@@ -28,7 +29,7 @@ public class Trash : MonoBehaviour
 		
 		_close = isSomethingGrabbed && distance < CloseRadius;
 		
-		_image.sprite = (_close && isSomethingGrabbed) ? TrashOpen : TrashClosed;
+		_image.sprite = (_close && isSomethingGrabbed) ? TrashOpen : _trashClosed;
 
 		Vector3 pos;
 		if (isSomethingGrabbed && distance < AnimatingRadius)
@@ -41,14 +42,15 @@ public class Trash : MonoBehaviour
 				dir *= (CloseRadius / magnitude);
 			}
 		
-			pos = dir;
+			pos = transform.parent.position + dir;
 		}
 		else
 		{
-			pos = Vector3.zero;
+			pos = transform.parent.position;
 		}
 		
-		transform.localPosition = Vector3.Lerp(transform.localPosition, pos, AnimationSpeed);
+		transform.position = Vector3.Lerp(transform.position, pos, AnimationSpeed);
+		Debug.Log(pos);
 	}
 
 	public bool IsClose()

@@ -2,7 +2,6 @@
 using System.Linq;
 using JetBrains.Annotations;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 public class EffectorHolder : MonoBehaviour
@@ -20,12 +19,13 @@ public class EffectorHolder : MonoBehaviour
 	[CanBeNull]
 	private GameObject _grabbed;
 	private Vector3 _grabOffset;
+	private int _grabbedRenderQueue;
+	private const int RenderQueueMax = 5000; // when this is set any object draws over everything on screen
 	
 	private EventSystem _eventSystem;
 	
 	private List<TurnEffector> _turnEffectors;
 	private List<PushEffector> _pushEffectors;
-
 
 	public Canvas Canvas;
 
@@ -42,7 +42,7 @@ public class EffectorHolder : MonoBehaviour
 		{
 			if (!_grabbed)
 			{
-				_grabbed = CreateTurner(ToWorldPoint(Input.mousePosition));
+				Grab(CreateTurner(ToWorldPoint(Input.mousePosition)));
 			}
 		});
 		
@@ -50,9 +50,28 @@ public class EffectorHolder : MonoBehaviour
 		{
 			if (!_grabbed)
 			{
-				_grabbed = CreatePusher(ToWorldPoint(Input.mousePosition));
+				Grab(CreatePusher(ToWorldPoint(Input.mousePosition)));
 			}
 		});
+	}
+
+	private void Grab(GameObject grabbed)
+	{
+		if (!grabbed) return;
+		_grabbed = grabbed;
+
+		var r = grabbed.GetComponent<Renderer>();
+
+		_grabbedRenderQueue = r.material.renderQueue;
+		r.material.renderQueue = RenderQueueMax;
+	}
+	
+	private void Release()
+	{
+		if (_grabbed == null) return;
+		var r = _grabbed.GetComponent<Renderer>();
+		r.material.renderQueue = _grabbedRenderQueue;
+		_grabbed = null;
 	}
 
 	private Vector3 ToWorldPoint(Vector3 screenPos) // could be optimized by caching the plane but I don't think it is worth it
@@ -88,22 +107,23 @@ public class EffectorHolder : MonoBehaviour
 			{
 				if (Trash.IsClose())
 				{
-					Remove(_grabbed);
-					_grabbed = null;
+					var toDelete = _grabbed;
+					Release();
+					Remove(toDelete);
 				}
-				else
+				else if (!overGui)
 				{
-					_grabbed = null;
+					Release();
 				}
 			}
 		}
 		else if (Input.GetMouseButtonDown(0) && !overGui)
 		{
-			_grabbed = Closest(mousePosWorld, 2f);
-
+			Grab(Closest(mousePosWorld, 2f));
 			if (_grabbed != null)
 			{
-				_grabOffset = _grabbed.transform.position - mousePosWorld;	
+				_grabOffset = _grabbed.transform.position - mousePosWorld;
+				_grabbed.GetComponent<Renderer>().material.renderQueue = 5000;
 			}
 		}
 	}
