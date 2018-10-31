@@ -6,8 +6,10 @@ public class CameraMovement : MonoBehaviour
 {
 
 	public float Speed = 0.5f;
+	public float SpinSpeed = 2f;
 	public Transform Target;
-	public float Low = 10;
+	public float MinimumCameraDistance = 8;
+	public float MaximumCameraDistance = 20;
 	private Vector3 _targetPoint;
 
 	private void Start()
@@ -24,10 +26,11 @@ public class CameraMovement : MonoBehaviour
 	private void Update()
 	{
 		var zoom = Input.mouseScrollDelta.y;
-		transform.position = new Vector3(transform.position.x, Math.Max(Low, transform.position.y + zoom * Speed), transform.position.z);
+		var newY = Math.Min(MaximumCameraDistance, Math.Max(MinimumCameraDistance, transform.position.y + zoom * Speed));
+		transform.position = new Vector3(transform.position.x, newY, transform.position.z);
 
-//		var rotation = Input.mouseScrollDelta.x;
-//		transform.RotateAround(_targetPoint, new Vector3(0, 1, 0), rotation);
+		var rotation = Input.mouseScrollDelta.x;
+		transform.RotateAround(_targetPoint, new Vector3(0, 1, 0), rotation * SpinSpeed);
 
 		transform.rotation = Quaternion.LookRotation(_targetPoint - transform.position);
 	}
