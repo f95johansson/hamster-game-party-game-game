@@ -682,7 +682,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ee696aa72b32344eba2cf70d2120a4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 0.5
+  Speed: -0.75
   SpinSpeed: 2
   Target: {fileID: 105930012}
   MinimumCameraDistance: 8
