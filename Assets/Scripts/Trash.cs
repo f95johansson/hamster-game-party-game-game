@@ -50,7 +50,6 @@ public class Trash : MonoBehaviour
 		}
 		
 		transform.position = Vector3.Lerp(transform.position, pos, AnimationSpeed);
-		Debug.Log(pos);
 	}
 
 	public bool IsClose()

@@ -12,16 +12,20 @@ public class TurnEffector : MonoBehaviour
 	private LineRenderer _line;
 	public Handle Handle;
 
-	private void Start()
+	private void Awake()
 	{
 		_line = GetComponent<LineRenderer>();
 		_line.useWorldSpace = true;
-		RecomputePoints();
 
 		Handle = Instantiate(Handle);
 		Handle.transform.parent = transform;
 		Handle.transform.localPosition = VectorMath.VectorFromDegree(transform.eulerAngles.z) * EffectRadius;
 		Handle.OnChange.AddListener(HandleChanged);
+	}
+
+	private void Start()
+	{
+		RecomputePoints();
 	}
 
 	public void HandleChanged()
@@ -54,6 +58,7 @@ public class TurnEffector : MonoBehaviour
 	
 	public void RecomputePoints()
 	{	
+		if (!_line) return;
 		const int nrOfSegments = 64;
 		_line.positionCount = nrOfSegments;
 		

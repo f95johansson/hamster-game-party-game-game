@@ -13,14 +13,20 @@ public class EffectorHolder : MonoBehaviour
 	public Component TurnButton;
 	public Component PushButton;
 	public Trash Trash;
-	
+
+	private readonly Stack<State> _states = new Stack<State>();
+
 	private Camera _camera;
+
+	private struct GrabbedInfo
+	{
+		[CanBeNull] public GameObject Grabbed;
+		public Vector3 Offset;
+		public int OldRenderQueue;
+		public const int RenderQueueMax = 5000;
+	}
 	
-	[CanBeNull]
-	private GameObject _grabbed;
-	private Vector3 _grabOffset;
-	private int _grabbedRenderQueue;
-	private const int RenderQueueMax = 5000; // when this is set any object draws over everything on screen
+	private GrabbedInfo _gi;
 	
 	private EventSystem _eventSystem;
 	
@@ -40,41 +46,41 @@ public class EffectorHolder : MonoBehaviour
 		// Should these maybe be changed to run in update?
 		Events.OnEvent(EventTriggerType.PointerDown, TurnButton, e =>
 		{
-			if (!_grabbed)
+			if (!_gi.Grabbed)
 			{
-				Grab(CreateTurner(ToWorldPoint(Input.mousePosition)));
+				Grab(CreateTurner(ToWorldPoint(Input.mousePosition)).gameObject);
 			}
 		});
 		
 		Events.OnEvent(EventTriggerType.PointerDown, PushButton, e =>
 		{
-			if (!_grabbed)
+			if (!_gi.Grabbed)
 			{
-				Grab(CreatePusher(ToWorldPoint(Input.mousePosition)));
+				Grab(CreatePusher(ToWorldPoint(Input.mousePosition)).gameObject);
 			}
 		});
 	}
 
-	private void Grab(GameObject grabbed)
+	private void Grab(GameObject toGrab)
 	{
-		if (!grabbed) return;
-		_grabbed = grabbed;
+		if (!toGrab) return;
+		_gi.Grabbed = toGrab;
 
-		var r = grabbed.GetComponent<Renderer>();
+		var r = toGrab.GetComponent<Renderer>();
 
-		_grabbedRenderQueue = r.material.renderQueue;
-		r.material.renderQueue = RenderQueueMax;
+		_gi.OldRenderQueue = r.material.renderQueue;
+		r.material.renderQueue = GrabbedInfo.RenderQueueMax;
 	}
 	
 	private void Release()
 	{
-		if (_grabbed == null) return;
-		var r = _grabbed.GetComponent<Renderer>();
-		r.material.renderQueue = _grabbedRenderQueue;
-		_grabbed = null;
+		if (_gi.Grabbed == null) return;
+		var r = _gi.Grabbed.GetComponent<Renderer>();
+		r.material.renderQueue = _gi.OldRenderQueue;
+		_gi.Grabbed = null;
 	}
 
-	private Vector3 ToWorldPoint(Vector3 screenPos) // could be optimized by caching the plane but I don't think it is worth it
+	private Vector3 ToWorldPoint(Vector3 screenPos) // could be optimized by caching the plane but I don't think it is worth it, planes are easy for the computer
 	{
 		var plane = new Plane(Vector3.up, transform.position);
 		var ray = _camera.ScreenPointToRay(screenPos);
@@ -85,7 +91,7 @@ public class EffectorHolder : MonoBehaviour
 		}
 
 		Debug.Log("We missed the y-plane, this should be impossible");
-		return new Vector3(-1, -1, -1);
+		return Vector3.zero;
 	}
 
 	public void Update()
@@ -97,33 +103,36 @@ public class EffectorHolder : MonoBehaviour
 
 		var canvasMousePos = ScreenToCanvas(mousePos);
 		
-		Trash.UpdateTrashCan(canvasMousePos, _grabbed != null && !_grabbed.GetComponent<Handle>());
+		Trash.UpdateTrashCan(canvasMousePos, _gi.Grabbed != null && !_gi.Grabbed.GetComponent<Handle>());
 
-		if (_grabbed != null)
+		if (_gi.Grabbed != null)
 		{
-			_grabbed.transform.position = Trash.IsClose() ? CanvasToWorld(Trash.transform.position) : mousePosWorld + _grabOffset;
+			_gi.Grabbed.transform.position = Trash.IsClose() ? CanvasToWorld(Trash.transform.position) : mousePosWorld + _gi.Offset;
 
 			if (Input.GetMouseButtonUp(0))
 			{
 				if (Trash.IsClose())
 				{
-					var toDelete = _grabbed;
+					var toDelete = _gi.Grabbed;
 					Release();
 					Remove(toDelete);
+					
+					Save();
 				}
 				else if (!overGui)
 				{
 					Release();
+					Save();
 				}
 			}
 		}
 		else if (Input.GetMouseButtonDown(0) && !overGui)
 		{
 			Grab(Closest(mousePosWorld, 2f));
-			if (_grabbed != null)
+			if (_gi.Grabbed != null)
 			{
-				_grabOffset = _grabbed.transform.position - mousePosWorld;
-				_grabbed.GetComponent<Renderer>().material.renderQueue = 5000;
+				_gi.Offset = _gi.Grabbed.transform.position - mousePosWorld;
+				_gi.Grabbed.GetComponent<Renderer>().material.renderQueue = 5000;
 			}
 		}
 	}
@@ -191,20 +200,30 @@ public class EffectorHolder : MonoBehaviour
 		return obj;
 	}
 
-	private GameObject CreateTurner(Vector3 position)
+	private TurnEffector CreateTurner(Vector3 position)
 	{
 		var obj = Instantiate(TurnPrefab);
 		obj.transform.position = position;
 		_turnEffectors.Add(obj);
-		return obj.gameObject;
+		return obj;
 	}
 
-	private GameObject CreatePusher(Vector3 position)
+	private int _nrOfSaves;
+	private void Save()
+	{
+		Debug.Log("Saved" + _nrOfSaves++);
+		var state = new State();
+		state.AddAll(_pushEffectors);
+		state.AddAll(_turnEffectors);
+		_states.Push(state);
+	}
+
+	private PushEffector CreatePusher(Vector3 position)
 	{
 		var obj = Instantiate(PushPrefab);
 		obj.transform.position = position;
 		_pushEffectors.Add(obj);
-		return obj.gameObject;
+		return obj;
 	}
 
 	private void Remove(GameObject obj)
@@ -216,5 +235,41 @@ public class EffectorHolder : MonoBehaviour
 		_turnEffectors.Remove(obj.GetComponent<TurnEffector>());
 		
 		Destroy(obj);
+	}
+
+	public void Undo()
+	{
+		//First destroy everything
+		{
+			//TODO, what do we do with the currently grabbed thing
+			
+			_pushEffectors.ForEach(p =>
+			{
+				Destroy(p.gameObject);
+			});
+			_pushEffectors.Clear();
+		
+			_turnEffectors.ForEach(t =>
+			{
+				Destroy(t.gameObject);
+			});
+			_turnEffectors.Clear();
+		}
+		if (_states.Count == 0) return;
+		_states.Pop();
+		if (_states.Count == 0) return;
+		var oldState = _states.Peek();
+		
+		foreach (var entity in oldState.Pushers)
+		{
+			var pusher = CreatePusher(entity.Position);
+			pusher.Handle.transform.position = entity.HandlePosition;
+		}
+		
+		foreach (var entity in oldState.Turners)
+		{
+			var turner = CreateTurner(entity.Position);
+			turner.Handle.transform.position = entity.HandlePosition;
+		}
 	}
 }

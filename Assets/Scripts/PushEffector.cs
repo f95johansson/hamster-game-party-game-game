@@ -13,17 +13,21 @@ public class PushEffector : MonoBehaviour
 	
 	public Handle Handle;
 
-	private void Start ()
+	private void Awake ()
 	{
 		_width = transform.localScale.x;
 		_line = GetComponent<LineRenderer>();
-		
-		RecomputePoints();
+		_line.useWorldSpace = true;
 
 		Handle = Instantiate(Handle);
 		Handle.transform.parent = transform;
 		Handle.transform.localPosition = VectorMath.VectorFromDegree(0) * Far;
 		Handle.OnChange.AddListener(HandleChanged);
+	}
+
+	private void Start()
+	{
+		RecomputePoints();
 	}
 
 	public void HandleChanged()
@@ -37,6 +41,7 @@ public class PushEffector : MonoBehaviour
 
 	public void RecomputePoints()
 	{
+		
 		var dir = transform.eulerAngles.y;
 		var left = VectorMath.VectorFromDegree2D(dir-90) * _width/2;
 		var right = VectorMath.VectorFromDegree2D(dir+90) * _width/2;
@@ -49,6 +54,8 @@ public class PushEffector : MonoBehaviour
 		_points[2] = right + farVector;
 		_points[3] = left + farVector;
 
+		
+		if (!_line) return;
 		_line.positionCount = _points.Length;
 		for (var i = 0; i < _points.Length; i++)
 		{
