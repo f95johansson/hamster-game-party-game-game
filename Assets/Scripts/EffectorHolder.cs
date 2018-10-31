@@ -70,7 +70,7 @@ public class EffectorHolder : MonoBehaviour
 	}
 
 	public void Update()
-	{
+	{	
 		var mousePos = Input.mousePosition;
 		
 		var mousePosWorld = ToWorldPoint(mousePos);
