@@ -41,14 +41,14 @@ public class Trash : MonoBehaviour
 				dir *= (CloseRadius / magnitude);
 			}
 		
-			pos = _trashStart + dir;
+			pos = dir;
 		}
 		else
 		{
-			pos = _trashStart;
+			pos = Vector3.zero;
 		}
 		
-		transform.position = Vector3.Lerp(transform.position, pos, AnimationSpeed);
+		transform.localPosition = Vector3.Lerp(transform.localPosition, pos, AnimationSpeed);
 	}
 
 	public bool IsClose()
