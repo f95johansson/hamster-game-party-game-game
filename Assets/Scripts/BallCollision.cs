@@ -5,32 +5,26 @@ public struct BallCollision
 {
     private readonly Vector3[] _absolutePoints;
     private readonly Vector3[] _localPoints;
+    private const float Tau = Mathf.PI * 2;
 
-    public BallCollision(float radius, uint numberOfPointsAlongRing, uint numberOfRings)
+    public BallCollision(float radius, uint nrOfRingPoints)
     {
-        
-        _absolutePoints = new Vector3[1 + numberOfPointsAlongRing * numberOfRings];
+        _absolutePoints = new Vector3[1 + nrOfRingPoints];
         _localPoints = new Vector3[_absolutePoints.Length];
 
         _localPoints[0] = Vector3.zero;
 
-        var index = 0;
+        var index = 1;
+        var angleDiff = Tau / nrOfRingPoints;
         
-        for (var l = 0; l < numberOfRings; l++)
+        for (var p = 0; p < nrOfRingPoints; p++)
         {
-            var yAngle = l * 2 * Mathf.PI / numberOfRings;
-
-            var y = Mathf.Cos(yAngle) * radius;
-
-            for (var p = 0; p < numberOfPointsAlongRing; p++)
-            {
-                var angle = numberOfPointsAlongRing * 2 * Mathf.PI / p;
-                var x = Mathf.Cos(angle) * radius;
-                var z = Mathf.Sin(angle) * radius;
-                
-                _localPoints[index] = new Vector3(x, y, z);
-                index++;
-            }
+            var angle = p * angleDiff;
+            var x = Mathf.Cos(angle) * radius;
+            var z = Mathf.Sin(angle) * radius;
+            
+            _localPoints[index] = new Vector3(x, 0, z);
+            index++;
         }
     }
 
