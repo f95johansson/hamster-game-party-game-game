@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(SpriteRenderer))]
@@ -13,6 +15,11 @@ public class Track : MonoBehaviour
 	{
 		_spriteRenderer = GetComponent<SpriteRenderer>();
 		_pixels = _spriteRenderer.sprite.texture;
+	}
+
+	public bool GroundAt(IEnumerable<Vector3> positions)
+	{
+		return positions.Any(GroundAt);
 	}
 	
 	public bool GroundAt(Vector3 position)
