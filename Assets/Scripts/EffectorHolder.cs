@@ -33,8 +33,7 @@ public class EffectorHolder : MonoBehaviour
 	private List<TurnEffector> _turnEffectors;
 	private List<PushEffector> _pushEffectors;
 
-	public float DropZoneWidth = 10;
-	public float DropZoneHeight = 15;
+	public MeshCollider DropZone;
 
 	public Canvas Canvas;
 
@@ -97,13 +96,16 @@ public class EffectorHolder : MonoBehaviour
 		return VectorMath.FromXZ(Vector3.zero);
 	}
 
-	private static Vector3 ClosestPointInRect(Rect dropZone, Vector3 point)
+	private Vector3 ClosestPointInDropZone(Vector3 point)
 	{
-		if (point.x < dropZone.xMin) point.x = dropZone.xMin;
-		else if (point.x > dropZone.xMax) point.x = dropZone.xMax;
+		var min = DropZone.bounds.min;
+		var max = DropZone.bounds.max;
 		
-		if (point.z < dropZone.yMin) point.z = dropZone.yMin;
-		else if (point.z > dropZone.yMax) point.z = dropZone.yMax;
+		if (point.x < min.x) point.x = min.x;
+		else if (point.x > max.x) point.x = max.x;
+		
+		if (point.z < min.z) point.z = min.z;
+		else if (point.z > max.z) point.z = max.z;
 
 		return point;
 	}
@@ -135,9 +137,7 @@ public class EffectorHolder : MonoBehaviour
 				}
 				else if (!overGui)
 				{
-					//TODO, make this rectangle visible to the player
-					var dropZone = new Rect(-DropZoneWidth / 2, -DropZoneHeight / 2, DropZoneWidth, DropZoneHeight);
-					_gi.Grabbed.transform.position = ClosestPointInRect(dropZone, _gi.Grabbed.transform.position);
+					_gi.Grabbed.transform.position = ClosestPointInDropZone(_gi.Grabbed.transform.position);
 					Release();
 					Save();
 				}
