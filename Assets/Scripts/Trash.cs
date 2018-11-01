@@ -26,9 +26,7 @@ public class Trash : MonoBehaviour
 	public void UpdateTrashCan(Vector3 canvasMousePos, bool isSomethingGrabbed)
 	{
 		var distance = Vector3.Distance(canvasMousePos, transform.position);
-		
 		_close = isSomethingGrabbed && distance < CloseRadius;
-		
 		_image.sprite = (_close && isSomethingGrabbed) ? TrashOpen : _trashClosed;
 
 		Vector3 pos;
