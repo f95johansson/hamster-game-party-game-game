@@ -33,6 +33,9 @@ public class EffectorHolder : MonoBehaviour
 	private List<TurnEffector> _turnEffectors;
 	private List<PushEffector> _pushEffectors;
 
+	public float DropZoneWidth = 10;
+	public float DropZoneHeight = 15;
+
 	public Canvas Canvas;
 
 	private void Start()
@@ -79,8 +82,8 @@ public class EffectorHolder : MonoBehaviour
 		r.material.renderQueue = _gi.OldRenderQueue;
 		_gi.Grabbed = null;
 	}
-
-	private Vector3 ToWorldPoint(Vector3 screenPos) // could be optimized by caching the plane but I don't think it is worth it, planes are easy for the computer
+	
+	private Vector3 ToWorldPoint(Vector3 screenPos) 
 	{
 		var plane = new Plane(Vector3.up, transform.position);
 		var ray = _camera.ScreenPointToRay(screenPos);
@@ -90,8 +93,19 @@ public class EffectorHolder : MonoBehaviour
 			return ray.GetPoint(distance);
 		}
 
-		Debug.Log("We missed the y-plane, this should be impossible");
-		return Vector3.zero;
+		Debug.Log("We missed the y-plane, maybe we should handle this better, one idea is to bound where you can place effectors");
+		return VectorMath.FromXZ(Vector3.zero);
+	}
+
+	private static Vector3 ClosestPointInRect(Rect dropZone, Vector3 point)
+	{
+		if (point.x < dropZone.xMin) point.x = dropZone.xMin;
+		else if (point.x > dropZone.xMax) point.x = dropZone.xMax;
+		
+		if (point.z < dropZone.yMin) point.z = dropZone.yMin;
+		else if (point.z > dropZone.yMax) point.z = dropZone.yMax;
+
+		return point;
 	}
 
 	public void Update()
@@ -121,6 +135,9 @@ public class EffectorHolder : MonoBehaviour
 				}
 				else if (!overGui)
 				{
+					//TODO, make this rectangle visible to the player
+					var dropZone = new Rect(-DropZoneWidth / 2, -DropZoneHeight / 2, DropZoneWidth, DropZoneHeight);
+					_gi.Grabbed.transform.position = ClosestPointInRect(dropZone, _gi.Grabbed.transform.position);
 					Release();
 					Save();
 				}
@@ -139,8 +156,10 @@ public class EffectorHolder : MonoBehaviour
 
 	private Vector3 ScreenToCanvas(Vector3 screenPoint)
 	{
-		screenPoint.z = Canvas.planeDistance;
-		return _camera.ScreenToWorldPoint(screenPoint);
+		Vector3 cPoint;
+		RectTransformUtility
+			.ScreenPointToWorldPointInRectangle(Canvas.GetComponent<RectTransform>(), screenPoint, _camera, out cPoint);
+		return cPoint;
 	}
 	
 	private Vector3 CanvasToWorld(Vector3 canvasPoint)
@@ -148,18 +167,18 @@ public class EffectorHolder : MonoBehaviour
 		return ToWorldPoint(_camera.WorldToScreenPoint(canvasPoint));
 	}
 
-	public Vector3 GetTurnFocus(Vector3 position, float radius)
+	public Vector3 GetTurnFocus(Vector3[] positions)
 	{
 		return _turnEffectors
-			.Select(a => a.GetLookForce(position, radius))
+			.Select(a => a.GetLookForce(positions))
 			.Aggregate(Vector3.zero, (a, b) => a + b)
 			.normalized;
 	}
 
-	public Vector3 GetPushForce(Vector3 position)
+	public Vector3 GetPushForce(Vector3[] positions)
 	{
 		return _pushEffectors
-			.Select(a => a.GetPushForce(position))
+			.Select(a => a.GetPushForce(positions))
 			.Aggregate(Vector3.zero, (a, b) => a + b);
 	}
 
@@ -208,22 +227,20 @@ public class EffectorHolder : MonoBehaviour
 		return obj;
 	}
 
-	private int _nrOfSaves;
-	private void Save()
-	{
-		Debug.Log("Saved" + _nrOfSaves++);
-		var state = new State();
-		state.AddAll(_pushEffectors);
-		state.AddAll(_turnEffectors);
-		_states.Push(state);
-	}
-
 	private PushEffector CreatePusher(Vector3 position)
 	{
 		var obj = Instantiate(PushPrefab);
 		obj.transform.position = position;
 		_pushEffectors.Add(obj);
 		return obj;
+	}
+
+	private void Save()
+	{
+		var state = new State();
+		state.SaveAll(_pushEffectors);
+		state.SaveAll(_turnEffectors);
+		_states.Push(state);
 	}
 
 	private void Remove(GameObject obj)
@@ -239,10 +256,9 @@ public class EffectorHolder : MonoBehaviour
 
 	public void Undo()
 	{
-		//First destroy everything
+		//First nuke everything
 		{
-			//TODO, what do we do with the currently grabbed thing
-			
+			//TODO, what do we do with the currently grabbed thing. Not currently a problem since you need to click the undo button
 			_pushEffectors.ForEach(p =>
 			{
 				Destroy(p.gameObject);
@@ -255,21 +271,26 @@ public class EffectorHolder : MonoBehaviour
 			});
 			_turnEffectors.Clear();
 		}
+		
+		//Get previous state
 		if (_states.Count == 0) return;
 		_states.Pop();
 		if (_states.Count == 0) return;
-		var oldState = _states.Peek();
+		var recoveredState = _states.Peek();
 		
-		foreach (var entity in oldState.Pushers)
+		//Re-instantiate from recovered state
 		{
-			var pusher = CreatePusher(entity.Position);
-			pusher.Handle.transform.position = entity.HandlePosition;
-		}
-		
-		foreach (var entity in oldState.Turners)
-		{
-			var turner = CreateTurner(entity.Position);
-			turner.Handle.transform.position = entity.HandlePosition;
+			foreach (var entity in recoveredState.Pushers)
+			{
+				var pusher = CreatePusher(entity.Position);
+				pusher.Handle.transform.position = entity.HandlePosition;
+			}
+
+			foreach (var entity in recoveredState.Turners)
+			{
+				var turner = CreateTurner(entity.Position);
+				turner.Handle.transform.position = entity.HandlePosition;
+			}
 		}
 	}
 }
