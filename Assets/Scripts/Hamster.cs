@@ -22,16 +22,19 @@ public class Hamster : MonoBehaviour
 	
 	private Vector3 _force;
 
-	private void Start()
+	private BallCollision _collision;
+
+	private void Awake()
 	{
-		_radius = transform.lossyScale.x / 2;
+		_radius = GetComponent<SphereCollider>().radius;
+		_collision = new BallCollision(_radius / 3, 8);
 	}
-	
+
 	private void Update()
 	{
-		_force += EffectorHolder.GetPushForce(transform.position);
-		var turn = EffectorHolder.GetTurnFocus(transform.position, _radius);
-
+		_force += EffectorHolder.GetPushForce(_collision.GetPoints(transform.position));
+		
+		var turn = EffectorHolder.GetTurnFocus(_collision.GetPoints(transform.position));
 		if (turn != Vector3.zero)
 		{
 			transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(turn), TurnSpeed);
@@ -39,45 +42,32 @@ public class Hamster : MonoBehaviour
 
 		_force += (transform.forward * Speed);
 		
-		VerticalStuff();
+		_force += VerticalStuff();
 		
 		transform.position += _force * Weakener;
 		
 		_force *= 1 - Friction;
 	}
 
-	private void VerticalStuff()
+	private bool _aboveGround = true;
+	private Vector3 VerticalStuff()
 	{
-		if (Track.GroundAt(transform.position) && AtGroundLevel())
+		var groundAtXZ = Track.GroundAt(_collision.GetPoints(transform.position));
+		
+		if (groundAtXZ && _aboveGround && _ySpeed >= 0)
 		{
-			_ySpeed = 0;
-
 			var x = transform.position.x;
 			var z = transform.position.z;
-
-			if (_ySpeed < 0)
-			{
-				transform.position = new Vector3(x, Track.transform.position.y + _radius, z);
-				_ySpeed = 0;
-			}
+			
+			transform.position = new Vector3(x, Track.transform.position.y + _radius, z);
+			_ySpeed = 0;
 		}
 		else
 		{
 			_ySpeed += Gravity;
 		}
-		
-		_force += new Vector3(0, _ySpeed, 0);
-	}
 
-	private bool AtGroundLevel()
-	{
-		var top = transform.position.y + _radius;
-		var bottom = transform.position.y - _radius;
-		var ty = Track.transform.position.y;
-
-		if (bottom > ty) return false;
-		if (top < ty) return false;
-
-		return true;
+		_aboveGround = transform.position.y >= Track.transform.position.y + _radius; 
+		return new Vector3(0, _ySpeed, 0);
 	}
 }
