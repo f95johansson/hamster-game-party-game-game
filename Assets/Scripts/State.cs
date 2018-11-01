@@ -18,7 +18,7 @@ public class State {
     public readonly HashSet<Entity> Turners = new HashSet<Entity>();
     public readonly HashSet<Entity> Pushers = new HashSet<Entity>();
 
-    public void AddAll(IEnumerable<PushEffector> objects)
+    public void SaveAll(IEnumerable<PushEffector> objects)
     {
         foreach (var o in objects)
         {
@@ -26,7 +26,7 @@ public class State {
         }
     }
     
-    public void AddAll(IEnumerable<TurnEffector> objects)
+    public void SaveAll(IEnumerable<TurnEffector> objects)
     {
         foreach (var o in objects)
         {
