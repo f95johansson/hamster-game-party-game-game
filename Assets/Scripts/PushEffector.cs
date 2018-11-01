@@ -22,7 +22,7 @@ public class PushEffector : MonoBehaviour
 
 		Handle = Instantiate(Handle);
 		Handle.transform.parent = transform;
-		Handle.transform.localPosition = VectorMath.VectorFromDegree(0) * Far;
+		Handle.transform.localPosition = new Vector3(1, 0, 0) * Far;
 		Handle.OnChange.AddListener(HandleChanged);
 	}
 

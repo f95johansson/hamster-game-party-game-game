@@ -20,7 +20,7 @@ public class TurnEffector : MonoBehaviour
 		Handle = Instantiate(Handle);
 		Handle.transform.parent = transform;
 		Handle.OnChange.AddListener(HandleChanged);
-		Handle.transform.localPosition = VectorMath.VectorFromDegree(transform.eulerAngles.z) * EffectRadius;
+		Handle.transform.localPosition = new Vector3(1, 0, 0) * EffectRadius;
 	}
 
 	public void HandleChanged()
