@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 [RequireComponent(typeof(LineRenderer))]
 public class PushEffector : MonoBehaviour
@@ -34,26 +35,28 @@ public class PushEffector : MonoBehaviour
 	{
 		var position = Handle.transform.position;
 		Far = Vector3.Distance(transform.position, Handle.transform.position);
-		transform.rotation = VectorMath.FromToRotation(transform.position, position);
+		
+		var diff = transform.position - Handle.transform.position;
+		diff.y = 0;
+		
+		transform.rotation = Quaternion.LookRotation(diff);
 		Handle.transform.position = position;
 		RecomputePoints();
 	}
 
 	public void RecomputePoints()
 	{
+		var farVector = VectorMath.ToXZ(Handle.transform.position - transform.position);
+		var perpendicular = Vector2.Perpendicular(farVector).normalized; // in direction of right
 		
-		var dir = transform.eulerAngles.y;
-		var left = VectorMath.VectorFromDegree2D(dir-90) * _width/2;
-		var right = VectorMath.VectorFromDegree2D(dir+90) * _width/2;
-		
-		var farVector = VectorMath.VectorFromDegree2D(dir) * Far;
+		var left = -perpendicular * _width/2;
+		var right = perpendicular * _width/2;
 		
 		_points = new Vector2[4];
 		_points[0] = left;
 		_points[1] = right;
 		_points[2] = right + farVector;
 		_points[3] = left + farVector;
-
 		
 		if (!_line) return;
 		_line.positionCount = _points.Length;
@@ -61,6 +64,26 @@ public class PushEffector : MonoBehaviour
 		{
 			_line.SetPosition(i, transform.position + VectorMath.FromXZ(_points[i]));
 		}
+	}
+
+	public Vector3 GetPushForce(IEnumerable<Vector3> positions3D)
+	{
+		if (_points == null) return Vector3.zero;
+		
+		foreach (var pos in positions3D)
+		{
+			float distance;
+			if (ContainsPoint(pos, out distance))
+			{
+				var mag = (Mathf.Abs(Far) <= float.Epsilon) ? 0 : 1 - distance/Far;
+				var force = (Handle.transform.position - transform.position).normalized * Strength * mag;
+
+				Debug.Log("force from pusher:" + force);
+				return force;
+			}
+		}
+
+		return Vector3.zero;
 	}
 
 	public Vector3 GetPushForce(Vector3 position3D)
@@ -74,9 +97,7 @@ public class PushEffector : MonoBehaviour
 		}
 		
 		var mag = 1 - distance/Far;
-		var pushVector = VectorMath.VectorFromDegree(transform.eulerAngles.y) * Strength * mag;
-
-		return pushVector;
+		return (Handle.transform.position - transform.position).normalized * Strength * mag;
 	}
 
 	private bool ContainsPoint(Vector3 position, out float distance)

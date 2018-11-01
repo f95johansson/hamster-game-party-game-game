@@ -19,13 +19,8 @@ public class TurnEffector : MonoBehaviour
 
 		Handle = Instantiate(Handle);
 		Handle.transform.parent = transform;
-		Handle.transform.localPosition = VectorMath.VectorFromDegree(transform.eulerAngles.z) * EffectRadius;
 		Handle.OnChange.AddListener(HandleChanged);
-	}
-
-	private void Start()
-	{
-		RecomputePoints();
+		Handle.transform.localPosition = VectorMath.VectorFromDegree(transform.eulerAngles.z) * EffectRadius;
 	}
 
 	public void HandleChanged()
@@ -34,18 +29,26 @@ public class TurnEffector : MonoBehaviour
 		RecomputePoints();
 	}
 
-	public Vector3 GetLookForce(Vector3 position3D, float radius)
+	public Vector3 GetLookForce(Vector3[] positions3D)
 	{
-		var position = VectorMath.ToXZ(position3D);
-		var myPos = VectorMath.ToXZ(transform.position);
+		
+		foreach (var position3D in positions3D)
+		{
+			var position = position3D;
+			var myPos = transform.position;
 	
-		var diffVector = position - myPos; // position from effector to position
-		var mag = Math.Max(0, diffVector.magnitude - radius);
-		var normalized = diffVector.normalized;
+			var diffVector = (position - myPos);
+			var distance = diffVector.magnitude;
+			
+			if (distance > EffectRadius) continue;
+			
+			var effect = (positions3D[0] - myPos).normalized * Force;
+			effect.y = 0;
 
-		var vec = Vector2.Lerp(normalized * Force, Vector2.zero, mag / EffectRadius);
+			return Vector3.Lerp(effect, Vector3.zero, distance / EffectRadius);
+		}
 
-		return VectorMath.FromXZ(vec.normalized);
+		return Vector3.zero;
 	}
 	
 	private void Update()
