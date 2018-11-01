@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3ae2581e23a2084ba7402c6e55a9167, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Strength: 3
+  Strength: 2
   Far: 2
   Handle: {fileID: 114729244921029578, guid: d169c60ab2d05ae4d8a6e77761ec4b07, type: 2}
 --- !u!120 &120966030691713920
