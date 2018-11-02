@@ -12,6 +12,8 @@ public class GameControl : MonoBehaviour {
     public float highScore;
     public float health;
     public float experience;
+    public int carrots;
+    public int cats;
 
     private void Awake()
     {
@@ -53,6 +55,52 @@ public class GameControl : MonoBehaviour {
             highScore = data.highScore;
         }
     }
+
+    public void loadItemList() {
+        if (File.Exists(Application.persistentDataPath + "/itemList.dat"))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + "/itemList.dat", FileMode.Open);
+            itemList data = (itemList)bf.Deserialize(file);
+            file.Close();
+            carrots = data.carrots;
+            cats = data.cats;
+        }
+    }
+
+    public void saveItemList() {
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create(Application.persistentDataPath + "/itemList.dat");
+
+        itemList data = new itemList();
+        data.carrots = carrots;
+        data.cats = cats;
+        bf.Serialize(file, data);
+        file.Close();
+    }
+
+    public void loadShop() {
+        if (File.Exists(Application.persistentDataPath + "/shop.dat"))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + "/shop.dat", FileMode.Open);
+            playerData data = (playerData)bf.Deserialize(file);
+            file.Close();
+        }
+    }
+
+    public void saveShop() {
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create(Application.persistentDataPath + "/shop.dat");
+
+        playerData data = new playerData();
+        //data.health = health;
+        //data.experience = experience;
+        //data.highScore = highScore;
+
+        bf.Serialize(file, data);
+        file.Close();
+    }
 }
 
 [Serializable]
@@ -64,6 +112,18 @@ class playerData {
 
 [Serializable]
 class track {
+
+}
+
+[Serializable]
+class itemList {
+    public int carrots;
+    public int cats;
+
+}
+
+[Serializable]
+class shop {
 
 }
 
