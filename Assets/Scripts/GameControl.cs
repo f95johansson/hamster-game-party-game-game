@@ -15,6 +15,9 @@ public class GameControl : MonoBehaviour {
     public int carrots;
     public int cats;
 
+    //From Berenice
+    //public Inventory inventory;
+
     private void Awake()
     {
         if(control == null) {
@@ -40,6 +43,8 @@ public class GameControl : MonoBehaviour {
         data.experience = experience;
         data.highScore = highScore;
 
+        //data.inventory = inventory;
+
         bf.Serialize(file, data);
         file.Close();
     }
@@ -53,6 +58,8 @@ public class GameControl : MonoBehaviour {
             health = data.health;
             experience = data.experience;
             highScore = data.highScore;
+
+            //inventory = data.inventory;
         }
     }
 
@@ -101,10 +108,40 @@ public class GameControl : MonoBehaviour {
         bf.Serialize(file, data);
         file.Close();
     }
+
+    //Berenice : not sure about that yet
+    public void loadHamsterCage()
+    {
+        if (File.Exists(Application.persistentDataPath + "/cage.dat"))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + "/cage.dat", FileMode.Open);
+            cageData data = (cageData)bf.Deserialize(file);
+            file.Close();
+        }
+    }
+
+    //Berenice : not sure about that yet
+    public void saveHamsterCage()
+    {
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create(Application.persistentDataPath + "/cage.dat");
+
+        //playerData data = new playerData();
+        cageData data = new cageData();
+
+        //data.inventory = inventory;
+
+        bf.Serialize(file, data);
+        file.Close();
+    }
 }
 
 [Serializable]
 class playerData {
+
+   
+
     public float health;
     public float experience;
     public float highScore;
@@ -125,5 +162,12 @@ class itemList {
 [Serializable]
 class shop {
 
+}
+
+//Berenice : not sure about that yet
+[Serializable]
+class cageData
+{
+    public Inventory inventory;
 }
 
