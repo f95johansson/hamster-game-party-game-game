@@ -12,10 +12,7 @@ public class GameControl : MonoBehaviour {
     public float highScore;
     public float health;
     public float experience;
-    public int carrots;
-    public int cats;
-    public int Food;
-    public int Money;
+    public Inventory Inventory = new Inventory();
 
     //From Berenice
     //public Inventory inventory;
@@ -65,17 +62,13 @@ public class GameControl : MonoBehaviour {
         }
     }
 
-    public void loadInventory() {
+    /*public void loadInventory() {
         if (File.Exists(Application.persistentDataPath + "/Inventory.dat"))
         {
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + "/Inventory.dat", FileMode.Open);
             inventory data = (inventory)bf.Deserialize(file);
             file.Close();
-            carrots = data.carrots;
-            cats = data.cats;
-            Food = data.Food;
-            Money = data.Money;
 
         }
     }
@@ -85,15 +78,11 @@ public class GameControl : MonoBehaviour {
         FileStream file = File.Create(Application.persistentDataPath + "/Inventory.dat");
 
         inventory data = new inventory();
-        data.carrots = carrots;
-        data.cats = cats;
-        data.Food = Food;
-        data.Money = Money;
         bf.Serialize(file, data);
         file.Close();
-    }
+    }*/
 
-    public void loadShop() {
+    /*public void loadShop() {
         if (File.Exists(Application.persistentDataPath + "/shop.dat"))
         {
             BinaryFormatter bf = new BinaryFormatter();
@@ -114,7 +103,7 @@ public class GameControl : MonoBehaviour {
 
         bf.Serialize(file, data);
         file.Close();
-    }
+    }*/
 
     //Berenice : not sure about that yet
     public void loadHamsterCage()
@@ -125,6 +114,10 @@ public class GameControl : MonoBehaviour {
             FileStream file = File.Open(Application.persistentDataPath + "/cage.dat", FileMode.Open);
             cageData data = (cageData)bf.Deserialize(file);
             file.Close();
+            Inventory.foodAmount = data.inventory.foodAmount;
+            Inventory.moneyAmount = data.inventory.moneyAmount;
+            Inventory.hamsterStates = data.inventory.hamsterStates;
+            //data.inventory
         }
     }
 
@@ -136,7 +129,9 @@ public class GameControl : MonoBehaviour {
 
         //playerData data = new playerData();
         cageData data = new cageData();
-
+        data.inventory.foodAmount = Inventory.foodAmount;
+        data.inventory.moneyAmount = Inventory.moneyAmount;
+        data.inventory.hamsterStates = Inventory.hamsterStates;
         //data.inventory = inventory;
 
         bf.Serialize(file, data);
@@ -159,7 +154,7 @@ class track {
 
 }
 
-[Serializable]
+/*[Serializable]
 class inventory {
     public int carrots;
     public int cats;
@@ -170,7 +165,7 @@ class inventory {
 [Serializable]
 class shop {
 
-}
+}*/
 
 //Berenice : not sure about that yet
 [Serializable]

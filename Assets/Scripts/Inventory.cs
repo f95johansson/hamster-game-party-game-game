@@ -9,8 +9,8 @@ public class Inventory : MonoBehaviour {
 
     public HamsterState[] hamsterStates = new HamsterState[maxNumberHamsters];
 
-    private float foodAmount;
-    private float moneyAmount;
+    public float foodAmount;
+    public float moneyAmount;
 
     public void AddHamster(HamsterState hamsterToAdd)
     {
