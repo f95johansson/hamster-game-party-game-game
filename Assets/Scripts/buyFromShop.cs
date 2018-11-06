@@ -34,7 +34,7 @@ public class buyFromShop : MonoBehaviour {
         m_Button_3.onClick.AddListener(delegate { TaskWithParameters(2); });
         m_Button_4.onClick.AddListener(delegate { TaskWithParameters(3); });
         m_Button_5.onClick.AddListener(delegate { TaskWithParameters(4); });
-        m_exit.onClick.AddListener(ExitScene);
+        //m_exit.onClick.AddListener(ExitScene);
     }
 	
 	// Update is called once per frame
