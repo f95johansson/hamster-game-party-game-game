@@ -14,6 +14,8 @@ public class GameControl : MonoBehaviour {
     public float experience;
     public int carrots;
     public int cats;
+    public int Food;
+    public int Money;
 
     //From Berenice
     //public Inventory inventory;
@@ -63,25 +65,30 @@ public class GameControl : MonoBehaviour {
         }
     }
 
-    public void loadItemList() {
-        if (File.Exists(Application.persistentDataPath + "/itemList.dat"))
+    public void loadInventory() {
+        if (File.Exists(Application.persistentDataPath + "/Inventory.dat"))
         {
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/itemList.dat", FileMode.Open);
-            itemList data = (itemList)bf.Deserialize(file);
+            FileStream file = File.Open(Application.persistentDataPath + "/Inventory.dat", FileMode.Open);
+            inventory data = (inventory)bf.Deserialize(file);
             file.Close();
             carrots = data.carrots;
             cats = data.cats;
+            Food = data.Food;
+            Money = data.Money;
+
         }
     }
 
-    public void saveItemList() {
+    public void saveInventory() {
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/itemList.dat");
+        FileStream file = File.Create(Application.persistentDataPath + "/Inventory.dat");
 
-        itemList data = new itemList();
+        inventory data = new inventory();
         data.carrots = carrots;
         data.cats = cats;
+        data.Food = Food;
+        data.Money = Money;
         bf.Serialize(file, data);
         file.Close();
     }
@@ -153,10 +160,11 @@ class track {
 }
 
 [Serializable]
-class itemList {
+class inventory {
     public int carrots;
     public int cats;
-
+    public int Food;
+    public int Money;
 }
 
 [Serializable]
