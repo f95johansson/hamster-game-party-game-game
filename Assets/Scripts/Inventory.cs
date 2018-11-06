@@ -35,12 +35,12 @@ public class Inventory {
         }
     }
 
-    public void AddFood(int amoutToAdd)
+    public void AddFood(uint amoutToAdd)
     {
         foodAmount += amoutToAdd;
     }
 
-    public void AddMoney(int amoutToAdd)
+    public void AddMoney(uint amoutToAdd)
     {
         moneyAmount += amoutToAdd;
     }

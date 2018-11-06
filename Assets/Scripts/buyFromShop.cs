@@ -9,7 +9,7 @@ public class buyFromShop : MonoBehaviour {
     public Button m_Button_1, m_Button_2, m_Button_3, m_Button_4, m_Button_5, m_exit, m_itemShop, m_hamsterShop;
     public Text m_Text_1, m_Text_2, m_Text_3, m_Text_4, m_Text_5;
     //private string[] items = new string[] { "Food", "", "", "", "" };
-    private int[] cost = new int[] {10,1000,1000,1000,1000};
+    private uint[] cost = new uint[] {10,1000,1000,1000,1000};
     private int[] Max = new int[] { 100, 100, 100, 100, 100 };
     // Use this for initialization
 
@@ -54,8 +54,8 @@ public class buyFromShop : MonoBehaviour {
 
     void TaskWithParameters(int ButtonId)
     {
-        int item;
-        int money;
+        uint item;
+        uint money;
         switch(ButtonId) {
             case 0:
                 item = GameControl.control.Inventory.foodAmount;
