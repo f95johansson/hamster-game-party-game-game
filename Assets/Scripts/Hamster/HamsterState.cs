@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class HamsterState : MonoBehaviour {
 
-    private uint foodLevel; //0,1,2
+    private uint foodLevel = 2; //0,1,2
     [Range (0,2)]
-    public uint weightLevel; //0,1,2
+    public uint weightLevel = 1; //0,1,2
     [Range(0, 2)]
-    public uint fearLevel; //0,1,2
+    public uint fearLevel = 1; //0,1,2
 
     public void IncreaseFoodLevel(uint amountIncrease)
     {

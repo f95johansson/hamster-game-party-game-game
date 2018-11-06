@@ -22,8 +22,8 @@ public class adjustScript : MonoBehaviour {
             GameControl.control.experience -= 10;
         }
         if (GUI.Button(new Rect(10, 340, 200, 30), "Add 10000 Money")) {
-            GameControl.control.Money += 10000;
-            GameControl.control.saveInventory();
+            GameControl.control.Inventory.moneyAmount += 10000;
+            //GameControl.control.saveHamsterCage();
         }
         if (GUI.Button(new Rect(10, 260, 200, 30), "save"))
         {

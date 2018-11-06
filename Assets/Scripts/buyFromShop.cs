@@ -25,10 +25,10 @@ public class buyFromShop : MonoBehaviour {
 
     void Start () {
         m_Text_1.text = "" + GameControl.control.Inventory.foodAmount;
-        m_Text_2.text = "" //+ GameControl.control.carrots;
-        m_Text_3.text = "" //+ GameControl.control.cats;
-        m_Text_4.text = "" //+ GameControl.control.Food;
-        m_Text_5.text = "" //+ GameControl.control.Food;
+        m_Text_2.text = "";//+ GameControl.control.carrots;
+        m_Text_3.text = ""; //+ GameControl.control.cats;
+        m_Text_4.text = ""; //+ GameControl.control.Food;
+        m_Text_5.text = ""; //+ GameControl.control.Food;
         m_Button_1.onClick.AddListener(delegate { TaskWithParameters(0); });
         m_Button_2.onClick.AddListener(delegate { TaskWithParameters(1); });
         m_Button_3.onClick.AddListener(delegate { TaskWithParameters(2); });
@@ -46,10 +46,16 @@ public class buyFromShop : MonoBehaviour {
         //SceneManager.LoadScene("Scenes/HamsterShopPart2", LoadSceneMode.Additive);
     }
 
+    void ChangeScene(string scene){
+        if (scene != SceneManager.GetActiveScene().name) {
+            //SceneManager
+        }
+    }
+
     void TaskWithParameters(int ButtonId)
     {
-        float item;
-        float money;
+        int item;
+        int money;
         switch(ButtonId) {
             case 0:
                 item = GameControl.control.Inventory.foodAmount;

@@ -1,16 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System;
 
-public class Inventory : MonoBehaviour {
+[Serializable]
+public class Inventory {
 
     public const int maxNumberHamsters = 10;
     
 
     public HamsterState[] hamsterStates = new HamsterState[maxNumberHamsters];
 
-    public float foodAmount;
-    public float moneyAmount;
+    public uint foodAmount = 0;
+    public uint moneyAmount = 100;
 
     public void AddHamster(HamsterState hamsterToAdd)
     {
@@ -36,12 +35,12 @@ public class Inventory : MonoBehaviour {
         }
     }
 
-    public void AddFood(float amoutToAdd)
+    public void AddFood(int amoutToAdd)
     {
         foodAmount += amoutToAdd;
     }
 
-    public void AddMoney(float amoutToAdd)
+    public void AddMoney(int amoutToAdd)
     {
         moneyAmount += amoutToAdd;
     }

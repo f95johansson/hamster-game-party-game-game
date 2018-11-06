@@ -111,12 +111,16 @@ public class GameControl : MonoBehaviour {
         if (File.Exists(Application.persistentDataPath + "/cage.dat"))
         {
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/cage.dat", FileMode.Open);
-            cageData data = (cageData)bf.Deserialize(file);
-            file.Close();
-            Inventory.foodAmount = data.inventory.foodAmount;
-            Inventory.moneyAmount = data.inventory.moneyAmount;
-            Inventory.hamsterStates = data.inventory.hamsterStates;
+            if (File.Exists("/cage.dat")) {
+                FileStream file = File.Open(Application.persistentDataPath + "/cage.dat", FileMode.Open);
+                cageData data = (cageData)bf.Deserialize(file);
+                file.Close();
+
+                Inventory.foodAmount = data.inventory.foodAmount;
+                Inventory.moneyAmount = data.inventory.moneyAmount;
+                Inventory.hamsterStates = data.inventory.hamsterStates;
+            }
+
             //data.inventory
         }
     }
@@ -171,6 +175,6 @@ class shop {
 [Serializable]
 class cageData
 {
-    public Inventory inventory;
+    public Inventory inventory = new Inventory();
 }
 
