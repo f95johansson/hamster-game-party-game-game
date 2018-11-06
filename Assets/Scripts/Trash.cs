@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Image))]
@@ -8,8 +9,8 @@ public class Trash : MonoBehaviour
 	private Image _image;
 	private bool _close;
 
-	public Sprite TrashOpen;
-	private Sprite _trashClosed;
+	[FormerlySerializedAs("TrashOpen")] public Sprite ImageOpen;
+	private Sprite _imageClosed;
 
 	[Range(0, 1)]
 	public float AnimationSpeed = 0.1f;
@@ -20,14 +21,16 @@ public class Trash : MonoBehaviour
 	{
 		_trashStart = transform.position;
 		_image = GetComponent<Image>();
-		_trashClosed = _image.sprite;
+		_imageClosed = _image.sprite;
 	}
 
-	public void UpdateTrashCan(Vector3 canvasMousePos, bool isSomethingGrabbed)
+	public void UpdateTrashCan(Vector3 mousePos, bool isSomethingGrabbed)
 	{
+		var canvasMousePos = ToCanvasSpace(mousePos);
+		
 		var distance = Vector3.Distance(canvasMousePos, transform.position);
 		_close = isSomethingGrabbed && distance < CloseRadius;
-		_image.sprite = (_close && isSomethingGrabbed) ? TrashOpen : _trashClosed;
+		_image.sprite = (_close && isSomethingGrabbed) ? ImageOpen : _imageClosed;
 
 		Vector3 pos;
 		if (isSomethingGrabbed && distance < AnimatingRadius)
@@ -48,6 +51,11 @@ public class Trash : MonoBehaviour
 		}
 		
 		transform.position = Vector3.Lerp(transform.position, pos, AnimationSpeed);
+	}
+
+	private static Vector3 ToCanvasSpace(Vector3 mousePos)
+	{
+		return mousePos;
 	}
 
 	public bool IsClose()
