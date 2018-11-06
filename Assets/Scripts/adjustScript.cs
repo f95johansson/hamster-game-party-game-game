@@ -6,6 +6,10 @@ public class adjustScript : MonoBehaviour {
 
     private void OnGUI()
     {
+
+        GUI.Label(new Rect(10, 10, 100, 30), "Money: " + GameControl.Control.Inventory.moneyAmount);
+        GUI.Label(new Rect(10, 40, 100, 30), "Food: " + GameControl.Control.Inventory.foodAmount);
+
         if (GUI.Button(new Rect(10, 180, 200, 30), "experience up"))
         {
             GameControl.Control.PlayerData.experience += 10;
