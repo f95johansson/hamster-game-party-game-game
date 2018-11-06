@@ -1,36 +1,51 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using UnityEngine;
 
-public class State {
+[SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
+[SuppressMessage("ReSharper", "FieldCanBeMadeReadOnly.Global")]
+public struct State {
 
     public struct Entity
     {
-        public readonly Vector3 Position;
-        public readonly Vector3 HandlePosition;
+        public float X, Y, Z;
+        public float Hx, Hy, Hz;
 
         public Entity(Vector3 position, Vector3 handlePosition)
         {
-            Position = position;
-            HandlePosition = handlePosition;
+            X = position.x;
+            Y = position.y;
+            Z = position.z;
+            
+            Hx = handlePosition.x;
+            Hy = handlePosition.y;
+            Hz = handlePosition.z;
         }
-    }
 
-    public readonly HashSet<Entity> Turners = new HashSet<Entity>();
-    public readonly HashSet<Entity> Pushers = new HashSet<Entity>();
-
-    public void SaveAll(IEnumerable<PushEffector> objects)
-    {
-        foreach (var o in objects)
+        public Vector3 Position()
         {
-            Pushers.Add(new Entity(o.transform.position, o.Handle.transform.position));
+            return new Vector3(X, Y, Z);
+        }
+
+        public Vector3 HandlePosition()
+        {
+            return new Vector3(Hx, Hy, Hz);            
         }
     }
     
-    public void SaveAll(IEnumerable<TurnEffector> objects)
+    public Entity[] Turners;
+    public Entity[] Pushers;
+    
+    public State(IEnumerable<TurnEffector> turners, IEnumerable<PushEffector> pushers)
     {
-        foreach (var o in objects)
-        {
-            Turners.Add(new Entity(o.transform.position, o.Handle.transform.position));
-        }
+        Turners = turners.Select(o => new Entity(o.transform.position, o.Handle.transform.position)).ToArray();
+        Pushers = pushers.Select(o => new Entity(o.transform.position, o.Handle.transform.position)).ToArray();
+    }
+
+    public State(Entity[] turners, Entity[] pushers)
+    {
+        Turners = turners;
+        Pushers = pushers;
     }
 }

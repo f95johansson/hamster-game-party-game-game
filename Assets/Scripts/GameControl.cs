@@ -178,3 +178,16 @@ class cageData
     public Inventory inventory = new Inventory();
 }
 
+[Serializable]
+internal class TrackData
+{
+    public string Name;
+    public State[] States;
+}
+
+[Serializable]
+internal class Tracks
+{
+    public TrackData[] SavedTracks;
+}
+

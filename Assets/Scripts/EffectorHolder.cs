@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using UnityEngine;
@@ -116,10 +117,8 @@ public class EffectorHolder : MonoBehaviour
 		
 		var mousePosWorld = ToWorldPoint(mousePos);
 		var overGui = _eventSystem && _eventSystem.IsPointerOverGameObject();
-
-		var canvasMousePos = ScreenToCanvas(mousePos);
 		
-		Trash.UpdateTrashCan(canvasMousePos, _gi.Grabbed != null && !_gi.Grabbed.GetComponent<Handle>());
+		Trash.UpdateTrashCan(mousePos, _gi.Grabbed != null && !_gi.Grabbed.GetComponent<Handle>());
 
 		if (_gi.Grabbed != null)
 		{
@@ -154,17 +153,10 @@ public class EffectorHolder : MonoBehaviour
 		}
 	}
 
-	private Vector3 ScreenToCanvas(Vector3 screenPoint)
-	{
-		Vector3 cPoint;
-		RectTransformUtility
-			.ScreenPointToWorldPointInRectangle(Canvas.GetComponent<RectTransform>(), screenPoint, _camera, out cPoint);
-		return cPoint;
-	}
-	
+
 	private Vector3 CanvasToWorld(Vector3 canvasPoint)
 	{
-		return ToWorldPoint(_camera.WorldToScreenPoint(canvasPoint));
+		return ToWorldPoint(canvasPoint);
 	}
 
 	public Vector3 GetTurnFocus(Vector3[] positions)
@@ -237,10 +229,7 @@ public class EffectorHolder : MonoBehaviour
 
 	private void Save()
 	{
-		var state = new State();
-		state.SaveAll(_pushEffectors);
-		state.SaveAll(_turnEffectors);
-		_states.Push(state);
+		_states.Push(new State(_turnEffectors, _pushEffectors));
 	}
 
 	private void Remove(GameObject obj)
@@ -282,14 +271,14 @@ public class EffectorHolder : MonoBehaviour
 		{
 			foreach (var entity in recoveredState.Pushers)
 			{
-				var pusher = CreatePusher(entity.Position);
-				pusher.Handle.transform.position = entity.HandlePosition;
+				var pusher = CreatePusher(entity.Position());
+				pusher.Handle.transform.position = entity.HandlePosition();
 			}
 
 			foreach (var entity in recoveredState.Turners)
 			{
-				var turner = CreateTurner(entity.Position);
-				turner.Handle.transform.position = entity.HandlePosition;
+				var turner = CreateTurner(entity.Position());
+				turner.Handle.transform.position = entity.HandlePosition();
 			}
 		}
 	}
