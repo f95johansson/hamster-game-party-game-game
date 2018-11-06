@@ -1,19 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
 public class GameControl : MonoBehaviour {
+
+    private static string userDataPath { get { return Application.persistentDataPath; } }
 
     public static GameControl Control;
 
     public Inventory Inventory = new Inventory();
     public PlayerData PlayerData = new PlayerData();
 
+
     private void Awake()
     {
-        if(Control == null) {
+        Environment.SetEnvironmentVariable("MONO_REFLECTION_SERIALIZER", "yes");
+        if (Control == null) {
             DontDestroyOnLoad(gameObject);
             Control = this;
         }else if(Control != this){
@@ -24,10 +29,10 @@ public class GameControl : MonoBehaviour {
     //Berenice : not sure about that yet
     public void LoadInventory()
     {
-        if (File.Exists(Application.persistentDataPath + "/Inventory.dat"))
+        if (File.Exists(userDataPath + "/Inventory.dat"))
         {
             var bf = new BinaryFormatter();
-            var file = File.Open(Application.persistentDataPath + "/Inventory.dat", FileMode.Open);
+            var file = File.Open(userDataPath + "/Inventory.dat", FileMode.Open);
             var data = (Inventory)bf.Deserialize(file);
             file.Close();
 
@@ -44,7 +49,7 @@ public class GameControl : MonoBehaviour {
     public void SaveInventory()
     {
         var bf = new BinaryFormatter();
-        var file = File.Create(Application.persistentDataPath + "/Inventory.dat");
+        var file = File.Create(userDataPath + "/Inventory.dat");
 
         //playerData data = new playerData();
         var data = new Inventory
@@ -60,9 +65,9 @@ public class GameControl : MonoBehaviour {
 
     public void LoadPlayerData() {
         var bf = new BinaryFormatter();
-        if (File.Exists(Application.persistentDataPath + "/PlayerData.dat"))
+        if (File.Exists(userDataPath + "/PlayerData.dat"))
         {
-            var file = File.Open(Application.persistentDataPath + "/PlayerData.dat", FileMode.Open);
+            var file = File.Open(userDataPath + "/PlayerData.dat", FileMode.Open);
             var data = (PlayerData)bf.Deserialize(file);
             file.Close();
 
@@ -73,7 +78,7 @@ public class GameControl : MonoBehaviour {
 
     public void SavePlayerData() {
         var bf = new BinaryFormatter();
-        var file = File.Create(Application.persistentDataPath + "/PlayerData.dat");
+        var file = File.Create(userDataPath + "/PlayerData.dat");
 
         //playerData data = new playerData();
         var data = new PlayerData
