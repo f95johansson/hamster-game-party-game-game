@@ -12,7 +12,8 @@ public class GameControl : MonoBehaviour {
     public float highScore;
     public float health;
     public float experience;
-    public Inventory Inventory = new Inventory();
+    public Inventory inventory = new Inventory();
+    public PlayerData playerData = new PlayerData();
 
     //From Berenice
     //public Inventory inventory;
@@ -62,63 +63,23 @@ public class GameControl : MonoBehaviour {
         }
     }
 
-    /*public void loadInventory() {
+    //Berenice : not sure about that yet
+    public void loadInventory()
+    {
         if (File.Exists(Application.persistentDataPath + "/Inventory.dat"))
         {
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/Inventory.dat", FileMode.Open);
-            inventory data = (inventory)bf.Deserialize(file);
-            file.Close();
-
-        }
-    }
-
-    public void saveInventory() {
-        BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/Inventory.dat");
-
-        inventory data = new inventory();
-        bf.Serialize(file, data);
-        file.Close();
-    }*/
-
-    /*public void loadShop() {
-        if (File.Exists(Application.persistentDataPath + "/shop.dat"))
-        {
-            BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/shop.dat", FileMode.Open);
-            playerData data = (playerData)bf.Deserialize(file);
-            file.Close();
-        }
-    }
-
-    public void saveShop() {
-        BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/shop.dat");
-
-        playerData data = new playerData();
-        //data.health = health;
-        //data.experience = experience;
-        //data.highScore = highScore;
-
-        bf.Serialize(file, data);
-        file.Close();
-    }*/
-
-    //Berenice : not sure about that yet
-    public void loadHamsterCage()
-    {
-        if (File.Exists(Application.persistentDataPath + "/cage.dat"))
-        {
-            BinaryFormatter bf = new BinaryFormatter();
-            if (File.Exists("/cage.dat")) {
-                FileStream file = File.Open(Application.persistentDataPath + "/cage.dat", FileMode.Open);
-                cageData data = (cageData)bf.Deserialize(file);
+            if (File.Exists(Application.persistentDataPath + "/Inventory.dat")) {
+                FileStream file = File.Open(Application.persistentDataPath + "/Inventory.dat", FileMode.Open);
+                Inventory data = (Inventory)bf.Deserialize(file);
                 file.Close();
 
-                Inventory.foodAmount = data.inventory.foodAmount;
-                Inventory.moneyAmount = data.inventory.moneyAmount;
-                Inventory.hamsterStates = data.inventory.hamsterStates;
+                inventory.foodAmount = data.foodAmount;
+                inventory.moneyAmount = data.moneyAmount;
+                inventory.hamsterStates = data.hamsterStates;
+            }else {
+                inventory.foodAmount = 0;
+                inventory.moneyAmount = 100;
             }
 
             //data.inventory
@@ -126,21 +87,54 @@ public class GameControl : MonoBehaviour {
     }
 
     //Berenice : not sure about that yet
-    public void saveHamsterCage()
+    public void saveInventory()
     {
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/cage.dat");
+        FileStream file = File.Create(Application.persistentDataPath + "/Inventory.dat");
 
         //playerData data = new playerData();
-        cageData data = new cageData();
-        data.inventory.foodAmount = Inventory.foodAmount;
-        data.inventory.moneyAmount = Inventory.moneyAmount;
-        data.inventory.hamsterStates = Inventory.hamsterStates;
+        Inventory data = new Inventory();
+        data.foodAmount = inventory.foodAmount;
+        data.moneyAmount = inventory.moneyAmount;
+        data.hamsterStates = inventory.hamsterStates;
         //data.inventory = inventory;
 
         bf.Serialize(file, data);
         file.Close();
     }
+
+    public void loadPlayerData() {
+        if (File.Exists(Application.persistentDataPath + "/PlayerData.dat"))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            if (File.Exists(Application.persistentDataPath + "/PlayerData.dat"))
+            {
+                FileStream file = File.Open(Application.persistentDataPath + "/PlayerData.dat", FileMode.Open);
+                PlayerData data = (PlayerData)bf.Deserialize(file);
+                file.Close();
+
+                playerData.numberCarrotsAllowed = data.numberCarrotsAllowed;
+                playerData.numberCatsAllowed = data.numberCatsAllowed;
+            }
+
+            //data.inventory
+        }
+    }
+
+    public void savePlayerData() {
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create(Application.persistentDataPath + "/PlayerData.dat");
+
+        //playerData data = new playerData();
+        PlayerData data = new PlayerData();
+        data.numberCarrotsAllowed = playerData.numberCarrotsAllowed;
+        data.numberCatsAllowed = playerData.numberCatsAllowed;
+        //data.inventory = inventory;
+
+        bf.Serialize(file, data);
+        file.Close();
+    }
+
 }
 
 [Serializable]
@@ -156,25 +150,5 @@ class playerData {
 [Serializable]
 class track {
 
-}
-
-/*[Serializable]
-class inventory {
-    public int carrots;
-    public int cats;
-    public int Food;
-    public int Money;
-}
-
-[Serializable]
-class shop {
-
-}*/
-
-//Berenice : not sure about that yet
-[Serializable]
-class cageData
-{
-    public Inventory inventory = new Inventory();
 }
 

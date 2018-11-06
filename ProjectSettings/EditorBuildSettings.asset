@@ -6,9 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
     path: Assets/Scenes/Oskar.unity
     guid: 8dd98aaeb537f8f46a9b198c1d9090dd
+  - enabled: 1
+    path: Assets/Scenes/HamsterShop.unity
+    guid: d7cc695f0a70a482a8f304f6f2275e40
   m_configObjects: {}

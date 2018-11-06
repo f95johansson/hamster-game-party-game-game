@@ -8,8 +8,8 @@ public class Inventory {
 
     public HamsterState[] hamsterStates = new HamsterState[maxNumberHamsters];
 
-    public uint foodAmount = 0;
-    public uint moneyAmount = 100;
+    public uint foodAmount;
+    public uint moneyAmount;
 
     public void AddHamster(HamsterState hamsterToAdd)
     {
