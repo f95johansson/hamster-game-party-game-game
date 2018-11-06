@@ -15,12 +15,16 @@ public class buyFromShop : MonoBehaviour {
 
     private void Awake()
     {
+        Debug.Log(Application.persistentDataPath);
         GameControl.Control.LoadInventory();
+        GameControl.Control.LoadPlayerData();
+
     }
 
     private void OnDestroy()
     {
         GameControl.Control.SaveInventory();
+        GameControl.Control.SavePlayerData();
     }
 
     void Start () {

@@ -15,6 +15,7 @@ public class adjustScript : MonoBehaviour {
             GameControl.Control.PlayerData.experience -= 10;
         }
         if (GUI.Button(new Rect(10, 340, 200, 30), "Add 10000 Money")) {
+            //GameControl.Control.inventory.moneyAmount += 10000;
             GameControl.Control.Inventory.moneyAmount += 10000;
             //GameControl.control.saveHamsterCage();
         }

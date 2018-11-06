@@ -11,9 +11,6 @@ public class GameControl : MonoBehaviour {
     public Inventory Inventory = new Inventory();
     public PlayerData PlayerData = new PlayerData();
 
-    //From Berenice
-    //public Inventory inventory;
-
     private void Awake()
     {
         if(Control == null) {
@@ -37,6 +34,9 @@ public class GameControl : MonoBehaviour {
             Inventory.foodAmount = data.foodAmount;
             Inventory.moneyAmount = data.moneyAmount;
             Inventory.hamsterStates = data.hamsterStates;
+        }else {
+            //inventory.foodAmount = 0;
+            //inventory.moneyAmount = 100;
         }
     }
 
@@ -59,18 +59,15 @@ public class GameControl : MonoBehaviour {
     }
 
     public void LoadPlayerData() {
+        var bf = new BinaryFormatter();
         if (File.Exists(Application.persistentDataPath + "/PlayerData.dat"))
         {
-            var bf = new BinaryFormatter();
-            if (File.Exists(Application.persistentDataPath + "/PlayerData.dat"))
-            {
-                var file = File.Open(Application.persistentDataPath + "/PlayerData.dat", FileMode.Open);
-                var data = (PlayerData)bf.Deserialize(file);
-                file.Close();
+            var file = File.Open(Application.persistentDataPath + "/PlayerData.dat", FileMode.Open);
+            var data = (PlayerData)bf.Deserialize(file);
+            file.Close();
 
-                PlayerData.numberCarrotsAllowed = data.numberCarrotsAllowed;
-                PlayerData.numberCatsAllowed = data.numberCatsAllowed;
-            }
+            PlayerData.numberCarrotsAllowed = data.numberCarrotsAllowed;
+            PlayerData.numberCatsAllowed = data.numberCatsAllowed;
         }
     }
 
