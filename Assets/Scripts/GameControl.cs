@@ -1,113 +1,93 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
 public class GameControl : MonoBehaviour {
 
-    public static GameControl control;
+    public static GameControl Control;
 
-    public Inventory inventory = new Inventory();
-    public PlayerData playerData = new PlayerData();
+    public Inventory Inventory = new Inventory();
+    public PlayerData PlayerData = new PlayerData();
 
     //From Berenice
     //public Inventory inventory;
 
     private void Awake()
     {
-        if(control == null) {
+        if(Control == null) {
             DontDestroyOnLoad(gameObject);
-            control = this;
-        }else if(control != this){
+            Control = this;
+        }else if(Control != this){
             Destroy(gameObject);
         }
     }
 
     //Berenice : not sure about that yet
-    public void loadInventory()
+    public void LoadInventory()
     {
         if (File.Exists(Application.persistentDataPath + "/Inventory.dat"))
         {
-            BinaryFormatter bf = new BinaryFormatter();
-            if (File.Exists(Application.persistentDataPath + "/Inventory.dat")) {
-                FileStream file = File.Open(Application.persistentDataPath + "/Inventory.dat", FileMode.Open);
-                Inventory data = (Inventory)bf.Deserialize(file);
-                file.Close();
+            var bf = new BinaryFormatter();
+            var file = File.Open(Application.persistentDataPath + "/Inventory.dat", FileMode.Open);
+            var data = (Inventory)bf.Deserialize(file);
+            file.Close();
 
-                inventory.foodAmount = data.foodAmount;
-                inventory.moneyAmount = data.moneyAmount;
-                inventory.hamsterStates = data.hamsterStates;
-            }else {
-                inventory.foodAmount = 0;
-                inventory.moneyAmount = 100;
-            }
-
-            //data.inventory
+            Inventory.foodAmount = data.foodAmount;
+            Inventory.moneyAmount = data.moneyAmount;
+            Inventory.hamsterStates = data.hamsterStates;
         }
     }
 
     //Berenice : not sure about that yet
-    public void saveInventory()
+    public void SaveInventory()
     {
-        BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/Inventory.dat");
+        var bf = new BinaryFormatter();
+        var file = File.Create(Application.persistentDataPath + "/Inventory.dat");
 
         //playerData data = new playerData();
-        Inventory data = new Inventory();
-        data.foodAmount = inventory.foodAmount;
-        data.moneyAmount = inventory.moneyAmount;
-        data.hamsterStates = inventory.hamsterStates;
-        //data.inventory = inventory;
+        var data = new Inventory
+        {
+            foodAmount = Inventory.foodAmount,
+            moneyAmount = Inventory.moneyAmount,
+            hamsterStates = Inventory.hamsterStates
+        };
 
         bf.Serialize(file, data);
         file.Close();
     }
 
-    public void loadPlayerData() {
+    public void LoadPlayerData() {
         if (File.Exists(Application.persistentDataPath + "/PlayerData.dat"))
         {
-            BinaryFormatter bf = new BinaryFormatter();
+            var bf = new BinaryFormatter();
             if (File.Exists(Application.persistentDataPath + "/PlayerData.dat"))
             {
-                FileStream file = File.Open(Application.persistentDataPath + "/PlayerData.dat", FileMode.Open);
-                PlayerData data = (PlayerData)bf.Deserialize(file);
+                var file = File.Open(Application.persistentDataPath + "/PlayerData.dat", FileMode.Open);
+                var data = (PlayerData)bf.Deserialize(file);
                 file.Close();
 
-                playerData.numberCarrotsAllowed = data.numberCarrotsAllowed;
-                playerData.numberCatsAllowed = data.numberCatsAllowed;
+                PlayerData.numberCarrotsAllowed = data.numberCarrotsAllowed;
+                PlayerData.numberCatsAllowed = data.numberCatsAllowed;
             }
-
-            //data.inventory
         }
     }
 
-    public void savePlayerData() {
-        BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/PlayerData.dat");
+    public void SavePlayerData() {
+        var bf = new BinaryFormatter();
+        var file = File.Create(Application.persistentDataPath + "/PlayerData.dat");
 
         //playerData data = new playerData();
-        PlayerData data = new PlayerData();
-        data.numberCarrotsAllowed = playerData.numberCarrotsAllowed;
-        data.numberCatsAllowed = playerData.numberCatsAllowed;
+        var data = new PlayerData
+        {
+            numberCarrotsAllowed = PlayerData.numberCarrotsAllowed,
+            numberCatsAllowed = PlayerData.numberCatsAllowed
+        };
         //data.inventory = inventory;
 
         bf.Serialize(file, data);
         file.Close();
     }
 
-}
-
-[Serializable]
-internal class TrackData
-{
-    public string Name;
-    public State[] States;
-}
-
-[Serializable]
-internal class Tracks
-{
-    public TrackData[] SavedTracks;
 }

@@ -15,16 +15,16 @@ public class buyFromShop : MonoBehaviour {
 
     private void Awake()
     {
-        GameControl.control.loadInventory();
+        GameControl.Control.LoadInventory();
     }
 
     private void OnDestroy()
     {
-        GameControl.control.saveInventory();
+        GameControl.Control.SaveInventory();
     }
 
     void Start () {
-        m_Text_1.text = "" + GameControl.control.inventory.foodAmount;
+        m_Text_1.text = "" + GameControl.Control.Inventory.foodAmount;
         m_Text_2.text = "";//+ GameControl.control.carrots;
         m_Text_3.text = ""; //+ GameControl.control.cats;
         m_Text_4.text = ""; //+ GameControl.control.Food;
@@ -58,65 +58,65 @@ public class buyFromShop : MonoBehaviour {
         uint money;
         switch(ButtonId) {
             case 0:
-                item = GameControl.control.inventory.foodAmount;
-                money = GameControl.control.inventory.moneyAmount;
+                item = GameControl.Control.Inventory.foodAmount;
+                money = GameControl.Control.Inventory.moneyAmount;
                 if (cost[ButtonId] < money) {
                     if (item < Max[ButtonId])
                     {
-                        GameControl.control.inventory.moneyAmount = money - cost[ButtonId];
-                        GameControl.control.inventory.foodAmount = item + 1;
+                        GameControl.Control.Inventory.moneyAmount = money - cost[ButtonId];
+                        GameControl.Control.Inventory.foodAmount = item + 1;
                         m_Text_1.text = (item + 1).ToString();
                     }
                 }
                 break;
             case 1:
-                item = GameControl.control.inventory.foodAmount;
-                money = GameControl.control.inventory.moneyAmount;
+                item = GameControl.Control.Inventory.foodAmount;
+                money = GameControl.Control.Inventory.moneyAmount;
                 if (cost[ButtonId] < money)
                 {
                     if (item < Max[ButtonId])
                     {
-                        GameControl.control.inventory.moneyAmount = money - cost[ButtonId];
-                        GameControl.control.inventory.foodAmount = item + 1;
+                        GameControl.Control.Inventory.moneyAmount = money - cost[ButtonId];
+                        GameControl.Control.Inventory.foodAmount = item + 1;
                         m_Text_2.text = (item + 1).ToString();
                     }
                 }
                 break;
             case 2:
-                item = GameControl.control.inventory.foodAmount;
-                money = GameControl.control.inventory.moneyAmount;
+                item = GameControl.Control.Inventory.foodAmount;
+                money = GameControl.Control.Inventory.moneyAmount;
                 if (cost[ButtonId] < money)
                 {
                     if (item < Max[ButtonId])
                     {
-                        GameControl.control.inventory.moneyAmount = money - cost[ButtonId];
-                        GameControl.control.inventory.foodAmount = item + 1;
+                        GameControl.Control.Inventory.moneyAmount = money - cost[ButtonId];
+                        GameControl.Control.Inventory.foodAmount = item + 1;
                         m_Text_3.text = (item + 1).ToString();
                     }
                 }
                 break;
             case 3:
-                item = GameControl.control.inventory.foodAmount;
-                money = GameControl.control.inventory.moneyAmount;
+                item = GameControl.Control.Inventory.foodAmount;
+                money = GameControl.Control.Inventory.moneyAmount;
                 if (cost[ButtonId] < money)
                 {
                     if (item < Max[ButtonId])
                     {
-                        GameControl.control.inventory.moneyAmount = money - cost[ButtonId];
-                        GameControl.control.inventory.foodAmount = item + 1;
+                        GameControl.Control.Inventory.moneyAmount = money - cost[ButtonId];
+                        GameControl.Control.Inventory.foodAmount = item + 1;
                         m_Text_4.text = (item + 1).ToString();
                     }
                 }
                 break;
             case 4:
-                item = GameControl.control.inventory.foodAmount;
-                money = GameControl.control.inventory.moneyAmount;
+                item = GameControl.Control.Inventory.foodAmount;
+                money = GameControl.Control.Inventory.moneyAmount;
                 if (cost[ButtonId] < money)
                 {
                     if (item < Max[ButtonId])
                     {
-                        GameControl.control.inventory.moneyAmount = money - cost[ButtonId];
-                        GameControl.control.inventory.foodAmount = item + 1;
+                        GameControl.Control.Inventory.moneyAmount = money - cost[ButtonId];
+                        GameControl.Control.Inventory.foodAmount = item + 1;
                         m_Text_5.text = (item + 1).ToString();
                     }
                 }
