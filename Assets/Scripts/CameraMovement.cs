@@ -17,7 +17,7 @@ public class CameraMovement : MonoBehaviour
 		var plane = new Plane(Vector3.up, Target.transform.position);
 		var ray = GetComponent<Camera>().ScreenPointToRay(new Vector2(Screen.width/2f, Screen.height/2f));
 
-		float distance;
+		float distance = 0;
 		Assert.IsTrue(plane.Raycast(ray, out distance));
 		
 		_targetPoint = ray.GetPoint(distance);

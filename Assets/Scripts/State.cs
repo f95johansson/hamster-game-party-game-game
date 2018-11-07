@@ -1,12 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using UnityEngine;
 
 [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
 [SuppressMessage("ReSharper", "FieldCanBeMadeReadOnly.Global")]
+
+[Serializable]
 public struct State {
 
+    [Serializable]
     public struct Entity
     {
         public float X, Y, Z;
@@ -41,11 +45,5 @@ public struct State {
     {
         Turners = turners.Select(o => new Entity(o.transform.position, o.Handle.transform.position)).ToArray();
         Pushers = pushers.Select(o => new Entity(o.transform.position, o.Handle.transform.position)).ToArray();
-    }
-
-    public State(Entity[] turners, Entity[] pushers)
-    {
-        Turners = turners;
-        Pushers = pushers;
     }
 }
