@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using UnityEngine;
@@ -35,8 +34,11 @@ public class EffectorHolder : MonoBehaviour
 	private List<PushEffector> _pushEffectors;
 
 	public MeshCollider DropZone;
-
-	public Canvas Canvas;
+	
+	public void Awake()
+	{
+		Application.targetFrameRate = 60; // tries to make all platforms of the game run at the same frame-rate
+	}
 
 	private void Start()
 	{	
