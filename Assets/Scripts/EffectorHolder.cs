@@ -85,20 +85,11 @@ public class EffectorHolder : MonoBehaviour
 		_gi.Grabbed = null;
 	}
 	
-	private Vector3 ToWorldPoint(Vector3 screenPos) 
+	private Vector3 ToWorldPoint(Vector3 screenPos)
 	{
-		var plane = new Plane(Vector3.up, transform.position);
-		var ray = _camera.ScreenPointToRay(screenPos);
-
-		float distance;
-		if (plane.Raycast(ray, out distance)){
-			return ray.GetPoint(distance);
-		}
-
-		Debug.Log("We missed the y-plane, maybe we should handle this better, one idea is to bound where you can place effectors");
-		return VectorMath.FromXZ(Vector3.zero);
+		return VectorMath.ToWorldPoint(_camera, screenPos, transform.position);
 	}
-
+	
 	private Vector3 ClosestPointInDropZone(Vector3 point)
 	{
 		var min = DropZone.bounds.min;

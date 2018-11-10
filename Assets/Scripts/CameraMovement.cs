@@ -2,36 +2,46 @@
 using UnityEngine;
 using UnityEngine.Assertions;
 
+[RequireComponent(typeof(Camera))]
 public class CameraMovement : MonoBehaviour
 {
+    public float PinchZoomSpeed = .5f;
+    private Camera _camera;
+    private Vector3 _zoomedOutPosition;
+    private float _zoomedOutFieldOfView;
+    private const float MinFieldOfView = 15f;
 
-	public float Speed = 0.5f;
-	public float SpinSpeed = 2f;
-	public Transform Target;
-	public float MinimumCameraDistance = 8;
-	public float MaximumCameraDistance = 20;
-	private Vector3 _targetPoint;
+    private void Start()
+    {
+        _camera = GetComponent<Camera>();
+        Assert.IsNotNull(_camera, "We must have a camera tagged Main in scene");
+        _zoomedOutPosition = transform.position;
+        _zoomedOutFieldOfView = _camera.fieldOfView;
+    }
 
-	private void Start()
-	{
-		var plane = new Plane(Vector3.up, Target.transform.position);
-		var ray = GetComponent<Camera>().ScreenPointToRay(new Vector2(Screen.width/2f, Screen.height/2f));
+    private float ZoomDelta()
+    {
+        if (!Input.touchSupported || Application.platform == RuntimePlatform.WebGLPlayer) return -Input.mouseScrollDelta.y;
+        if (Input.touchCount != 2) return 0;
 
-		float distance = 0;
-		Assert.IsTrue(plane.Raycast(ray, out distance));
-		
-		_targetPoint = ray.GetPoint(distance);
-	}
-	
-	private void Update()
-	{
-		var zoom = Input.mouseScrollDelta.y;
-		var newY = Math.Min(MaximumCameraDistance, Math.Max(MinimumCameraDistance, transform.position.y + zoom * Speed));
-		transform.position = new Vector3(transform.position.x, newY, transform.position.z);
+        var touches = Input.touches;
+        var prev0 = touches[0].position - touches[0].deltaPosition;
+        var prev1 = touches[1].position - touches[1].deltaPosition;
 
-		var rotation = Input.mouseScrollDelta.x;
-		transform.RotateAround(_targetPoint, new Vector3(0, 1, 0), rotation * SpinSpeed);
+        var prevZoomDistance = Vector2.Distance(prev0, prev1);
+        var zoomDistance = Vector2.Distance(touches[0].position, touches[1].position);
 
-		transform.rotation = Quaternion.LookRotation(_targetPoint - transform.position);
-	}
+        var zoomDelta = prevZoomDistance - zoomDistance;
+        
+        return PinchZoomSpeed * zoomDelta;
+    }
+
+    private void Update()
+    {
+        var zoom = ZoomDelta();
+        var before = VectorMath.ToWorldPoint(_camera, Input.mousePosition, Vector3.zero);
+        _camera.fieldOfView = Mathf.Clamp(_camera.fieldOfView + zoom, MinFieldOfView, _zoomedOutFieldOfView);
+        var after = VectorMath.ToWorldPoint(_camera, Input.mousePosition, Vector3.zero);
+        transform.position += before - after;
+    }
 }
