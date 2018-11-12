@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 
 public class Hamster : MonoBehaviour
 {
@@ -30,8 +31,16 @@ public class Hamster : MonoBehaviour
 		_collision = new BallCollision(_radius / 3, 8);
 	}
 
+	private CoinHandler _coinHandler;
+	private void Start()
+	{
+		_coinHandler = FindObjectOfType<CoinHandler>();
+	}
+	
 	private void Update()
 	{
+		Collectibles();
+		
 		_force += EffectorHolder.GetPushForce(_collision.GetPoints(transform.position));
 		
 		var turn = EffectorHolder.GetTurnFocus(_collision.GetPoints(transform.position));
@@ -69,5 +78,19 @@ public class Hamster : MonoBehaviour
 
 		_aboveGround = transform.position.y >= Track.transform.position.y + _radius; 
 		return new Vector3(0, _ySpeed, 0);
+	}
+
+	
+	private void Collectibles()
+	{
+		foreach (var coin in FindObjectsOfType<Coin>())
+		{
+			var distance = VectorMath.ToXZ(transform.position - coin.transform.position).magnitude;
+			if (distance < _radius + coin.Radius)
+			{
+				_coinHandler.Add(coin.transform.position);
+				Destroy(coin.gameObject);
+			}
+		}
 	}
 }

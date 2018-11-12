@@ -38,11 +38,18 @@ public class HamsterStart : MonoBehaviour
 		_currentHamster = null;
 	}
 
+	private void ResetCoins()
+	{
+		var coinHandler = FindObjectOfType<CoinHandler>();
+		coinHandler.ResetCoins();
+	}
+
 	private void LateUpdate () {
 
 		if (_currentHamster && _currentHamster.transform.position.y < -10)
 		{
 			DestroyCurrentHamster();
+			ResetCoins();
 			Spawn();
 		}
 		

@@ -13,6 +13,7 @@ public class EffectorHolder : MonoBehaviour
 	public Component TurnButton;
 	public Component PushButton;
 	public Trash Trash;
+	private readonly Stack<State> _redos = new Stack<State>();
 
 	private readonly Stack<State> _states = new Stack<State>();
 
@@ -64,6 +65,8 @@ public class EffectorHolder : MonoBehaviour
 				Grab(CreatePusher(ToWorldPoint(Input.mousePosition)).gameObject);
 			}
 		});
+		
+		Save();
 	}
 
 	private void Grab(GameObject toGrab)
@@ -126,12 +129,14 @@ public class EffectorHolder : MonoBehaviour
 					Remove(toDelete);
 					
 					Save();
+					_redos.Clear();
 				}
 				else if (!overGui)
 				{
 					_gi.Grabbed.transform.position = ClosestPointInDropZone(_gi.Grabbed.transform.position);
 					Release();
 					Save();
+					_redos.Clear();
 				}
 			}
 		}
@@ -236,11 +241,12 @@ public class EffectorHolder : MonoBehaviour
 		Destroy(obj);
 	}
 
-	public void Undo()
+	private void CreateFromState(State state)
 	{
 		//First nuke everything
 		{
-			//TODO, what do we do with the currently grabbed thing. Not currently a problem since you need to click the undo button
+			Release();
+			
 			_pushEffectors.ForEach(p =>
 			{
 				Destroy(p.gameObject);
@@ -254,25 +260,43 @@ public class EffectorHolder : MonoBehaviour
 			_turnEffectors.Clear();
 		}
 		
-		//Get previous state
-		if (_states.Count == 0) return;
-		_states.Pop();
-		if (_states.Count == 0) return;
-		var recoveredState = _states.Peek();
-		
 		//Re-instantiate from recovered state
 		{
-			foreach (var entity in recoveredState.Pushers)
+			foreach (var entity in state.Pushers)
 			{
 				var pusher = CreatePusher(entity.Position());
 				pusher.Handle.transform.position = entity.HandlePosition();
 			}
 
-			foreach (var entity in recoveredState.Turners)
+			foreach (var entity in state.Turners)
 			{
 				var turner = CreateTurner(entity.Position());
 				turner.Handle.transform.position = entity.HandlePosition();
 			}
 		}
+	}
+
+	public void Undo()
+	{
+		//Get previous state
+		if (_states.Count == 0) return;
+		var undo = _states.Pop();
+		_redos.Push(undo);
+		
+		if (_states.Count == 0) return;
+		var recoveredState = _states.Peek();
+		
+		CreateFromState(recoveredState);
+	}
+
+	public void Redo()
+	{
+		if (_redos.Count == 0)
+		{
+			return;
+		}
+
+		CreateFromState(_redos.Pop());
+		Save();
 	}
 }

@@ -81,8 +81,8 @@ GameObject:
   - component: {fileID: 4774052202531514}
   - component: {fileID: 33042680963084028}
   - component: {fileID: 23766066897695038}
-  - component: {fileID: 135453619720010064}
   - component: {fileID: 114689720082244264}
+  - component: {fileID: 135580471748785172}
   m_Layer: 0
   m_Name: HamsterBall
   m_TagString: Untagged
@@ -702,7 +702,7 @@ MonoBehaviour:
   Friction: 0.15
   TurnSpeed: 0.05
   EffectorHolder: {fileID: 0}
---- !u!135 &135453619720010064
+--- !u!135 &135580471748785172
 SphereCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
