@@ -26,7 +26,6 @@ public class GameControl : MonoBehaviour {
         }
     }
 
-    //Berenice : not sure about that yet
     public void LoadInventory()
     {
         if (File.Exists(userDataPath + "/Inventory.dat"))
@@ -45,7 +44,6 @@ public class GameControl : MonoBehaviour {
         }
     }
 
-    //Berenice : not sure about that yet
     public void SaveInventory()
     {
         var bf = new BinaryFormatter();

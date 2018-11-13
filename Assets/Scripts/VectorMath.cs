@@ -35,9 +35,9 @@ public static class VectorMath
         return new Vector3(v.x, 0, v.y);
     }
 
-    public static Vector3 ToWorldPoint(Camera camera, Vector3 screenPos, Vector3 planePosition)
+    public static Vector3 ToWorldPoint(Camera camera, Vector3 screenPos, Vector3 planePosition, Vector3 planeNormal)
     {
-        var plane = new Plane(Vector3.up, planePosition);
+        var plane = new Plane(planeNormal, planePosition);
         var ray = camera.ScreenPointToRay(screenPos);
 
         float distance;

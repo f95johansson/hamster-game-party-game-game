@@ -90,7 +90,7 @@ public class EffectorHolder : MonoBehaviour
 	
 	private Vector3 ToWorldPoint(Vector3 screenPos)
 	{
-		return VectorMath.ToWorldPoint(_camera, screenPos, transform.position);
+		return VectorMath.ToWorldPoint(_camera, screenPos, transform.position, Vector3.up);
 	}
 	
 	private Vector3 ClosestPointInDropZone(Vector3 point)

@@ -56,9 +56,9 @@ public class CameraMovement : MonoBehaviour
         var zoom = ZoomDelta();
         var beforeFieldOfView = _camera.fieldOfView;
         
-        var before = VectorMath.ToWorldPoint(_camera, Input.mousePosition, Vector3.zero);
+        var before = VectorMath.ToWorldPoint(_camera, Input.mousePosition, Vector3.zero, Vector3.up);
         _camera.fieldOfView = Mathf.Clamp(_camera.fieldOfView + zoom, MinFieldOfView, _zoomedOutFieldOfView);
-        var after = VectorMath.ToWorldPoint(_camera, Input.mousePosition, Vector3.zero);
+        var after = VectorMath.ToWorldPoint(_camera, Input.mousePosition, Vector3.zero, Vector3.up);
         
         if (zoom < 0) {
             var target = transform.position + before - after;
