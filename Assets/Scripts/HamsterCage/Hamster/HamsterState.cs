@@ -6,22 +6,17 @@ using UnityEngine.UI;
 
 public class HamsterState : MonoBehaviour {
 
-<<<<<<< HEAD:Assets/Scripts/HamsterCage/Hamster/HamsterState.cs
+
     public GameObject objectTypeToEat;
 
     public Slider foodbar;
 
-    private uint foodLevel = 2; //0,1,->5
-    [Range (0,2)]
-=======
     private string UUID;
     [Range(1, 5)]
     private uint foodLevel = 5; //0,1,2
     [Range (1,5)]
->>>>>>> d7dbb31b9a46803fcf4da56abf205f31c8174970:Assets/Scripts/Hamster/HamsterState.cs
+
     public uint weightLevel = 1; //0,1,2
-    [Range(0, 2)]
-    public uint fearLevel = 1; //0,1,2
     [Range(1, 5)]
     public uint speedlevel = 1; //0,1,2
     [Range(1, 5)]
@@ -85,7 +80,7 @@ public class HamsterState : MonoBehaviour {
         }
     }
 
-<<<<<<< HEAD:Assets/Scripts/HamsterCage/Hamster/HamsterState.cs
+
     public void UpdateFoodBar()
     {
         foodbar.value = foodLevel;
@@ -109,7 +104,6 @@ public class HamsterState : MonoBehaviour {
 
 
 
-=======
     public void GenerateUUID() {
             DateTime epochStart = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
             int currentEpochTime = (int)(DateTime.UtcNow - epochStart).TotalSeconds;
@@ -122,6 +116,5 @@ public class HamsterState : MonoBehaviour {
         return UUID;
     }
 
->>>>>>> d7dbb31b9a46803fcf4da56abf205f31c8174970:Assets/Scripts/Hamster/HamsterState.cs
 
 }

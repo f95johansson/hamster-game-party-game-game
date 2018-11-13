@@ -47,7 +47,7 @@ public class HamsterController : MonoBehaviour {
                 transform.position.z);
             GameObject hamsterInScene = Instantiate(hamster, spawnPosition, Quaternion.identity);
             hamsterInScene.GetComponent<HamsterState>().weightLevel = GameControl.Control.Inventory.hamsterStates[i].weightLevel;
-            hamsterInScene.GetComponent<HamsterState>().fearLevel = GameControl.Control.Inventory.hamsterStates[i].fearLevel;
+            //hamsterInScene.GetComponent<HamsterState>().fearLevel = GameControl.Control.Inventory.hamsterStates[i].fearLevel;
             hamsterInScene.GetComponent<HamsterState>().UpdateScaleWeight();
         }
        
