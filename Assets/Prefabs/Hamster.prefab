@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 114612194548255390}
   - component: {fileID: 50277252376705966}
   - component: {fileID: 60150488888039744}
+  - component: {fileID: 58778248206689296}
   m_Layer: 4
   m_Name: Hamster
   m_TagString: Untagged
@@ -37,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1029114585577826}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.82, z: 0}
+  m_LocalPosition: {x: 0.78, y: 0.15, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
@@ -56,13 +57,28 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 10
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!58 &58778248206689296
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1029114585577826}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 2.0340614
 --- !u!60 &60150488888039744
 PolygonCollider2D:
   m_ObjectHideFlags: 1
@@ -89,7 +105,7 @@ PolygonCollider2D:
     m_Paths:
     - - {x: 0.47, y: -2.07}
       - {x: 0.63, y: -2.07}
-      - {x: 0.82, y: -2.05}
+      - {x: 0.9422025, y: -1.9685318}
       - {x: 0.9, y: -1.9799999}
       - {x: 0.91999996, y: -1.8399999}
       - {x: 0.95, y: -1.8399999}
@@ -102,9 +118,11 @@ PolygonCollider2D:
       - {x: 1.8, y: -0.66999996}
       - {x: 1.8, y: -0.42}
       - {x: 1.78, y: -0.31}
+      - {x: 1.765, y: -0.19}
+      - {x: 1.4026128, y: 0.7810099}
       - {x: 1.75, y: -0.07}
       - {x: 1.7099999, y: 0.089999996}
-      - {x: 1.67, y: 0.22}
+      - {x: 1.6835772, y: 0.15210944}
       - {x: 1.56, y: 0.5}
       - {x: 1.4499999, y: 0.71}
       - {x: 1.3299999, y: 0.91999996}
@@ -114,7 +132,7 @@ PolygonCollider2D:
       - {x: 1.1999999, y: 1.36}
       - {x: 1.1999999, y: 1.5699999}
       - {x: 1.1899999, y: 1.64}
-      - {x: 1.05, y: 1.78}
+      - {x: 1.0499998, y: 1.7664217}
       - {x: 0.90999997, y: 1.8299999}
       - {x: 0.85999995, y: 1.8299999}
       - {x: 0.76, y: 1.8}
@@ -163,13 +181,14 @@ PolygonCollider2D:
       - {x: -0.96, y: -1.8399999}
       - {x: -0.94, y: -1.9499999}
       - {x: -0.84999996, y: -2.04}
-      - {x: -0.79999995, y: -2.06}
+      - {x: -0.8814688, y: -2.0192657}
       - {x: -0.64, y: -2.07}
       - {x: -0.59999996, y: -2.09}
       - {x: -0.57, y: -2.09}
       - {x: -0.55, y: -2.07}
       - {x: -0.48999998, y: -2.06}
       - {x: -0.39, y: -2}
+      - {x: -0.12963642, y: -1.9499567}
       - {x: 0.39, y: -2.03}
     - - {x: -1.5699999, y: -1.39}
       - {x: -1.5899999, y: -1.41}
@@ -205,6 +224,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b281a7e3f54da747beb2c82e5f484cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectTypeToEat: {fileID: 1561712134843028, guid: 40a1eb4fbd8c6254fbf87424f57958e4,
+    type: 2}
   weightLevel: 1
   fearLevel: 1
 --- !u!212 &212382226102358882
