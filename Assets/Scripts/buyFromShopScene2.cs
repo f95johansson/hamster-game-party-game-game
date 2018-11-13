@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class buyFromShopScene2 : MonoBehaviour {
 
     public Button m_Button_1, m_Button_2, m_Button_3, m_Button_4, m_Button_5, m_exit, m_PreviusScene, m_NewShopPage;
+    public Text m_TextCost_1, m_TextCost_2, m_TextCost_3, m_TextCost_4, m_TextCost_5;
     public Text M_TextMoney;
 
     //private string[] items = new string[] { "Food", "", "", "", "" };
