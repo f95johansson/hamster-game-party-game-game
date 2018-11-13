@@ -9,8 +9,6 @@ public class Track : MonoBehaviour
 	private SpriteRenderer _spriteRenderer;
 	private Texture2D _pixels;
 
-	public Image Image;
-
 	private void Start()
 	{
 		_spriteRenderer = GetComponent<SpriteRenderer>();
@@ -38,22 +36,15 @@ public class Track : MonoBehaviour
 
 		if (tx < 0 || ty < 0)
 		{
-			Image.color = Color.black;
 			return false;
 		}
 
 		if (tx >= sprite.rect.width || ty >= sprite.rect.height)
 		{
-			Image.color = Color.black;
 			return false;
 		}
 		
 		var color = _pixels.GetPixel(tx, ty);
-		
-		if (Image) {
-		    Image.color = color;
-		}
-
 		return color.a > 0.9;
 	}
 }

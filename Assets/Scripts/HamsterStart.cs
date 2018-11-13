@@ -3,8 +3,6 @@
 public class HamsterStart : MonoBehaviour
 {
 	public Hamster HamsterPrefab;
-	public Track Track;
-	public EffectorHolder EffectorHolder;
 	private Hamster _currentHamster;
 
 	private void Start() {
@@ -28,8 +26,6 @@ public class HamsterStart : MonoBehaviour
 	public void Spawn()
 	{
 		_currentHamster = Instantiate(HamsterPrefab, transform.position, transform.rotation);
-		_currentHamster.EffectorHolder = EffectorHolder;
-		_currentHamster.Track = Track;
 	}
 
 	private void DestroyCurrentHamster()
