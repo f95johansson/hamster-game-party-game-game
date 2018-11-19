@@ -9,8 +9,6 @@ public class HamsterState : MonoBehaviour {
 
     public GameObject objectTypeToEat;
 
-    public Slider foodbar;
-
     private string UUID;
     [Range(1, 5)]
     private uint foodLevel = 5; //0,1,2
@@ -24,28 +22,14 @@ public class HamsterState : MonoBehaviour {
     [Range(1, 5)]
     public uint TurnSpeed = 1;
 
+    public Slider foodBar;
 
-
-
-
-    //PERSISTENCE
-    private void Awake()
-    {
-        Debug.Log(Application.persistentDataPath);
-        GameControl.Control.LoadInventory();
-        GameControl.Control.LoadPlayerData();
-    }
-
-    private void OnDestroy()
-    {
-        GameControl.Control.SaveInventory();
-        GameControl.Control.SavePlayerData();
-    }
-
+  
 
     public void FixedUpdate()
     {
-        
+        foodBar.value = foodLevel;
+
     }
 
 
@@ -78,13 +62,6 @@ public class HamsterState : MonoBehaviour {
         {
             gameObject.transform.localScale = new Vector3(yScale + yScale / 2, yScale, 1);
         }
-    }
-
-
-    public void UpdateFoodBar()
-    {
-        foodbar.value = foodLevel;
-       //Change color!
     }
 
     //COLLIDER

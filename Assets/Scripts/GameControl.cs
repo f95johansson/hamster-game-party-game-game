@@ -5,6 +5,8 @@ using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
+using UnityEngine.SceneManagement;
+
 public class GameControl : MonoBehaviour
 {
 
@@ -138,11 +140,14 @@ public class GameControl : MonoBehaviour
 
         };
             
-        
-    //data.inventory = inventory;
 
     bf.Serialize(file, data);
         file.Close();
+    }
+
+    public  void GoToScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
     }
 
 }

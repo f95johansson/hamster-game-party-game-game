@@ -11,6 +11,20 @@ public class HamsterController : MonoBehaviour {
 
     private float maxWidth;
 
+    //PERSISTENCE
+    private void Awake()
+    {
+        Debug.Log(Application.persistentDataPath);
+        GameControl.Control.LoadInventory();
+        GameControl.Control.LoadPlayerData();
+
+    }
+
+    private void OnDestroy()
+    {
+        GameControl.Control.SaveInventory();
+        GameControl.Control.SavePlayerData();
+    }
 
     // Use this for initialization
     void Start()
@@ -47,7 +61,6 @@ public class HamsterController : MonoBehaviour {
                 transform.position.z);
             GameObject hamsterInScene = Instantiate(hamster, spawnPosition, Quaternion.identity);
             hamsterInScene.GetComponent<HamsterState>().weightLevel = GameControl.Control.Inventory.hamsterStates[i].weightLevel;
-            //hamsterInScene.GetComponent<HamsterState>().fearLevel = GameControl.Control.Inventory.hamsterStates[i].fearLevel;
             hamsterInScene.GetComponent<HamsterState>().UpdateScaleWeight();
         }
        
@@ -56,7 +69,7 @@ public class HamsterController : MonoBehaviour {
 
     public void UpdateFoodText()
     {
-        foodAmountText.text = "Food Amount : " + GameControl.Control.Inventory.foodAmount;
+        foodAmountText.text = (GameControl.Control.Inventory.foodAmount).ToString();
     }
 
 }
