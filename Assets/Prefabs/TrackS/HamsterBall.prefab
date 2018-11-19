@@ -696,12 +696,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf94c7c836df1c844b317affad6f813e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Track: {fileID: 0}
   Gravity: -0.5
   Speed: 1
   Friction: 0.15
   TurnSpeed: 0.05
-  EffectorHolder: {fileID: 0}
 --- !u!135 &135580471748785172
 SphereCollider:
   m_ObjectHideFlags: 1
