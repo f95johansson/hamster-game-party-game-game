@@ -52,7 +52,7 @@ public class HamsterController : MonoBehaviour {
 
     public void SpawnHamsters()
     {
-        int i = 0;
+        uint i = 0;
         while (GameControl.Control.Inventory.hamsterStates[i]!=null)
         {
             Vector3 spawnPosition = new Vector3(
@@ -60,8 +60,12 @@ public class HamsterController : MonoBehaviour {
                 transform.position.y,
                 transform.position.z);
             GameObject hamsterInScene = Instantiate(hamster, spawnPosition, Quaternion.identity);
-            hamsterInScene.GetComponent<HamsterState>().weightLevel = GameControl.Control.Inventory.hamsterStates[i].weightLevel;
-            hamsterInScene.GetComponent<HamsterState>().UpdateScaleWeight();
+
+            hamsterInScene.GetComponent<HamsterPrefab>().setIndex(i);
+
+            hamsterInScene.GetComponent<HamsterPrefab>().setWeightLevel(GameControl.Control.Inventory.hamsterStates[i].WeightLevel);
+            //Other characteristics to add
+            hamsterInScene.GetComponent<HamsterPrefab>().UpdateScaleWeight();
         }
        
         
@@ -70,6 +74,12 @@ public class HamsterController : MonoBehaviour {
     public void UpdateFoodText()
     {
         foodAmountText.text = (GameControl.Control.Inventory.foodAmount).ToString();
+    }
+
+    public void FirstHamster()
+    {
+
+
     }
 
 }

@@ -4,33 +4,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HamsterState : MonoBehaviour {
-
-
-    public GameObject objectTypeToEat;
-
+[Serializable]
+public class HamsterState //: MonoBehaviour
+{
+    
     private string UUID;
     [Range(1, 5)]
-    private uint foodLevel = 5; //0,1,2
-    [Range (1,5)]
-
-    public uint weightLevel = 1; //0,1,2
+    public uint foodLevel = 5; //0,1,2
     [Range(1, 5)]
-    public uint speedlevel = 1; //0,1,2
+
+    public uint WeightLevel = 1; //0,1,2
     [Range(1, 5)]
-    public uint Friction = 1;
+    public uint SpeedLevel = 1; //0,1,2
     [Range(1, 5)]
-    public uint TurnSpeed = 1;
-
-    public Slider foodBar;
-
-  
-
-    public void FixedUpdate()
-    {
-        foodBar.value = foodLevel;
-
-    }
+    public uint FrictionLevel = 1;
+    [Range(1, 5)]
+    public uint TurnSpeedLevel = 1;
 
 
     //FOOD FUNCTIONS
@@ -44,40 +33,6 @@ public class HamsterState : MonoBehaviour {
         foodLevel += amountDecrease;
     }
 
-
-    //SCALE WEIGHT
-    public void UpdateScaleWeight()
-    {
-        float yScale = gameObject.transform.localScale.y;
-
-        if (weightLevel == 0)
-        {
-            gameObject.transform.localScale = new Vector3(yScale - yScale / 2, yScale, 1);
-        }
-        else if (weightLevel == 1)
-        {
-            gameObject.transform.localScale = new Vector3(yScale, yScale, 1);
-        }
-        else if (weightLevel == 2)
-        {
-            gameObject.transform.localScale = new Vector3(yScale + yScale / 2, yScale, 1);
-        }
-    }
-
-    //COLLIDER
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if ( other.gameObject.name == objectTypeToEat.name + "(Clone)")
-        {
-            IncreaseFoodLevel(1);
-            GameControl.Control.Inventory.RemoveFood(1);
-
-            
-            Destroy(other.gameObject);
-
-        }
-
-    }
 
 
 

@@ -17,6 +17,7 @@ public class GameControl : MonoBehaviour
     public Inventory Inventory = new Inventory();
     public PlayerData PlayerData = new PlayerData();
     public ShopData ShopData = new ShopData();
+    public GameProgress Progress = new GameProgress();
 
 
     private void Awake()
@@ -26,6 +27,7 @@ public class GameControl : MonoBehaviour
         {
             DontDestroyOnLoad(gameObject);
             Control = this;
+            LoadProgress();
         }
         else if (Control != this)
         {
@@ -33,10 +35,16 @@ public class GameControl : MonoBehaviour
         }
     }
 
+    void OnApplicationPause() // pause because iOS does not call quit
+    {
+        SaveProgress();
+    }
+
     public void LoadInventory()
     {
         if (File.Exists(userDataPath + "/Inventory.dat"))
         {
+            Debug.Log(userDataPath);
             var bf = new BinaryFormatter();
             var file = File.Open(userDataPath + "/Inventory.dat", FileMode.Open);
             var data = (Inventory)bf.Deserialize(file);
@@ -48,6 +56,7 @@ public class GameControl : MonoBehaviour
         }
         else
         {
+            Inventory.RemoveAllHamsters();
             //inventory.foodAmount = 0;
             //inventory.moneyAmount = 100;
         }
@@ -141,7 +150,25 @@ public class GameControl : MonoBehaviour
         };
             
 
-    bf.Serialize(file, data);
+        bf.Serialize(file, data);
+        file.Close();
+    }
+
+    public void LoadProgress() {
+        var bf = new BinaryFormatter();
+        if (File.Exists(userDataPath + "/Progress.dat"))
+        {
+            var file = File.Open(userDataPath + "/Progress.dat", FileMode.Open);
+            var data = (ProgressData) bf.Deserialize(file);
+            file.Close();
+            Progress = GameProgress.FromSerialized(data);
+        }  
+    }
+
+    public void SaveProgress() {
+        var bf = new BinaryFormatter();
+        var file = File.Create(userDataPath + "/Progress.dat");
+        bf.Serialize(file, Progress.Serialize());
         file.Close();
     }
 
