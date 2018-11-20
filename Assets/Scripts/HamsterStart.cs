@@ -4,9 +4,21 @@ public class HamsterStart : MonoBehaviour
 {
 	public Hamster HamsterPrefab;
 	private Hamster _currentHamster;
+	public EffectorHolder Holder;
 
 	private void Start() {
 		Spawn();
+		
+		Holder.GoTimeListener.AddListener(() =>
+		{
+			if (_currentHamster)
+			{
+				DestroyCurrentHamster();
+				ResetCoins();
+			}
+			
+			Spawn();
+		});
 	}
 	
 	public void PlayPauseToggle()
@@ -19,8 +31,6 @@ public class HamsterStart : MonoBehaviour
 		{
 			Spawn();
 		}
-		
-		Debug.Log(_currentHamster);
 	}
 
 	public void Spawn()
@@ -30,6 +40,7 @@ public class HamsterStart : MonoBehaviour
 
 	private void DestroyCurrentHamster()
 	{
+		Holder.HamsterDied();
 		Destroy(_currentHamster.gameObject);
 		_currentHamster = null;
 	}

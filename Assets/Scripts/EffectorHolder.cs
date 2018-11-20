@@ -2,11 +2,12 @@
 using System.Linq;
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 public class EffectorHolder : MonoBehaviour
 {
-
+	public readonly UnityEvent GoTimeListener = new UnityEvent();
 	public TurnEffector TurnPrefab;
 	public PushEffector PushPrefab;
 
@@ -14,8 +15,9 @@ public class EffectorHolder : MonoBehaviour
 	public Component PushButton;
 	public Trash Trash;
 	private readonly Stack<State> _redos = new Stack<State>();
-
 	private readonly Stack<State> _states = new Stack<State>();
+
+	private bool _goTime;
 
 	private Camera _camera;
 
@@ -52,7 +54,7 @@ public class EffectorHolder : MonoBehaviour
 		// Should these maybe be changed to run in update?
 		Events.OnEvent(EventTriggerType.PointerDown, TurnButton, e =>
 		{
-			if (!_gi.Grabbed)
+			if (!_gi.Grabbed && !_goTime)
 			{
 				Grab(CreateTurner(ToWorldPoint(Input.mousePosition)).gameObject);
 			}
@@ -60,7 +62,7 @@ public class EffectorHolder : MonoBehaviour
 		
 		Events.OnEvent(EventTriggerType.PointerDown, PushButton, e =>
 		{
-			if (!_gi.Grabbed)
+			if (!_gi.Grabbed && !_goTime)
 			{
 				Grab(CreatePusher(ToWorldPoint(Input.mousePosition)).gameObject);
 			}
@@ -108,45 +110,50 @@ public class EffectorHolder : MonoBehaviour
 	}
 
 	public void Update()
-	{	
-		var mousePos = Input.mousePosition;
-		
-		var mousePosWorld = ToWorldPoint(mousePos);
-		var overGui = _eventSystem && _eventSystem.IsPointerOverGameObject();
-		
-		Trash.UpdateTrashCan(mousePos, _gi.Grabbed != null && !_gi.Grabbed.GetComponent<Handle>());
+	{
 
-		if (_gi.Grabbed != null)
+		if (!_goTime)
 		{
-			_gi.Grabbed.transform.position = Trash.IsClose() ? CanvasToWorld(Trash.transform.position) : mousePosWorld + _gi.Offset;
+			var mousePos = Input.mousePosition;
 
-			if (Input.GetMouseButtonUp(0))
-			{
-				if (Trash.IsClose())
-				{
-					var toDelete = _gi.Grabbed;
-					Release();
-					Remove(toDelete);
-					
-					Save();
-					_redos.Clear();
-				}
-				else if (!overGui)
-				{
-					_gi.Grabbed.transform.position = ClosestPointInDropZone(_gi.Grabbed.transform.position);
-					Release();
-					Save();
-					_redos.Clear();
-				}
-			}
-		}
-		else if (Input.GetMouseButtonDown(0) && !overGui)
-		{
-			Grab(Closest(mousePosWorld, 2f));
+			var mousePosWorld = ToWorldPoint(mousePos);
+			var overGui = _eventSystem && _eventSystem.IsPointerOverGameObject();
+
+			Trash.UpdateTrashCan(mousePos, _gi.Grabbed != null && !_gi.Grabbed.GetComponent<Handle>());
+
 			if (_gi.Grabbed != null)
 			{
-				_gi.Offset = _gi.Grabbed.transform.position - mousePosWorld;
-				_gi.Grabbed.GetComponent<Renderer>().material.renderQueue = 5000;
+				_gi.Grabbed.transform.position =
+					Trash.IsClose() ? CanvasToWorld(Trash.transform.position) : mousePosWorld + _gi.Offset;
+
+				if (Input.GetMouseButtonUp(0))
+				{
+					if (Trash.IsClose())
+					{
+						var toDelete = _gi.Grabbed;
+						Release();
+						Remove(toDelete);
+
+						Save();
+						_redos.Clear();
+					}
+					else if (!overGui)
+					{
+						_gi.Grabbed.transform.position = ClosestPointInDropZone(_gi.Grabbed.transform.position);
+						Release();
+						Save();
+						_redos.Clear();
+					}
+				}
+			}
+			else if (Input.GetMouseButtonDown(0) && !overGui)
+			{
+				Grab(Closest(mousePosWorld, 2f));
+				if (_gi.Grabbed != null)
+				{
+					_gi.Offset = _gi.Grabbed.transform.position - mousePosWorld;
+					_gi.Grabbed.GetComponent<Renderer>().material.renderQueue = 5000;
+				}
 			}
 		}
 	}
@@ -278,6 +285,7 @@ public class EffectorHolder : MonoBehaviour
 
 	public void Undo()
 	{
+		if (_goTime) return;
 		//Get previous state
 		if (_states.Count == 0) return;
 		var undo = _states.Pop();
@@ -291,6 +299,7 @@ public class EffectorHolder : MonoBehaviour
 
 	public void Redo()
 	{
+		if (_goTime) return;
 		if (_redos.Count == 0)
 		{
 			return;
@@ -298,5 +307,27 @@ public class EffectorHolder : MonoBehaviour
 
 		CreateFromState(_redos.Pop());
 		Save();
+	}
+
+	public void GoTime()
+	{
+		_goTime = true;
+		GoTimeListener.Invoke();
+	}
+
+	public void HamsterDied()
+	{
+		var startSystem = FindObjectOfType<StarSystem>();
+		
+		if (_goTime)
+		{
+			if (startSystem.MadeIt)
+			{
+				//TODO
+			}
+		}
+		
+		startSystem.Clear();
+		_goTime = false;
 	}
 }
