@@ -60,8 +60,8 @@ public class HamsterController : MonoBehaviour {
                 transform.position.y,
                 transform.position.z);
             GameObject hamsterInScene = Instantiate(hamster, spawnPosition, Quaternion.identity);
-            hamsterInScene.GetComponent<HamsterState>().weightLevel = GameControl.Control.Inventory.hamsterStates[i].weightLevel;
-            hamsterInScene.GetComponent<HamsterState>().UpdateScaleWeight();
+            hamsterInScene.GetComponent<HamsterPrefab>().setWeightLevel(GameControl.Control.Inventory.hamsterStates[i].WeightLevel);
+            hamsterInScene.GetComponent<HamsterPrefab>().UpdateScaleWeight();
         }
        
         

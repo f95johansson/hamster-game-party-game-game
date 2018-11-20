@@ -37,6 +37,7 @@ public class GameControl : MonoBehaviour
     {
         if (File.Exists(userDataPath + "/Inventory.dat"))
         {
+            Debug.Log(userDataPath);
             var bf = new BinaryFormatter();
             var file = File.Open(userDataPath + "/Inventory.dat", FileMode.Open);
             var data = (Inventory)bf.Deserialize(file);
