@@ -53,6 +53,7 @@ public class GameControl : MonoBehaviour
             Inventory.foodAmount = data.foodAmount;
             Inventory.moneyAmount = data.moneyAmount;
             Inventory.hamsterStates = data.hamsterStates;
+            Inventory.HamsterOwns = data.HamsterOwns;
         }
         else
         {
@@ -72,7 +73,8 @@ public class GameControl : MonoBehaviour
         {
             foodAmount = Inventory.foodAmount,
             moneyAmount = Inventory.moneyAmount,
-            hamsterStates = Inventory.hamsterStates
+            hamsterStates = Inventory.hamsterStates,
+            HamsterOwns = Inventory.HamsterOwns
         };
 
         bf.Serialize(file, data);

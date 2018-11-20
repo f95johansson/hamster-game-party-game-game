@@ -25,8 +25,9 @@ public class ShopData
                     WeightLevel = (uint)UnityEngine.Random.Range(1, 5),
                     SpeedLevel = (uint)UnityEngine.Random.Range(1, 5),
                     FrictionLevel = (uint)UnityEngine.Random.Range(1, 5),
-                    TurnSpeedLevel = (uint)UnityEngine.Random.Range(1, 5)
+                    TurnSpeedLevel = (uint)UnityEngine.Random.Range(1, 5),
                 };
+                hamsterStatesShop[i].GenerateUUID();
             }
         }
         else if((newEpochTime - currentEpochTime) > 86400) { //one day is 86400 sekunds
@@ -40,6 +41,7 @@ public class ShopData
                     FrictionLevel = (uint)UnityEngine.Random.Range(1, 5),
                     TurnSpeedLevel = (uint)UnityEngine.Random.Range(1, 5)
                 };
+                hamsterStatesShop[i].GenerateUUID();
             }
         }
     }
