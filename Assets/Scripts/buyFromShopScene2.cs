@@ -6,8 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class buyFromShopScene2 : MonoBehaviour {
 
-    public Button m_Button_1, m_Button_2, m_Button_3, m_Button_4, m_Button_5, m_exit, m_PreviusScene, m_NewShopPage;
-    public Text m_TextCost_1, m_TextCost_2, m_TextCost_3, m_TextCost_4, m_TextCost_5;
+    public Button[] m_Button;
+    public Text[] m_TextCost;
+    public Button m_NewShopPage, m_PreviusScene, m_exit;
     public Text M_TextMoney;
     public AllTheBars[] HamsterBars;
     public Sprite[] BarSprite;
@@ -27,6 +28,7 @@ public class buyFromShopScene2 : MonoBehaviour {
         m_NewShopPage.interactable = false;
         m_NewShopPage.GetComponent<CanvasGroup>().alpha = 0.5f;
         GameControl.Control.ShopData.CheckTime();
+        SetStateOfButton();
     }
 
     private void OnDestroy()
@@ -40,6 +42,7 @@ public class buyFromShopScene2 : MonoBehaviour {
         
         for (int i = 0; i < GameControl.Control.ShopData.hamsterStatesShop.Length; i++)
         {
+            m_Button[i].onClick.AddListener(delegate { TaskWithParameters(i); });
             var state = GameControl.Control.ShopData.hamsterStatesShop[i];
             var bars = HamsterBars[i];
             bars.Weight().SetNumber(BarSprite[state.WeightLevel]);
@@ -47,11 +50,6 @@ public class buyFromShopScene2 : MonoBehaviour {
             bars.Friction().SetNumber(BarSprite[state.FrictionLevel]);
             bars.TurnSpeed().SetNumber(BarSprite[state.TurnSpeedLevel]);
         }
-        m_Button_1.onClick.AddListener(delegate { TaskWithParameters(0); });
-        m_Button_2.onClick.AddListener(delegate { TaskWithParameters(1); });
-        m_Button_3.onClick.AddListener(delegate { TaskWithParameters(2); });
-        m_Button_4.onClick.AddListener(delegate { TaskWithParameters(3); });
-        m_Button_5.onClick.AddListener(delegate { TaskWithParameters(4); });
         m_exit.onClick.AddListener(ExitScene);
         m_PreviusScene.onClick.AddListener(PreviusShopScene);
     }
@@ -112,13 +110,12 @@ public class buyFromShopScene2 : MonoBehaviour {
     }
 
     void SetStateOfButton() {
-        m_TextCost_1.text = "" + cost[0];
-        m_TextCost_2.text = "" + cost[1];
-        m_TextCost_3.text = "" + cost[2];
-        m_TextCost_4.text = "" + cost[3];
-        m_TextCost_5.text = "" + cost[4];
         for (int i = 0; i < GameControl.Control.ShopData.ownHamster.Length; i++) {
-            //if ()
+            m_TextCost[i].text = "" + cost[i];
+            if (GameControl.Control.ShopData.ownHamster[i] == 1) {
+                m_Button[i].interactable = false;
+                m_Button[i].GetComponent<CanvasGroup>().alpha = 0.5f;
+            }
         }
 
     }

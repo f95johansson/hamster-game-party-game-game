@@ -50,4 +50,12 @@ public class Inventory {
         moneyAmount += amoutToAdd;
     }
 
+    public void RemoveAllHamsters()
+    {
+        for (int i = 0; i < hamsterStates.Length; ++i)
+        {
+            hamsterStates[i] = null;
+        }
+    }
+
 }

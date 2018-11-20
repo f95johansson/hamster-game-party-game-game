@@ -318,7 +318,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1167697294186754, guid: d7c49a874b99f46e8a40d068c7ad605c, type: 2}
       propertyPath: m_Name
-      value: Buycarrots
+      value: BuyHamster2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1923911350042046, guid: d7c49a874b99f46e8a40d068c7ad605c, type: 2}
+      propertyPath: m_Name
+      value: Hamster2BuyButtonText
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d7c49a874b99f46e8a40d068c7ad605c, type: 2}
@@ -545,7 +549,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1167697294186754, guid: d7c49a874b99f46e8a40d068c7ad605c, type: 2}
       propertyPath: m_Name
-      value: BuyFans
+      value: BuyHamster3
       objectReference: {fileID: 0}
     - target: {fileID: 114041628398111400, guid: d7c49a874b99f46e8a40d068c7ad605c,
         type: 2}
@@ -553,6 +557,10 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: fb1f61379b93ea644b7e6aef6e668c18,
         type: 3}
+    - target: {fileID: 1923911350042046, guid: d7c49a874b99f46e8a40d068c7ad605c, type: 2}
+      propertyPath: m_Name
+      value: Hamster3BuyButtonText
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d7c49a874b99f46e8a40d068c7ad605c, type: 2}
   m_IsPrefabParent: 0
@@ -805,19 +813,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08d8d93660334b5bb77305390f9b5d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Button_1: {fileID: 1232409367}
-  m_Button_2: {fileID: 307045690}
-  m_Button_3: {fileID: 1749302991}
-  m_Button_4: {fileID: 548840748}
-  m_Button_5: {fileID: 1058361776}
-  m_exit: {fileID: 1111330178}
-  m_PreviusScene: {fileID: 239476703}
+  m_Button:
+  - {fileID: 1232409367}
+  - {fileID: 307045690}
+  - {fileID: 1749302991}
+  - {fileID: 548840748}
+  - {fileID: 1058361776}
+  m_TextCost:
+  - {fileID: 666752566}
+  - {fileID: 2027754633}
+  - {fileID: 1281175981}
+  - {fileID: 1588191589}
+  - {fileID: 2044650423}
   m_NewShopPage: {fileID: 2043974539}
-  m_TextCost_1: {fileID: 666752566}
-  m_TextCost_2: {fileID: 2027754633}
-  m_TextCost_3: {fileID: 1281175981}
-  m_TextCost_4: {fileID: 1588191589}
-  m_TextCost_5: {fileID: 2044650423}
+  m_PreviusScene: {fileID: 239476703}
+  m_exit: {fileID: 1111330178}
   M_TextMoney: {fileID: 613090433}
   HamsterBars:
   - {fileID: 105939979}
@@ -1017,7 +1027,7 @@ GameObject:
   - component: {fileID: 579005951}
   - component: {fileID: 579005950}
   m_Layer: 5
-  m_Name: Panel Fans
+  m_Name: Panel Hamster3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1319,7 +1329,7 @@ GameObject:
   - component: {fileID: 864885657}
   - component: {fileID: 864885656}
   m_Layer: 5
-  m_Name: Panel (1)
+  m_Name: Panel Hamster4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1390,7 +1400,7 @@ GameObject:
   - component: {fileID: 871938411}
   - component: {fileID: 871938410}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: Panel Hamster5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1553,6 +1563,14 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: fb1f61379b93ea644b7e6aef6e668c18,
         type: 3}
+    - target: {fileID: 1167697294186754, guid: d7c49a874b99f46e8a40d068c7ad605c, type: 2}
+      propertyPath: m_Name
+      value: BuyHamster1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1923911350042046, guid: d7c49a874b99f46e8a40d068c7ad605c, type: 2}
+      propertyPath: m_Name
+      value: Hamster1BuyButtonText
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d7c49a874b99f46e8a40d068c7ad605c, type: 2}
   m_IsPrefabParent: 0
@@ -1567,7 +1585,7 @@ GameObject:
   - component: {fileID: 925503697}
   - component: {fileID: 925503696}
   m_Layer: 5
-  m_Name: Panel Food
+  m_Name: Panel Hamster1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2043,7 +2061,7 @@ GameObject:
   - component: {fileID: 1198031540}
   - component: {fileID: 1198031539}
   m_Layer: 5
-  m_Name: Panel Carrots
+  m_Name: Panel Hamster2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2461,7 +2479,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1167697294186754, guid: d7c49a874b99f46e8a40d068c7ad605c, type: 2}
       propertyPath: m_Name
-      value: Buy(1)
+      value: BuyHamster4
       objectReference: {fileID: 0}
     - target: {fileID: 114041628398111400, guid: d7c49a874b99f46e8a40d068c7ad605c,
         type: 2}
@@ -2469,6 +2487,10 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: fb1f61379b93ea644b7e6aef6e668c18,
         type: 3}
+    - target: {fileID: 1923911350042046, guid: d7c49a874b99f46e8a40d068c7ad605c, type: 2}
+      propertyPath: m_Name
+      value: Hamster4BuyButtonText
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d7c49a874b99f46e8a40d068c7ad605c, type: 2}
   m_IsPrefabParent: 0
@@ -2835,7 +2857,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1167697294186754, guid: d7c49a874b99f46e8a40d068c7ad605c, type: 2}
       propertyPath: m_Name
-      value: Buy(2)
+      value: BuyHamster5
       objectReference: {fileID: 0}
     - target: {fileID: 114041628398111400, guid: d7c49a874b99f46e8a40d068c7ad605c,
         type: 2}
@@ -2843,6 +2865,10 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: fb1f61379b93ea644b7e6aef6e668c18,
         type: 3}
+    - target: {fileID: 1923911350042046, guid: d7c49a874b99f46e8a40d068c7ad605c, type: 2}
+      propertyPath: m_Name
+      value: Hamster5BuyButtonText
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d7c49a874b99f46e8a40d068c7ad605c, type: 2}
   m_IsPrefabParent: 0
