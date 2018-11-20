@@ -15,4 +15,8 @@ public class Navigation : MonoBehaviour
 		SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
 		SceneManager.LoadScene("TrackWrapper", LoadSceneMode.Additive);
 	}
+
+    public static void StartLevelSelect() {
+        SceneManager.LoadScene("LevelSelect", LoadSceneMode.Single);   
+    }
 }
