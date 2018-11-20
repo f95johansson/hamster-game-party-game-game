@@ -9,6 +9,10 @@ public class buyFromShopScene2 : MonoBehaviour {
     public Button m_Button_1, m_Button_2, m_Button_3, m_Button_4, m_Button_5, m_exit, m_PreviusScene, m_NewShopPage;
     public Text m_TextCost_1, m_TextCost_2, m_TextCost_3, m_TextCost_4, m_TextCost_5;
     public Text M_TextMoney;
+    public AllTheBars[] HamsterBars;
+    public Sprite[] BarSprite;
+
+    private int[] cost = new int[] { 10, 10, 10, 10, 10 };
 
     //private string[] items = new string[] { "Food", "", "", "", "" };
     // Use this for initialization
@@ -23,7 +27,6 @@ public class buyFromShopScene2 : MonoBehaviour {
         m_NewShopPage.interactable = false;
         m_NewShopPage.GetComponent<CanvasGroup>().alpha = 0.5f;
         GameControl.Control.ShopData.CheckTime();
-
     }
 
     private void OnDestroy()
@@ -34,6 +37,16 @@ public class buyFromShopScene2 : MonoBehaviour {
     }
 
     void Start () {
+        
+        for (int i = 0; i < GameControl.Control.ShopData.hamsterStatesShop.Length; i++)
+        {
+            var state = GameControl.Control.ShopData.hamsterStatesShop[i];
+            var bars = HamsterBars[i];
+            bars.Weight().SetNumber(BarSprite[state.WeightLevel]);
+            bars.Speed().SetNumber(BarSprite[state.SpeedLevel]);
+            bars.Friction().SetNumber(BarSprite[state.FrictionLevel]);
+            bars.TurnSpeed().SetNumber(BarSprite[state.TurnSpeedLevel]);
+        }
         m_Button_1.onClick.AddListener(delegate { TaskWithParameters(0); });
         m_Button_2.onClick.AddListener(delegate { TaskWithParameters(1); });
         m_Button_3.onClick.AddListener(delegate { TaskWithParameters(2); });
@@ -99,6 +112,14 @@ public class buyFromShopScene2 : MonoBehaviour {
     }
 
     void SetStateOfButton() {
+        m_TextCost_1.text = "" + cost[0];
+        m_TextCost_2.text = "" + cost[1];
+        m_TextCost_3.text = "" + cost[2];
+        m_TextCost_4.text = "" + cost[3];
+        m_TextCost_5.text = "" + cost[4];
+        for (int i = 0; i < GameControl.Control.ShopData.ownHamster.Length; i++) {
+            //if ()
+        }
 
     }
 }

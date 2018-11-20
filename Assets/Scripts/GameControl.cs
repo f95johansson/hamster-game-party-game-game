@@ -28,7 +28,6 @@ public class GameControl : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             Control = this;
             LoadProgress();
-            print(Progress.ToString());
         }
         else if (Control != this)
         {
@@ -45,6 +44,7 @@ public class GameControl : MonoBehaviour
     {
         if (File.Exists(userDataPath + "/Inventory.dat"))
         {
+            Debug.Log(userDataPath);
             var bf = new BinaryFormatter();
             var file = File.Open(userDataPath + "/Inventory.dat", FileMode.Open);
             var data = (Inventory)bf.Deserialize(file);
