@@ -16,16 +16,11 @@ public class Feeder : MonoBehaviour {
     // Use this for initialization
     void Start () {
         camera = Camera.main;
-        missingFood.text = "";
         Events.OnEvent(UnityEngine.EventSystems.EventTriggerType.PointerDown, foodImage, e =>
         {
             if (GameControl.Control.Inventory.foodAmount > 0)
             {
                 newFood = Instantiate(foodPrefab);
-            }
-            else
-            {
-                missingFood.text = "You don't have food!";
             }
             
         });
@@ -49,9 +44,19 @@ public class Feeder : MonoBehaviour {
                 newFood = null;
             }
         }
-       
-		
-	}
+
+        if(GameControl.Control.Inventory.foodAmount > 0)
+        {
+            missingFood.text = "";
+            
+        }
+        else
+        {
+            missingFood.text = "You don't have food anymore!";
+        }
+
+
+    }
 
     
 }
