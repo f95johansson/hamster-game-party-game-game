@@ -851,8 +851,8 @@ Prefab:
       value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 83436afce83eb418ea220a2c9e2e80f7, type: 2}
-  m_IsPrefabAsset: 0
+  m_ParentPrefab: {fileID: 100100000, guid: 83436afce83eb418ea220a2c9e2e80f7, type: 2}
+  m_IsPrefabParent: 0
 --- !u!114 &1019366964 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114407268672170562, guid: 83436afce83eb418ea220a2c9e2e80f7,
@@ -1051,8 +1051,8 @@ Prefab:
       value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: ea2fb1b2df9d9e648801cb6dae7077bb, type: 2}
-  m_IsPrefabAsset: 0
+  m_ParentPrefab: {fileID: 100100000, guid: ea2fb1b2df9d9e648801cb6dae7077bb, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1782436588
 GameObject:
   m_ObjectHideFlags: 0

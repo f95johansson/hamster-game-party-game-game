@@ -296,8 +296,8 @@ Prefab:
       value: Buycarrots
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: d7c49a874b99f46e8a40d068c7ad605c, type: 2}
-  m_IsPrefabAsset: 0
+  m_ParentPrefab: {fileID: 100100000, guid: d7c49a874b99f46e8a40d068c7ad605c, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &239476701
 GameObject:
   m_ObjectHideFlags: 0
@@ -524,8 +524,8 @@ Prefab:
       value: BuyFans
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: d7c49a874b99f46e8a40d068c7ad605c, type: 2}
-  m_IsPrefabAsset: 0
+  m_ParentPrefab: {fileID: 100100000, guid: d7c49a874b99f46e8a40d068c7ad605c, type: 2}
+  m_IsPrefabParent: 0
 --- !u!224 &349102354 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 224731592137816946, guid: d7c49a874b99f46e8a40d068c7ad605c,
@@ -582,8 +582,8 @@ Prefab:
       value: 2000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 83436afce83eb418ea220a2c9e2e80f7, type: 2}
-  m_IsPrefabAsset: 0
+  m_ParentPrefab: {fileID: 100100000, guid: 83436afce83eb418ea220a2c9e2e80f7, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &403385416
 GameObject:
   m_ObjectHideFlags: 0
@@ -2054,8 +2054,8 @@ Prefab:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: d7c49a874b99f46e8a40d068c7ad605c, type: 2}
-  m_IsPrefabAsset: 0
+  m_ParentPrefab: {fileID: 100100000, guid: d7c49a874b99f46e8a40d068c7ad605c, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &925503694
 GameObject:
   m_ObjectHideFlags: 0
@@ -2725,8 +2725,8 @@ Prefab:
       value: Buy(1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: d7c49a874b99f46e8a40d068c7ad605c, type: 2}
-  m_IsPrefabAsset: 0
+  m_ParentPrefab: {fileID: 100100000, guid: d7c49a874b99f46e8a40d068c7ad605c, type: 2}
+  m_IsPrefabParent: 0
 --- !u!114 &1532182228 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114421117751829068, guid: d7c49a874b99f46e8a40d068c7ad605c,
@@ -3123,8 +3123,8 @@ Prefab:
       value: Buy(2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: d7c49a874b99f46e8a40d068c7ad605c, type: 2}
-  m_IsPrefabAsset: 0
+  m_ParentPrefab: {fileID: 100100000, guid: d7c49a874b99f46e8a40d068c7ad605c, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1817193594
 GameObject:
   m_ObjectHideFlags: 0

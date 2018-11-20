@@ -169,8 +169,8 @@ Prefab:
       value: 0.40078
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: e082b20b3154d3b49ad4ffed3076069a, type: 2}
-  m_IsPrefabAsset: 0
+  m_ParentPrefab: {fileID: 100100000, guid: e082b20b3154d3b49ad4ffed3076069a, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &105930009
 GameObject:
   m_ObjectHideFlags: 0
@@ -298,8 +298,8 @@ Prefab:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: e082b20b3154d3b49ad4ffed3076069a, type: 2}
-  m_IsPrefabAsset: 0
+  m_ParentPrefab: {fileID: 100100000, guid: e082b20b3154d3b49ad4ffed3076069a, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &251806408
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,8 +418,8 @@ Prefab:
       value: Rock (2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 699cddc3e9b01074daf57cf864db4159, type: 2}
-  m_IsPrefabAsset: 0
+  m_ParentPrefab: {fileID: 100100000, guid: 699cddc3e9b01074daf57cf864db4159, type: 2}
+  m_IsPrefabParent: 0
 --- !u!4 &303408290 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4152682634715704, guid: 699cddc3e9b01074daf57cf864db4159,
@@ -481,8 +481,8 @@ Prefab:
       value: 72.32101
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 699cddc3e9b01074daf57cf864db4159, type: 2}
-  m_IsPrefabAsset: 0
+  m_ParentPrefab: {fileID: 100100000, guid: 699cddc3e9b01074daf57cf864db4159, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &382699766
 Prefab:
   m_ObjectHideFlags: 0
@@ -543,8 +543,8 @@ Prefab:
       value: Rock (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 699cddc3e9b01074daf57cf864db4159, type: 2}
-  m_IsPrefabAsset: 0
+  m_ParentPrefab: {fileID: 100100000, guid: 699cddc3e9b01074daf57cf864db4159, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &413722301
 Prefab:
   m_ObjectHideFlags: 0
@@ -601,8 +601,8 @@ Prefab:
       value: 0.40078
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: e082b20b3154d3b49ad4ffed3076069a, type: 2}
-  m_IsPrefabAsset: 0
+  m_ParentPrefab: {fileID: 100100000, guid: e082b20b3154d3b49ad4ffed3076069a, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &449005881
 Prefab:
   m_ObjectHideFlags: 0
@@ -667,8 +667,8 @@ Prefab:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 1606c34b41c883f4582854d5efe18465, type: 3}
-  m_IsPrefabAsset: 0
+  m_ParentPrefab: {fileID: 100100000, guid: 1606c34b41c883f4582854d5efe18465, type: 3}
+  m_IsPrefabParent: 0
 --- !u!1001 &675036014
 Prefab:
   m_ObjectHideFlags: 0
@@ -721,8 +721,8 @@ Prefab:
       value: 0.66433
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 699cddc3e9b01074daf57cf864db4159, type: 2}
-  m_IsPrefabAsset: 0
+  m_ParentPrefab: {fileID: 100100000, guid: 699cddc3e9b01074daf57cf864db4159, type: 2}
+  m_IsPrefabParent: 0
 --- !u!4 &683025874 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 1606c34b41c883f4582854d5efe18465,
