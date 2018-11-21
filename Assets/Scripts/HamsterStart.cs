@@ -45,10 +45,19 @@ public class HamsterStart : MonoBehaviour
 		_currentHamster = null;
 	}
 
-	private void ResetCoins()
+	private static void ResetCoins()
 	{
 		var coinHandler = FindObjectOfType<CoinHandler>();
-		coinHandler.ResetCoins();
+		if (coinHandler)
+		{
+			coinHandler.ResetCoins();	
+		}
+		
+		var lapCheck = FindObjectOfType<LapCheck>();
+		if (lapCheck)
+		{
+			lapCheck.Reset();
+		}
 	}
 
 	private void LateUpdate () {

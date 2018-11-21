@@ -113,6 +113,48 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &73348758
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4437935261104636, guid: 86e32020fcda3a849bae2b7b6346deab, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437935261104636, guid: 86e32020fcda3a849bae2b7b6346deab, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437935261104636, guid: 86e32020fcda3a849bae2b7b6346deab, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437935261104636, guid: 86e32020fcda3a849bae2b7b6346deab, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437935261104636, guid: 86e32020fcda3a849bae2b7b6346deab, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437935261104636, guid: 86e32020fcda3a849bae2b7b6346deab, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437935261104636, guid: 86e32020fcda3a849bae2b7b6346deab, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437935261104636, guid: 86e32020fcda3a849bae2b7b6346deab, type: 2}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 86e32020fcda3a849bae2b7b6346deab, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &75314580
 Prefab:
   m_ObjectHideFlags: 0
@@ -781,6 +823,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HamsterPrefab: {fileID: 114689720082244264, guid: dd6e8ca5306584b4b97f763acd43945b,
     type: 2}
+  Holder: {fileID: 0}
 --- !u!4 &884770175
 Transform:
   m_ObjectHideFlags: 0

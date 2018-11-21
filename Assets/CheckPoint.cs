@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 public class CheckPoint : MonoBehaviour
 {
-	public class IsHere : UnityEvent<int>
+	public class IsHere : UnityEvent<uint>
 	{
 		private readonly CheckPoint _cp;
 		public IsHere(CheckPoint cp)
@@ -11,14 +11,14 @@ public class CheckPoint : MonoBehaviour
 			_cp = cp;
 		}
 
-		public int Cp
+		public uint Cp
 		{
 			get { return _cp.Index; }
 		}
 	}
 	
 	public IsHere HamsterIsHere;
-	public int Index;
+	public uint Index;
 
 	public void Awake()
 	{
