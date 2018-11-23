@@ -4,7 +4,7 @@
 public class Inventory {
 
     public const int maxNumberHamsters = 10;
-    
+    public int HamsterOwns = 0;
 
     public HamsterState[] hamsterStates = new HamsterState[maxNumberHamsters];
 
@@ -18,6 +18,7 @@ public class Inventory {
             if (hamsterStates[i]==null)
             {
                 hamsterStates[i] = hamsterToAdd;
+                HamsterOwns += 1;
                 return;
             }
         }
@@ -30,6 +31,7 @@ public class Inventory {
             if (hamsterStates[i] == hamsterToRemove)
             {
                 hamsterStates[i] = null;
+                HamsterOwns -= 1;
                 return;
             }
         }
@@ -56,6 +58,7 @@ public class Inventory {
         {
             hamsterStates[i] = null;
         }
+        HamsterOwns = 0;
     }
 
 }
