@@ -7,9 +7,11 @@ using UnityEngine.EventSystems;
 
 public class EffectorHolder : MonoBehaviour
 {
-	public readonly UnityEvent GoTimeListener = new UnityEvent();
+	public readonly UnityEvent GoTimeListener = new UnityEvent(); //used by hamster start
 	public TurnEffector TurnPrefab;
 	public PushEffector PushPrefab;
+
+	public CanvasGroup Interactive;
 
 	public Component TurnButton;
 	public Component PushButton;
@@ -309,25 +311,42 @@ public class EffectorHolder : MonoBehaviour
 		Save();
 	}
 
-	public void GoTime()
+	public void ToggleGoTime()
 	{
-		_goTime = true;
-		GoTimeListener.Invoke();
+		if (!_goTime)
+		{
+			_goTime = true;
+			GoTimeListener.Invoke();
+			Debug.Log("It is go-time!");
+
+			var cameraMovement = _camera.gameObject.GetComponent<CameraMovement>();
+			cameraMovement.GoTime();
+			Interactive.alpha = 0;
+			Interactive.interactable = false;
+		}
+		else
+		{
+			NotGameTime();
+			Interactive.interactable = true;
+			Interactive.alpha = 1;
+		}
+	}
+
+	public void NotGameTime()
+	{
+		_goTime = false;
+		var cameraMovement = _camera.gameObject.GetComponent<CameraMovement>();
+		cameraMovement.NotGoTime();
 	}
 
 	public void HamsterDied()
 	{
-		var startSystem = FindObjectOfType<StarSystem>();
-		
-		if (_goTime)
-		{
-			if (startSystem.MadeIt)
-			{
-				//TODO
-			}
-		}
-		
-		startSystem.Clear();
-		_goTime = false;
+		NotGameTime();
+	}
+
+
+	public bool IsGoTime()
+	{
+		return _goTime;
 	}
 }

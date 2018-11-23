@@ -4,17 +4,19 @@ public class HamsterStart : MonoBehaviour
 {
 	public Hamster HamsterPrefab;
 	private Hamster _currentHamster;
-	public EffectorHolder Holder;
+	private EffectorHolder _holder;
 
 	private void Start() {
 		Spawn();
+
+		_holder = FindObjectOfType<EffectorHolder>();
 		
-		Holder.GoTimeListener.AddListener(() =>
+		_holder.GoTimeListener.AddListener(() =>
 		{
 			if (_currentHamster)
 			{
 				DestroyCurrentHamster();
-				ResetCoins();
+				Reset();
 			}
 			
 			Spawn();
@@ -40,12 +42,12 @@ public class HamsterStart : MonoBehaviour
 
 	private void DestroyCurrentHamster()
 	{
-		Holder.HamsterDied();
 		Destroy(_currentHamster.gameObject);
 		_currentHamster = null;
+		Reset();
 	}
 
-	private static void ResetCoins()
+	private void Reset()
 	{
 		var coinHandler = FindObjectOfType<CoinHandler>();
 		if (coinHandler)
@@ -65,7 +67,8 @@ public class HamsterStart : MonoBehaviour
 		if (_currentHamster && _currentHamster.transform.position.y < -10)
 		{
 			DestroyCurrentHamster();
-			ResetCoins();
+			_holder.HamsterDied();
+			Reset();
 			Spawn();
 		}
 		
@@ -74,5 +77,16 @@ public class HamsterStart : MonoBehaviour
 			PlayPauseToggle();
 		}
 	}
-	
+
+	public bool HasHamster()
+	{
+		return _currentHamster;
+	}
+
+
+
+	public Transform CurrentHamsterTransform()
+	{
+		return _currentHamster.transform;
+	}
 }

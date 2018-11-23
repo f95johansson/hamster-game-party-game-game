@@ -1,10 +1,11 @@
-﻿using UnityEngine;
-using UnityEngine.Events;
+﻿using UnityEngine.Events;
 
-public class LapCheck : MonoBehaviour
+public class LapCheck : WinCondition
 {
-	public readonly UnityEvent LapMade = new UnityEvent();
+	private readonly UnityEvent _onProgress = new UnityEvent();
+	private readonly UnityEvent _onWin = new UnityEvent();
 	private CheckPoint[] _checkPoints;
+	public uint LapsToWin = 1;
 
 	private struct NextCheckPoint
 	{
@@ -24,6 +25,8 @@ public class LapCheck : MonoBehaviour
 	public void Reset()
 	{
 		_nextCheckPoint.Reset();
+		_clearedLaps = 0;
+		_onProgress.Invoke();
 	}
 
 	private NextCheckPoint _nextCheckPoint;
@@ -66,9 +69,31 @@ public class LapCheck : MonoBehaviour
 		if (currentLap > _clearedLaps)
 		{
 			_clearedLaps = currentLap;
-			LapMade.Invoke();
-			Debug.Log("The hamster cleared lap: " + currentLap);
+			_onProgress.Invoke();
+			if (_clearedLaps >= LapsToWin && FindObjectOfType<EffectorHolder>().IsGoTime())
+			{
+				_onWin.Invoke();
+			}
 		}
 	}
-	
+
+	public override UnityEvent OnWin()
+	{
+		return _onWin;
+	}
+
+	public override UnityEvent OnStateChange()
+	{
+		return _onProgress;
+	}
+
+	public override string Description()
+	{
+		return "Complete " + LapsToWin + " laps to win";
+	}
+
+	public override string ChangedState()
+	{
+		return "" + _clearedLaps + "/" + LapsToWin;
+	}
 }

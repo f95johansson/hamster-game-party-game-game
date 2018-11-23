@@ -9,46 +9,46 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1879773758172046}
+  m_RootGameObject: {fileID: 1596178224741768}
   m_IsPrefabParent: 1
---- !u!1 &1879773758172046
+--- !u!1 &1596178224741768
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4566150296539812}
-  - component: {fileID: 33756019431035494}
-  - component: {fileID: 23975953314789052}
-  - component: {fileID: 114487663180475112}
-  - component: {fileID: 135992133318857102}
+  - component: {fileID: 4884255603179448}
+  - component: {fileID: 33718763403548066}
+  - component: {fileID: 23484854605009692}
+  - component: {fileID: 64172961777469210}
+  - component: {fileID: 114508224497389406}
   m_Layer: 0
-  m_Name: Coin
-  m_TagString: Collectible
+  m_Name: HamsterStart
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4566150296539812
+--- !u!4 &4884255603179448
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1879773758172046}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.048, z: 0}
-  m_LocalScale: {x: 0.40078002, y: 0.40078002, z: 0.40078002}
+  m_GameObject: {fileID: 1596178224741768}
+  m_LocalRotation: {x: -0, y: 0.5473697, z: -0, w: 0.836891}
+  m_LocalPosition: {x: -1.39, y: 0.3, z: 2.32}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23975953314789052
+  m_LocalEulerAnglesHint: {x: 0, y: 66.374, z: 0}
+--- !u!23 &23484854605009692
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1879773758172046}
+  m_GameObject: {fileID: 1596178224741768}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -58,7 +58,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 0f5e61bbe43830b47a5e146b905ec4a3, type: 2}
+  - {fileID: 2100000, guid: 8827c43b05da7eb45b3812d9a91fd1b9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -78,35 +78,37 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33756019431035494
+--- !u!33 &33718763403548066
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1879773758172046}
-  m_Mesh: {fileID: 4300000, guid: 2ab069cd0125d6e4d90a25795592286d, type: 3}
---- !u!114 &114487663180475112
+  m_GameObject: {fileID: 1596178224741768}
+  m_Mesh: {fileID: 4300000, guid: 1606c34b41c883f4582854d5efe18465, type: 3}
+--- !u!64 &64172961777469210
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1596178224741768}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: 1606c34b41c883f4582854d5efe18465, type: 3}
+--- !u!114 &114508224497389406
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1879773758172046}
+  m_GameObject: {fileID: 1596178224741768}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d41a6ebfbd60fb44acb270ba0ce6998, type: 3}
+  m_Script: {fileID: 11500000, guid: 3c3e0f7822f19aa4988ed804621a3548, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RotateSpeed: 20
-  Radius: 0
---- !u!135 &135992133318857102
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1879773758172046}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.886024
-  m_Center: {x: -0.012639999, y: -0.0005989969, z: 0.17269349}
+  HamsterPrefab: {fileID: 114130161498313852, guid: 11589b63f8cc56b46a66dd8b58c7d688,
+    type: 2}

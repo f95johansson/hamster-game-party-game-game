@@ -51,7 +51,7 @@ public class buyFromShopScene2 : MonoBehaviour {
             bars.TurnSpeed().SetNumber(BarSprite[state.TurnSpeedLevel]);
         }
         m_exit.onClick.AddListener(ExitScene);
-        m_PreviusScene.onClick.AddListener(PreviusShopScene);
+        m_PreviusScene.onClick.AddListener(PreviousShopScene);
     }
 	
 	// Update is called once per frame
@@ -67,7 +67,7 @@ public class buyFromShopScene2 : MonoBehaviour {
         //SceneManager.LoadScene("Scenes/HamsterShopScene2", LoadSceneMode.Additive);
     }
 
-    void PreviusShopScene()
+    void PreviousShopScene()
     {
         //SceneManager.LoadScene(2);
         SceneManager.LoadScene("HamsterShop");

@@ -3,14 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class Navigation : MonoBehaviour
 {
-	private void Start () {
-		StartTrack("Track01");
-	}
-
 	public static void StartTrack(string sceneName)
 	{
-		SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
-		AddWrapper();
+		SceneManager.LoadScene(sceneName, LoadSceneMode.Single); // the tracks load the wrapper
 	}
 
     public static void StartLevelSelect() {
@@ -20,5 +15,11 @@ public class Navigation : MonoBehaviour
 	public static void AddWrapper()
 	{
 		SceneManager.LoadScene("TrackWrapper", LoadSceneMode.Additive);
+	}
+
+	// This is not static so it can be used as a target for OnClickListener
+	public void GoToLevelSelect()
+	{
+		StartLevelSelect();
 	}
 }
