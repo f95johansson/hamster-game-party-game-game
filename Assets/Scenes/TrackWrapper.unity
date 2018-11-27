@@ -949,7 +949,7 @@ GameObject:
   - component: {fileID: 777129160}
   - component: {fileID: 777129159}
   m_Layer: 0
-  m_Name: TrackProgress
+  m_Name: TrackWrapper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
