@@ -79,19 +79,19 @@ public class buyFromShopScene2 : MonoBehaviour
 
     }
 
-    void ExitScene()
+    private void ExitScene()
     {
         //SceneManager.LoadScene("Scenes/HamsterShopScene2", LoadSceneMode.Additive);
         SceneManager.LoadScene("LevelSelect");
     }
 
-    void PreviousShopScene()
+    private void PreviousShopScene()
     {
         //SceneManager.LoadScene(2);
         SceneManager.LoadScene("HamsterShop");
     }
 
-    void ChangeScene(string scene)
+    private void ChangeScene(string scene)
     {
         if (scene != SceneManager.GetActiveScene().name)
         {
@@ -99,7 +99,7 @@ public class buyFromShopScene2 : MonoBehaviour
         }
     }
 
-    void TaskWithParameters(int ButtonId)
+    private void TaskWithParameters(int ButtonId)
     {
         switch (ButtonId)
         {
@@ -124,9 +124,9 @@ public class buyFromShopScene2 : MonoBehaviour
         }
     }
 
-    void buyHamster(int id)
+    private void buyHamster(int id)
     {
-        if (cost[id] < inventorystat.moneyAmount)
+        if (cost[id] <= inventorystat.moneyAmount)
         {
             if (inventorystat.HamsterOwns < 10 && shopstat.ownHamster[id] != 1)
             {
@@ -137,12 +137,12 @@ public class buyFromShopScene2 : MonoBehaviour
         }
     }
 
-    void updateMoneyText()
+    private void updateMoneyText()
     {
         M_TextMoney.text = "Money: " + GameControl.Control.Inventory.moneyAmount;
     }
 
-    void SetStateOfButton()
+    private void SetStateOfButton()
     {
         for (int i = 0; i < GameControl.Control.ShopData.ownHamster.Length; i++)
         {
