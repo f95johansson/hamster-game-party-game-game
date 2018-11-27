@@ -7,14 +7,12 @@ using UnityEngine.UI;
 public class HamsterPrefab : MonoBehaviour
 {
     private uint index;
-    private HamsterState state;
     public GameObject objectTypeToEat;
-    private Slider foodBar;
+    public Slider foodBar;
 
 
     public void Start()
     {
-        state = GameControl.Control.Inventory.hamsterStates[index];
         foodBar = gameObject.GetComponentInChildren<Slider>();
 
 
@@ -23,7 +21,7 @@ public class HamsterPrefab : MonoBehaviour
 
     public void FixedUpdate()
     {
-        //foodBar.value = state.foodLevel;
+        foodBar.value = GameControl.Control.Inventory.hamsterStates[index].foodLevel;
 
     }
 
@@ -32,15 +30,16 @@ public class HamsterPrefab : MonoBehaviour
     {
         float yScale = gameObject.transform.localScale.y;
 
-        if (state.WeightLevel == 0)
+
+        if (GameControl.Control.Inventory.hamsterStates[index].WeightLevel == 0)
         {
             gameObject.transform.localScale = new Vector3(yScale - yScale / 2, yScale, 1);
         }
-        else if (state.WeightLevel == 1)
+        else if (GameControl.Control.Inventory.hamsterStates[index].WeightLevel == 1)
         {
             gameObject.transform.localScale = new Vector3(yScale, yScale, 1);
         }
-        else if (state.WeightLevel == 2)
+        else if (GameControl.Control.Inventory.hamsterStates[index].WeightLevel == 2)
         {
             gameObject.transform.localScale = new Vector3(yScale + yScale / 2, yScale, 1);
         }
@@ -51,8 +50,8 @@ public class HamsterPrefab : MonoBehaviour
     {
         if (other.gameObject.name == objectTypeToEat.name + "(Clone)")
         {
-            state.foodLevel++;
-            //state.IncreaseFoodLevel(1);
+            GameControl.Control.Inventory.hamsterStates[index].foodLevel++;
+            
             GameControl.Control.Inventory.RemoveFood(1);
 
 
@@ -63,12 +62,14 @@ public class HamsterPrefab : MonoBehaviour
     }
 
     public void setWeightLevel(uint Weigth) {
-        state.WeightLevel = Weigth;
+        GameControl.Control.Inventory.hamsterStates[index].WeightLevel = Weigth;
     }
 
     public void setIndex(uint i)
     {
         index = i;
+        
     }
 
+    
 }
