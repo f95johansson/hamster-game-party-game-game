@@ -95,4 +95,14 @@ public class Hamster : MonoBehaviour
 			}
 		}
 	}
+
+	private void OnTriggerEnter(Collider other)
+	{
+		var checkPoint = other.gameObject.GetComponent<CheckPoint>();
+
+		if (checkPoint)
+		{
+			checkPoint.Collided();
+		}
+	}
 }

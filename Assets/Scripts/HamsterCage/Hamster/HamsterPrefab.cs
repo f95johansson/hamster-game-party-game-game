@@ -9,13 +9,24 @@ public class HamsterPrefab : MonoBehaviour
     private uint index;
     private HamsterState state;
     public GameObject objectTypeToEat;
-    public Slider foodBar;
+    private Slider foodBar;
+
+
+    public void Start()
+    {
+        state = GameControl.Control.Inventory.hamsterStates[index];
+        foodBar = gameObject.GetComponentInChildren<Slider>();
+
+
+     }
+
 
     public void FixedUpdate()
     {
-        foodBar.value = state.foodLevel;
+        //foodBar.value = state.foodLevel;
 
     }
+
 
     public void UpdateScaleWeight()
     {
@@ -40,7 +51,8 @@ public class HamsterPrefab : MonoBehaviour
     {
         if (other.gameObject.name == objectTypeToEat.name + "(Clone)")
         {
-            state.IncreaseFoodLevel(1);
+            state.foodLevel++;
+            //state.IncreaseFoodLevel(1);
             GameControl.Control.Inventory.RemoveFood(1);
 
 
@@ -54,8 +66,9 @@ public class HamsterPrefab : MonoBehaviour
         state.WeightLevel = Weigth;
     }
 
-    public void Start()
+    public void setIndex(uint i)
     {
-        state = GameControl.Control.Inventory.hamsterStates[index];
+        index = i;
     }
+
 }

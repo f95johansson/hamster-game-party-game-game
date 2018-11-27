@@ -1,10 +1,18 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CoinHandler : MonoBehaviour
 {
 	private readonly HashSet<Vector3> _coinPositions = new HashSet<Vector3>();
 	public Coin CoinPrefab;
+
+	private uint _total;
+
+	public void Start()
+	{
+		_total = (uint) FindObjectsOfType<Coin>().Length;
+	}
 	
 	public void ResetCoins()
 	{
@@ -20,5 +28,15 @@ public class CoinHandler : MonoBehaviour
 	public void Add(Vector3 position)
 	{
 		_coinPositions.Add(position);
+	}
+
+	public uint CurrentAmount()
+	{
+		return (uint) _coinPositions.Count;
+	}
+	
+	public uint Total()
+	{
+		return _total;
 	}
 }

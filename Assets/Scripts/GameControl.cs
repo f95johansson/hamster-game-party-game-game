@@ -53,9 +53,11 @@ public class GameControl : MonoBehaviour
             Inventory.foodAmount = data.foodAmount;
             Inventory.moneyAmount = data.moneyAmount;
             Inventory.hamsterStates = data.hamsterStates;
+            Inventory.HamsterOwns = data.HamsterOwns;
         }
         else
         {
+            Inventory.RemoveAllHamsters();
             //inventory.foodAmount = 0;
             //inventory.moneyAmount = 100;
         }
@@ -71,7 +73,8 @@ public class GameControl : MonoBehaviour
         {
             foodAmount = Inventory.foodAmount,
             moneyAmount = Inventory.moneyAmount,
-            hamsterStates = Inventory.hamsterStates
+            hamsterStates = Inventory.hamsterStates,
+            HamsterOwns = Inventory.HamsterOwns
         };
 
         bf.Serialize(file, data);

@@ -6,11 +6,15 @@ using UnityEngine.SceneManagement;
 
 public class buyFromShopScene2 : MonoBehaviour {
 
-    public Button m_Button_1, m_Button_2, m_Button_3, m_Button_4, m_Button_5, m_exit, m_PreviusScene, m_NewShopPage;
-    public Text m_TextCost_1, m_TextCost_2, m_TextCost_3, m_TextCost_4, m_TextCost_5;
+    public Button[] m_Button;
+    public Text[] m_TextCost;
+    public Button m_NewShopPage, m_PreviusScene, m_exit;
     public Text M_TextMoney;
     public AllTheBars[] HamsterBars;
     public Sprite[] BarSprite;
+
+    private ShopData shopstat;
+    private Inventory inventorystat;
 
     private int[] cost = new int[] { 10, 10, 10, 10, 10 };
 
@@ -23,10 +27,13 @@ public class buyFromShopScene2 : MonoBehaviour {
         GameControl.Control.LoadInventory();
         GameControl.Control.LoadPlayerData();
         GameControl.Control.LoadShopData();
+        shopstat = GameControl.Control.ShopData;
+        inventorystat = GameControl.Control.Inventory;
         updateMoneyText();
         m_NewShopPage.interactable = false;
         m_NewShopPage.GetComponent<CanvasGroup>().alpha = 0.5f;
-        GameControl.Control.ShopData.CheckTime();
+        shopstat.CheckTime();
+        SetStateOfButton();
     }
 
     private void OnDestroy()
@@ -40,36 +47,37 @@ public class buyFromShopScene2 : MonoBehaviour {
         
         for (int i = 0; i < GameControl.Control.ShopData.hamsterStatesShop.Length; i++)
         {
-            var state = GameControl.Control.ShopData.hamsterStatesShop[i];
+            var state = shopstat.hamsterStatesShop[i];
             var bars = HamsterBars[i];
             bars.Weight().SetNumber(BarSprite[state.WeightLevel]);
             bars.Speed().SetNumber(BarSprite[state.SpeedLevel]);
             bars.Friction().SetNumber(BarSprite[state.FrictionLevel]);
             bars.TurnSpeed().SetNumber(BarSprite[state.TurnSpeedLevel]);
         }
-        m_Button_1.onClick.AddListener(delegate { TaskWithParameters(0); });
-        m_Button_2.onClick.AddListener(delegate { TaskWithParameters(1); });
-        m_Button_3.onClick.AddListener(delegate { TaskWithParameters(2); });
-        m_Button_4.onClick.AddListener(delegate { TaskWithParameters(3); });
-        m_Button_5.onClick.AddListener(delegate { TaskWithParameters(4); });
+        m_Button[0].onClick.AddListener(delegate { TaskWithParameters(0); });
+        m_Button[1].onClick.AddListener(delegate { TaskWithParameters(1); });
+        m_Button[2].onClick.AddListener(delegate { TaskWithParameters(2); });
+        m_Button[3].onClick.AddListener(delegate { TaskWithParameters(3); });
+        m_Button[4].onClick.AddListener(delegate { TaskWithParameters(4); });
         m_exit.onClick.AddListener(ExitScene);
-        m_PreviusScene.onClick.AddListener(PreviusShopScene);
+        m_PreviusScene.onClick.AddListener(PreviousShopScene);
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if(money != GameControl.Control.Inventory.moneyAmount) {
-            money = GameControl.Control.Inventory.moneyAmount;
+        if(money != inventorystat.moneyAmount) {
+            money = inventorystat.moneyAmount;
             updateMoneyText();
         }
+        SetStateOfButton();
 
-	}
+    }
 
     void ExitScene() {
         //SceneManager.LoadScene("Scenes/HamsterShopScene2", LoadSceneMode.Additive);
     }
 
-    void PreviusShopScene()
+    void PreviousShopScene()
     {
         //SceneManager.LoadScene(2);
         SceneManager.LoadScene("HamsterShop");
@@ -83,27 +91,37 @@ public class buyFromShopScene2 : MonoBehaviour {
 
     void TaskWithParameters(int ButtonId)
     {
-        uint item;
-        uint costForItem;
         switch(ButtonId) {
             case 0:
-
+                buyHamster(ButtonId);
                 break;
             case 1:
-
+                buyHamster(ButtonId);
                 break;
             case 2:
-
+                buyHamster(ButtonId);
                 break;
             case 3:
-
+                buyHamster(ButtonId);
                 break;
             case 4:
-
+                buyHamster(ButtonId);
                 break;
             default:
 
                 break;
+        }
+    }
+
+    void buyHamster(int id) {
+        if (cost[id] < inventorystat.moneyAmount)
+        {
+            if (inventorystat.HamsterOwns < 10 && shopstat.ownHamster[id] != 1)
+            {
+                shopstat.ownHamster[id] = 1;
+                inventorystat.AddHamster(shopstat.hamsterStatesShop[id]);
+            }
+
         }
     }
 
@@ -112,13 +130,12 @@ public class buyFromShopScene2 : MonoBehaviour {
     }
 
     void SetStateOfButton() {
-        m_TextCost_1.text = "" + cost[0];
-        m_TextCost_2.text = "" + cost[1];
-        m_TextCost_3.text = "" + cost[2];
-        m_TextCost_4.text = "" + cost[3];
-        m_TextCost_5.text = "" + cost[4];
         for (int i = 0; i < GameControl.Control.ShopData.ownHamster.Length; i++) {
-            //if ()
+            m_TextCost[i].text = "" + cost[i];
+            if (GameControl.Control.ShopData.ownHamster[i] == 1) {
+                m_Button[i].interactable = false;
+                m_Button[i].GetComponent<CanvasGroup>().alpha = 0.5f;
+            }
         }
 
     }

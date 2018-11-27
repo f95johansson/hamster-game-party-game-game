@@ -78,7 +78,6 @@ public class PushEffector : MonoBehaviour
 				var mag = (Mathf.Abs(Far) <= float.Epsilon) ? 0 : 1 - distance/Far;
 				var force = (Handle.transform.position - transform.position).normalized * Strength * mag;
 
-				Debug.Log("force from pusher:" + force);
 				return force;
 			}
 		}

@@ -11,6 +11,9 @@ public class CameraMovement : MonoBehaviour
     private float _zoomedOutFieldOfView;
     private const float MinFieldOfView = 15f;
     public MeshCollider DropZone;
+    
+    private Vector3 _lastNormalPos;
+    private Quaternion _lastNormalRotation;
 
     private void Start()
     {
@@ -18,6 +21,7 @@ public class CameraMovement : MonoBehaviour
         Assert.IsNotNull(_camera, "We must have a camera tagged Main in scene");
         _zoomedOutPosition = transform.position;
         _zoomedOutFieldOfView = _camera.fieldOfView;
+        _lastNormalPos = transform.position;
     }
     
     private Vector3 ClosestPointInDropZone(Vector3 point)
@@ -53,14 +57,56 @@ public class CameraMovement : MonoBehaviour
 
     private void Update()
     {
+        if (_coolMovement)
+        {
+            CoolMovement();
+        }
+        else
+        {
+            NormalMovement();
+        }
+    }
+
+    public float CameraDistanceXZ = 2f;
+    public float CameraYWhenFollowing = 1f;
+    private bool _coolMovement;
+
+    private void CoolMovement()
+    {
+        var hs = FindObjectOfType<HamsterStart>();
+        if (hs.HasHamster())
+        {
+            var t = hs.CurrentHamsterTransform();
+
+            var offset = -t.forward;
+            offset.y = 0;
+            offset = offset.normalized;
+
+            var newCamPos = offset * CameraDistanceXZ + t.position;
+            newCamPos.y = CameraYWhenFollowing;
+
+            transform.position = Vector3.Lerp(transform.position, newCamPos, .2f);
+
+            var newCameraRotation = Quaternion.LookRotation(t.position - transform.position);
+            transform.rotation = Quaternion.Lerp(transform.rotation, newCameraRotation,2f);
+        }
+        else
+        {
+            NotGoTime(); // goes back to boring mode automatically, TODO, maybe this should not be the cameras decision
+        }
+    }
+
+    private void NormalMovement()
+    {
         var zoom = ZoomDelta();
         var beforeFieldOfView = _camera.fieldOfView;
-        
+
         var before = VectorMath.ToWorldPoint(_camera, Input.mousePosition, Vector3.zero, Vector3.up);
         _camera.fieldOfView = Mathf.Clamp(_camera.fieldOfView + zoom, MinFieldOfView, _zoomedOutFieldOfView);
         var after = VectorMath.ToWorldPoint(_camera, Input.mousePosition, Vector3.zero, Vector3.up);
-        
-        if (zoom < 0) {
+
+        if (zoom < 0)
+        {
             var target = transform.position + before - after;
             transform.position = ClosestPointInDropZone(target);
         }
@@ -72,5 +118,21 @@ public class CameraMovement : MonoBehaviour
             if (a == 0) transform.position = _zoomedOutPosition;
             else transform.position = Vector3.Lerp(_zoomedOutPosition, transform.position, 1 - b / a);
         }
+        
+        _lastNormalPos = transform.position;
+        _lastNormalRotation = transform.rotation;
+    }
+
+
+    public void GoTime()
+    {
+        _coolMovement = true;
+    }
+
+    public void NotGoTime()
+    {
+        _coolMovement = false;
+        transform.position = _lastNormalPos;
+        transform.rotation = _lastNormalRotation;
     }
 }
