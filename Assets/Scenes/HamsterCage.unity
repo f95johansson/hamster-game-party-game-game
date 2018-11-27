@@ -113,12 +113,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &80193805 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114407268672170562, guid: 83436afce83eb418ea220a2c9e2e80f7,
-    type: 2}
-  m_PrefabInternal: {fileID: 1019366963}
-  m_Script: {fileID: 11500000, guid: a3164a2475ab44ec68abe34385249e3f, type: 3}
 --- !u!4 &171170797 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4080295645312114, guid: ea2fb1b2df9d9e648801cb6dae7077bb,
@@ -547,18 +541,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 869081288}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 80193805}
-        m_MethodName: GoToScene
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: LevelSelect
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &869081288
@@ -698,6 +681,7 @@ MonoBehaviour:
   camera: {fileID: 0}
   hamster: {fileID: 1308702321054474, guid: ea2fb1b2df9d9e648801cb6dae7077bb, type: 2}
   foodAmountText: {fileID: 1782436590}
+  exitButton: {fileID: 869081287}
 --- !u!4 &954909184
 Transform:
   m_ObjectHideFlags: 0
