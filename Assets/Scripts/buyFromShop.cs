@@ -11,7 +11,7 @@ public class buyFromShop : MonoBehaviour {
     public Text m_TextCost_1, m_TextCost_2, m_TextCost_3;
     public Text M_TextMoney;
     //private string[] items = new string[] { "Food", "", "", "", "" };
-    private uint[] cost = new uint[] {10,100,100};
+    private uint[] cost = new uint[] { 10, 5, 5 };
     private int[] Max = new int[] { 100, 10, 10};
     // Use this for initialization
     private uint money;
