@@ -21,9 +21,9 @@ public class LevelSelectShop : MonoBehaviour
 	}
 	
 	private void Update ()
-	{
-		transform.Rotate(new Vector3(0, 0, RotateSpeed * Time.deltaTime));
-	}
+    {
+        transform.Rotate(new Vector3(0, 0, RotateSpeed * Time.deltaTime));
+    }
 
 	private void OnMouseUpAsButton()
 	{

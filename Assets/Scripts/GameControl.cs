@@ -40,6 +40,11 @@ public class GameControl : MonoBehaviour
         SaveProgress();
     }
 
+    void OnApplicationQuit()
+    {
+        SaveProgress();
+    }
+
     public void LoadInventory()
     {
         if (File.Exists(userDataPath + "/Inventory.dat"))
