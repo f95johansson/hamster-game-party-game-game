@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class HamsterPrefab : MonoBehaviour
 {
     private uint index;
@@ -14,9 +15,13 @@ public class HamsterPrefab : MonoBehaviour
     public void Start()
     {
         foodBar = gameObject.GetComponentInChildren<Slider>();
+        /*
+        Events.OnEvent(UnityEngine.EventSystems.EventTriggerType.PointerDown, gameObject, e =>
+        {
+            
 
-
-     }
+        });*/
+    }
 
 
     public void FixedUpdate()

@@ -26,6 +26,7 @@ public class ShopData
                     SpeedLevel = (uint)UnityEngine.Random.Range(1, 5),
                     FrictionLevel = (uint)UnityEngine.Random.Range(1, 5),
                     TurnSpeedLevel = (uint)UnityEngine.Random.Range(1, 5),
+                    HamsterName = hamsterStatesShop[i].getRandomName()
                 };
                 hamsterStatesShop[i].GenerateUUID();
             }
@@ -39,10 +40,17 @@ public class ShopData
                     WeightLevel = (uint)UnityEngine.Random.Range(1, 5),
                     SpeedLevel = (uint)UnityEngine.Random.Range(1, 5),
                     FrictionLevel = (uint)UnityEngine.Random.Range(1, 5),
-                    TurnSpeedLevel = (uint)UnityEngine.Random.Range(1, 5)
+                    TurnSpeedLevel = (uint)UnityEngine.Random.Range(1, 5),
+                    HamsterName = hamsterStatesShop[i].getRandomName()
                 };
                 hamsterStatesShop[i].GenerateUUID();
             }
         }
+        for (int i = 0; i < 5; i++) {
+            if (hamsterStatesShop[i].HamsterName == null) {
+                hamsterStatesShop[i].HamsterName = hamsterStatesShop[i].getRandomName();
+            }
+        }
+            
     }
 }

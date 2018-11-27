@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 public class HamsterController : MonoBehaviour {
 
@@ -35,15 +37,17 @@ public class HamsterController : MonoBehaviour {
         {
             camera = Camera.main;
         }
-        Vector3 upperCorner = new Vector3(Screen.width, Screen.height, 0);
+        Vector3 upperCorner = new Vector3(Screen.width, Screen.height, 10);
         Vector3 targetWidth = camera.ScreenToWorldPoint(upperCorner);
         float hamsterWidth = hamster.GetComponent<Renderer>().bounds.extents.x;
         maxWidth = targetWidth.x - hamsterWidth;
+
         exitButton.onClick.AddListener(ExitScene);
 
+        
         UpdateFoodText();
         
-        SpawnHamsters();
+        StartCoroutine(SpawnHamsters());
     }
 
     public void FixedUpdate()
@@ -56,13 +60,13 @@ public class HamsterController : MonoBehaviour {
         SceneManager.LoadScene("LevelSelect");
     }
 
-    public void SpawnHamsters()
+    IEnumerator SpawnHamsters()
     {
         uint i = 0;
         while ((i<GameControl.Control.Inventory.hamsterStates.Length) && (GameControl.Control.Inventory.hamsterStates[i]!=null))
         {
             Vector3 spawnPosition = new Vector3(
-                Random.Range(-maxWidth, maxWidth),
+                Random.Range(-maxWidth+2* hamster.GetComponent<Renderer>().bounds.extents.x, maxWidth),
                 transform.position.y,
                 transform.position.z);
             GameObject hamsterInScene = Instantiate(hamster, spawnPosition, Quaternion.identity);
@@ -71,7 +75,7 @@ public class HamsterController : MonoBehaviour {
             hamsterInScene.GetComponent<HamsterPrefab>().setIndex(i);
             
             hamsterInScene.GetComponent<HamsterPrefab>().UpdateScaleWeight();
-
+            yield return new WaitForSeconds(0.5f);
             i++;
         }
        
