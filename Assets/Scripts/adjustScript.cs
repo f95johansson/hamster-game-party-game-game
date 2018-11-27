@@ -16,9 +16,8 @@ public class adjustScript : MonoBehaviour {
         }
 
 
-        if (GUI.Button(new Rect(10, 110, 200, 30), "Add Hamster"))
+        if (GUI.Button(new Rect(10, 110, 200, 30), "Create First Hamster"))
         {
-            //GameControl.Control.inventory.moneyAmount += 10000;
             GameControl.Control.Inventory.hamsterStates[0] = new HamsterState()
             {
                 WeightLevel = (uint)UnityEngine.Random.Range(1, 5),
@@ -26,7 +25,6 @@ public class adjustScript : MonoBehaviour {
                 FrictionLevel = (uint)UnityEngine.Random.Range(1, 5),
                 TurnSpeedLevel = (uint)UnityEngine.Random.Range(1, 5)
             };
-            //GameControl.control.saveHamsterCage();
         }
     }
 }
