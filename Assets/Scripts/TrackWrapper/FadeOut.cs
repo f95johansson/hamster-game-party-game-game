@@ -7,16 +7,12 @@ public class FadeOut : MonoBehaviour
 	public float FadeTime = 3f;
 
 	private CanvasGroup _canvasGroup;
+
 	
 	private void Start()
 	{
 		_canvasGroup = GetComponent<CanvasGroup>();
 		_canvasGroup.alpha = 1;
-	}
-
-	public void SetName(string levelName)
-	{
-		GetComponentInChildren<Text>().text = levelName;
 	}
 	
 	private void Update ()
