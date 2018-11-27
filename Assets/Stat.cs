@@ -1,20 +1,31 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class Stat : MonoBehaviour
 {
-
 	public uint Points;
-	public string Name;
+	public Sprite[] ListOfSprites = new Sprite[6];
+	private Image _statImage;
+	private uint _prevPoints;
 	
-	// Use this for initialization
-	private void Start () {
+	private void Start ()
+	{
+		_statImage = GetComponentInChildren<Image>();
 		
+		OnChange();
 	}
-	
-	// Update is called once per frame
-	private void Update () {
-		
+
+	private void OnChange()
+	{
+		_statImage.sprite = ListOfSprites[Points];
+		_prevPoints = Points;
+	}
+
+	private void Update()
+	{
+		if (_prevPoints != Points)
+		{
+			OnChange();
+		}
 	}
 }

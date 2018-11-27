@@ -8,15 +8,11 @@ public class Hamster : MonoBehaviour
 	public float Gravity = -0.5f;
 	private float _radius;
 	
-	[Range(0, 10)]
 	public float Speed = 2;
-
-	[Range(0, 1)]
 	public float Friction = 0.15f;
-	
-	[Range(0, 1)]
 	public float TurnSpeed = 0.25f;
-
+	public float Weight = 1f;
+	
 	private const float Weakener = 1/60f; // this is used to scale all the forces to delta time
 	
 	private EffectorHolder _effectorHolder;
@@ -25,25 +21,22 @@ public class Hamster : MonoBehaviour
 
 	private BallCollision _collision;
 
-	private void Awake()
-	{
-		_radius = GetComponent<SphereCollider>().radius;
-		_collision = new BallCollision(_radius / 3, 8);
-	}
-
 	private CoinHandler _coinHandler;
 	private void Start()
 	{
 		_coinHandler = FindObjectOfType<CoinHandler>();
 		_effectorHolder = FindObjectOfType<EffectorHolder>();
 		_track = FindObjectOfType<Track>();
+		
+		_radius = GetComponent<SphereCollider>().radius;
+		_collision = new BallCollision(_radius / 3, 8);
 	}
 	
 	private void Update()
 	{
 		Collectibles();
 		
-		_force += _effectorHolder.GetPushForce(_collision.GetPoints(transform.position));
+		_force += _effectorHolder.GetPushForce(_collision.GetPoints(transform.position)) * (1/Weight);
 		
 		var turn = _effectorHolder.GetTurnFocus(_collision.GetPoints(transform.position));
 		if (turn != Vector3.zero)
@@ -104,5 +97,23 @@ public class Hamster : MonoBehaviour
 		{
 			checkPoint.Collided();
 		}
+	}
+
+	private static float Normalize(uint value)
+	{
+		return value / 5f;
+	}
+	
+	private static float Range(float low, float high, uint value)
+	{
+		return low + Normalize(value) * (high-low);
+	}
+
+	public void SetStats(uint speed, uint weight, uint turnSpeed, uint friction)
+	{
+		Speed = Range(.5f, 3f, speed);
+		TurnSpeed = Range(.015f, .09f, turnSpeed);
+		Friction = Range(0.05f, .25f, friction);
+		Weight = Range(.5f, 2f, weight);
 	}
 }

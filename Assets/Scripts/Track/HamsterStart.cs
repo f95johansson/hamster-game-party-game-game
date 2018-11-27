@@ -38,6 +38,7 @@ public class HamsterStart : MonoBehaviour
 	public void Spawn()
 	{
 		_currentHamster = Instantiate(HamsterPrefab, transform.position, transform.rotation);
+		_currentHamster.SetStats(Speed, Weight, TurnSpeed, Friction);
 	}
 
 	private void DestroyCurrentHamster()
@@ -45,6 +46,21 @@ public class HamsterStart : MonoBehaviour
 		Destroy(_currentHamster.gameObject);
 		_currentHamster = null;
 		Reset();
+	}
+
+	public uint Speed = 2;
+	public uint Friction = 2;
+	public uint TurnSpeed = 2;
+	public uint Weight = 2;
+
+	public void NewStats(uint speed, uint friction, uint turnSpeed, uint weight)
+	{
+		Speed = speed;
+		Friction = friction;
+		TurnSpeed = turnSpeed;
+		Weight = weight;
+		
+		RestartEverything();
 	}
 
 	private void Reset()
@@ -66,10 +82,7 @@ public class HamsterStart : MonoBehaviour
 
 		if (_currentHamster && _currentHamster.transform.position.y < -10)
 		{
-			DestroyCurrentHamster();
-			_holder.HamsterDied();
-			Reset();
-			Spawn();
+			RestartEverything();
 		}
 		
 		if (Input.GetButtonDown("Jump"))
@@ -78,12 +91,18 @@ public class HamsterStart : MonoBehaviour
 		}
 	}
 
+	private void RestartEverything()
+	{
+		DestroyCurrentHamster();
+		_holder.HamsterDied();
+		Reset();
+		Spawn();
+	}
+
 	public bool HasHamster()
 	{
 		return _currentHamster;
 	}
-
-
 
 	public Transform CurrentHamsterTransform()
 	{
