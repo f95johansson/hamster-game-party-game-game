@@ -419,18 +419,18 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 28
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 40
-    m_Alignment: 0
+    m_MinSize: 0
+    m_MaxSize: 48
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: name
 --- !u!114 &114417525074079570
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -442,13 +442,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccafe3f806c6c467881f9968f4d6ec2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprites:
-  - {fileID: 21300000, guid: 33aa6425579fd5f4c8ddaacd05d24d2b, type: 3}
-  - {fileID: 21300000, guid: 0d8255682098f074abb4650d534640bf, type: 3}
-  - {fileID: 21300000, guid: 5d819848bb0834640979b4c4fd2c9ac4, type: 3}
-  - {fileID: 21300000, guid: 5ff8950e87e7bfa4597459145b4f8be4, type: 3}
-  - {fileID: 21300000, guid: 9df0268a9b324b04c8b8e8ccd0c83a04, type: 3}
-  - {fileID: 21300000, guid: b719b945449586c4e8c3b62ff71a1ad0, type: 3}
 --- !u!114 &114471444503475354
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -460,13 +453,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccafe3f806c6c467881f9968f4d6ec2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprites:
-  - {fileID: 21300000, guid: 33aa6425579fd5f4c8ddaacd05d24d2b, type: 3}
-  - {fileID: 21300000, guid: 0d8255682098f074abb4650d534640bf, type: 3}
-  - {fileID: 21300000, guid: 5d819848bb0834640979b4c4fd2c9ac4, type: 3}
-  - {fileID: 21300000, guid: 5ff8950e87e7bfa4597459145b4f8be4, type: 3}
-  - {fileID: 21300000, guid: 9df0268a9b324b04c8b8e8ccd0c83a04, type: 3}
-  - {fileID: 21300000, guid: b719b945449586c4e8c3b62ff71a1ad0, type: 3}
 --- !u!114 &114534048989449924
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -619,13 +605,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccafe3f806c6c467881f9968f4d6ec2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprites:
-  - {fileID: 21300000, guid: 33aa6425579fd5f4c8ddaacd05d24d2b, type: 3}
-  - {fileID: 21300000, guid: 0d8255682098f074abb4650d534640bf, type: 3}
-  - {fileID: 21300000, guid: 5d819848bb0834640979b4c4fd2c9ac4, type: 3}
-  - {fileID: 21300000, guid: 5ff8950e87e7bfa4597459145b4f8be4, type: 3}
-  - {fileID: 21300000, guid: 9df0268a9b324b04c8b8e8ccd0c83a04, type: 3}
-  - {fileID: 21300000, guid: b719b945449586c4e8c3b62ff71a1ad0, type: 3}
 --- !u!114 &114841465493332436
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -637,13 +616,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccafe3f806c6c467881f9968f4d6ec2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprites:
-  - {fileID: 21300000, guid: 33aa6425579fd5f4c8ddaacd05d24d2b, type: 3}
-  - {fileID: 21300000, guid: 0d8255682098f074abb4650d534640bf, type: 3}
-  - {fileID: 21300000, guid: 5d819848bb0834640979b4c4fd2c9ac4, type: 3}
-  - {fileID: 21300000, guid: 5ff8950e87e7bfa4597459145b4f8be4, type: 3}
-  - {fileID: 21300000, guid: 9df0268a9b324b04c8b8e8ccd0c83a04, type: 3}
-  - {fileID: 21300000, guid: b719b945449586c4e8c3b62ff71a1ad0, type: 3}
 --- !u!222 &222259693679867544
 CanvasRenderer:
   m_ObjectHideFlags: 1

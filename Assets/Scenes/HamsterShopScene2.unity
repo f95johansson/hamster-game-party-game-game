@@ -219,6 +219,12 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 105939978}
   m_Script: {fileID: 11500000, guid: b6fdf7ca55d5d407486866b42efda0ae, type: 3}
+--- !u!114 &105939980 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114361678782991418, guid: ac831208103fa485f9cb2537db1ecf24,
+    type: 2}
+  m_PrefabInternal: {fileID: 105939978}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &215556913
 Prefab:
   m_ObjectHideFlags: 0
@@ -825,6 +831,12 @@ MonoBehaviour:
   - {fileID: 1281175981}
   - {fileID: 1588191589}
   - {fileID: 2044650423}
+  m_HamsterName:
+  - {fileID: 105939980}
+  - {fileID: 1553989362}
+  - {fileID: 1116989556}
+  - {fileID: 1244578815}
+  - {fileID: 1170987235}
   m_NewShopPage: {fileID: 2043974539}
   m_PreviusScene: {fileID: 239476703}
   m_exit: {fileID: 1111330178}
@@ -1944,6 +1956,12 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1116989554}
   m_Script: {fileID: 11500000, guid: b6fdf7ca55d5d407486866b42efda0ae, type: 3}
+--- !u!114 &1116989556 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114361678782991418, guid: ac831208103fa485f9cb2537db1ecf24,
+    type: 2}
+  m_PrefabInternal: {fileID: 1116989554}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &1170987233
 Prefab:
   m_ObjectHideFlags: 0
@@ -2050,6 +2068,12 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1170987233}
   m_Script: {fileID: 11500000, guid: b6fdf7ca55d5d407486866b42efda0ae, type: 3}
+--- !u!114 &1170987235 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114361678782991418, guid: ac831208103fa485f9cb2537db1ecf24,
+    type: 2}
+  m_PrefabInternal: {fileID: 1170987233}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &1198031537
 GameObject:
   m_ObjectHideFlags: 0
@@ -2238,6 +2262,12 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1244578813}
   m_Script: {fileID: 11500000, guid: b6fdf7ca55d5d407486866b42efda0ae, type: 3}
+--- !u!114 &1244578815 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114361678782991418, guid: ac831208103fa485f9cb2537db1ecf24,
+    type: 2}
+  m_PrefabInternal: {fileID: 1244578813}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!114 &1281175981 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114421117751829068, guid: d7c49a874b99f46e8a40d068c7ad605c,
@@ -2605,6 +2635,12 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1553989359}
   m_Script: {fileID: 11500000, guid: b6fdf7ca55d5d407486866b42efda0ae, type: 3}
+--- !u!114 &1553989362 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114361678782991418, guid: ac831208103fa485f9cb2537db1ecf24,
+    type: 2}
+  m_PrefabInternal: {fileID: 1553989359}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!114 &1588191589 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114421117751829068, guid: d7c49a874b99f46e8a40d068c7ad605c,
@@ -3221,7 +3257,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 
 --- !u!222 &2059906958
 CanvasRenderer:
   m_ObjectHideFlags: 0
