@@ -47,7 +47,7 @@ public class HamsterController : MonoBehaviour {
         
         UpdateFoodText();
         
-        SpawnHamsters();
+        StartCoroutine(SpawnHamsters());
     }
 
     public void FixedUpdate()
@@ -60,13 +60,13 @@ public class HamsterController : MonoBehaviour {
         SceneManager.LoadScene("LevelSelect");
     }
 
-    public void SpawnHamsters()
+    IEnumerator SpawnHamsters()
     {
         uint i = 0;
         while ((i<GameControl.Control.Inventory.hamsterStates.Length) && (GameControl.Control.Inventory.hamsterStates[i]!=null))
         {
             Vector3 spawnPosition = new Vector3(
-                Random.Range(-maxWidth, maxWidth),
+                Random.Range(-maxWidth+2* hamster.GetComponent<Renderer>().bounds.extents.x, maxWidth),
                 transform.position.y,
                 transform.position.z);
             GameObject hamsterInScene = Instantiate(hamster, spawnPosition, Quaternion.identity);
@@ -75,7 +75,7 @@ public class HamsterController : MonoBehaviour {
             hamsterInScene.GetComponent<HamsterPrefab>().setIndex(i);
             
             hamsterInScene.GetComponent<HamsterPrefab>().UpdateScaleWeight();
-
+            yield return new WaitForSeconds(0.5f);
             i++;
         }
        

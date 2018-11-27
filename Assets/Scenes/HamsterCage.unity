@@ -212,10 +212,14 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -3.205451, y: 1.4940706}
+  - {x: -9.857804, y: 5.6967278}
+  - {x: -9.160255, y: 4.997743}
+  - {x: -3.2376876, y: 1.5148312}
   - {x: -3.1795845, y: -2.5264764}
-  - {x: 4.3443017, y: -2.502224}
-  - {x: 4.3837066, y: -2.462269}
+  - {x: 4.443714, y: -2.5213668}
+  - {x: 4.7432513, y: -2.4390035}
+  - {x: 4.817362, y: 2.7123952}
+  - {x: 9.173816, y: 5.181417}
 --- !u!68 &342116933
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -605,7 +609,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 965793921}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -689,7 +693,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 954909182}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 6, z: 0}
+  m_LocalPosition: {x: 0, y: 12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -780,8 +784,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 2085231467}
   - {fileID: 878707414}
+  - {fileID: 2085231467}
   - {fileID: 869081286}
   - {fileID: 1508335307}
   m_Father: {fileID: 0}
@@ -834,7 +838,7 @@ Prefab:
     - target: {fileID: 114407268672170562, guid: 83436afce83eb418ea220a2c9e2e80f7,
         type: 2}
       propertyPath: Inventory.foodAmount
-      value: 2
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 83436afce83eb418ea220a2c9e2e80f7, type: 2}
@@ -871,10 +875,14 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -10.24146, y: 8.8181305}
-  - {x: -10.200439, y: -4.643551}
-  - {x: 10.748028, y: -4.4472284}
-  - {x: 10.674288, y: 8.748036}
+  - {x: -16.949562, y: 11.810418}
+  - {x: -16.27684, y: 10.117412}
+  - {x: -15.690956, y: -6.3200436}
+  - {x: -9.865141, y: -6.1523943}
+  - {x: -9.75503, y: -6.101308}
+  - {x: 14.245918, y: -6.6268835}
+  - {x: 13.84954, y: -2.016313}
+  - {x: 14.153011, y: 9.92158}
 --- !u!4 &1352237036
 Transform:
   m_ObjectHideFlags: 0
@@ -1151,7 +1159,7 @@ GameObject:
   - component: {fileID: 1782436589}
   - component: {fileID: 1782436591}
   - component: {fileID: 1782436590}
-  m_Layer: 5
+  m_Layer: 4
   m_Name: FoodAmountText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1287,7 +1295,7 @@ GameObject:
   - component: {fileID: 2085231467}
   - component: {fileID: 2085231469}
   - component: {fileID: 2085231468}
-  m_Layer: 5
+  m_Layer: 4
   m_Name: Feeder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1300,18 +1308,18 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2085231466}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1782436589}
   m_Father: {fileID: 965793921}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 60, y: 60}
+  m_SizeDelta: {x: 51, y: 52.3}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &2085231468
 MonoBehaviour:
