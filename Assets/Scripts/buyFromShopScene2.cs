@@ -75,6 +75,7 @@ public class buyFromShopScene2 : MonoBehaviour {
 
     void ExitScene() {
         //SceneManager.LoadScene("Scenes/HamsterShopScene2", LoadSceneMode.Additive);
+        SceneManager.LoadScene("LevelSelect");
     }
 
     void PreviousShopScene()
@@ -126,7 +127,7 @@ public class buyFromShopScene2 : MonoBehaviour {
     }
 
     void updateMoneyText() {
-        M_TextMoney.text = "The Money you have: " + GameControl.Control.Inventory.moneyAmount;
+        M_TextMoney.text = "Money: " + GameControl.Control.Inventory.moneyAmount;
     }
 
     void SetStateOfButton() {

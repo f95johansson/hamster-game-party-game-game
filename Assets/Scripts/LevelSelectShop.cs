@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class LevelSelectShop : MonoBehaviour
+public class LevelSelect : MonoBehaviour
 {
 	public float RotateSpeed = 20f;
 	private Light _light;
@@ -11,13 +11,7 @@ public class LevelSelectShop : MonoBehaviour
 	public void Start()
 	{
 		_light = GetComponentInChildren<Light>();
-        var child = GetComponentInChildren<OnCliickThingy>();
-
-        child.MouseExit.AddListener(OnMouseExit);
-        child.MouseClick.AddListener(OnMouseUpAsButton);
-        child.MouseEnter.AddListener(OnMouseEnter);
-
-        _defaultIntensity = _light.intensity;
+		_defaultIntensity = _light.intensity;
 	}
 	
 	private void Update ()
