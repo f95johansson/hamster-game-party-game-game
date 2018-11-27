@@ -3,7 +3,7 @@
 [Serializable]
 public class Inventory {
 
-    public const int maxNumberHamsters = 10;
+    public const int maxNumberHamsters = 6;
     public int HamsterOwns = 0;
 
     public HamsterState[] hamsterStates = new HamsterState[maxNumberHamsters];

@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class StarSystem : MonoBehaviour
 {
     public WinCondition WinCondition;
-    public Text LevelName;
 
     private Text _goal;
     private Text _status;
@@ -21,7 +21,7 @@ public class StarSystem : MonoBehaviour
 
         WinCondition.OnWin().AddListener(() =>
         {
-            GameControl.Control.Progress.SaveTrackProgress(LevelName.text, true, true, true);
+            GameControl.Control.Progress.SaveTrackProgress(SceneManager.GetActiveScene().name, true, true, true);
             FindObjectOfType<WinInformation>().Show();
         });
         
