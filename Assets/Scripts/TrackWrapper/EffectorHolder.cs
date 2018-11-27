@@ -327,8 +327,6 @@ public class EffectorHolder : MonoBehaviour
 		else
 		{
 			NotGameTime();
-			Interactive.interactable = true;
-			Interactive.alpha = 1;
 		}
 	}
 
@@ -337,6 +335,8 @@ public class EffectorHolder : MonoBehaviour
 		_goTime = false;
 		var cameraMovement = _camera.gameObject.GetComponent<CameraMovement>();
 		cameraMovement.NotGoTime();
+		Interactive.interactable = true;
+		Interactive.alpha = 1;
 	}
 
 	public void HamsterDied()
