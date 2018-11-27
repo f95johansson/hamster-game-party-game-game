@@ -113,12 +113,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &80193805 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114407268672170562, guid: 83436afce83eb418ea220a2c9e2e80f7,
-    type: 2}
-  m_PrefabInternal: {fileID: 1019366963}
-  m_Script: {fileID: 11500000, guid: a3164a2475ab44ec68abe34385249e3f, type: 3}
 --- !u!4 &171170797 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4080295645312114, guid: ea2fb1b2df9d9e648801cb6dae7077bb,
@@ -465,7 +459,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: SHOP
+  m_Text: 
 --- !u!222 &846584714
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -484,7 +478,7 @@ GameObject:
   - component: {fileID: 869081288}
   - component: {fileID: 869081287}
   m_Layer: 5
-  m_Name: GoToShop
+  m_Name: ExitButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -504,11 +498,11 @@ RectTransform:
   m_Father: {fileID: 965793921}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 60, y: 30}
-  m_Pivot: {x: 0, y: 0}
+  m_SizeDelta: {x: 77.31, y: 30}
+  m_Pivot: {x: 1, y: 1}
 --- !u!114 &869081287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -529,8 +523,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 1}
+    m_PressedColor: {r: 0.5660378, g: 0.5660378, b: 0.5660378, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -547,18 +541,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 869081288}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 80193805}
-        m_MethodName: GoToScene
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: HamsterShop
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &869081288
@@ -573,15 +556,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8773585, g: 0.8235582, b: 0.8235582, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 9c4a2ad547b624c199b27cd701179109, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -624,11 +607,11 @@ RectTransform:
   m_Father: {fileID: 965793921}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 338.29, y: 35.18}
-  m_Pivot: {x: 1, y: 1}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &878707415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -655,7 +638,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 40
-    m_Alignment: 2
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -698,6 +681,7 @@ MonoBehaviour:
   camera: {fileID: 0}
   hamster: {fileID: 1308702321054474, guid: ea2fb1b2df9d9e648801cb6dae7077bb, type: 2}
   foodAmountText: {fileID: 1782436590}
+  exitButton: {fileID: 869081287}
 --- !u!4 &954909184
 Transform:
   m_ObjectHideFlags: 0
@@ -925,7 +909,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1384533823}
   - component: {fileID: 1384533820}
-  - component: {fileID: 1384533821}
   - component: {fileID: 1384533819}
   - component: {fileID: 1384533822}
   m_Layer: 0
@@ -978,17 +961,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!114 &1384533821
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1384533818}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8977ff4e2e43f4f87a3259b8a49b1db8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!222 &1384533822
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1117,7 +1089,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 46.9, y: 25.65}
+  m_SizeDelta: {x: 60, y: 33}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1782436590
 MonoBehaviour:
@@ -1145,7 +1117,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 41
-    m_Alignment: 1
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -1253,8 +1225,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 4.4000244, y: 32.700012}
-  m_SizeDelta: {x: 50, y: 50}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &2085231468
 MonoBehaviour:
