@@ -194,7 +194,7 @@ GameObject:
   - component: {fileID: 114071706865160626}
   - component: {fileID: 114509130586206542}
   m_Layer: 5
-  m_Name: Goal
+  m_Name: StarSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -537,6 +537,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1996898960263244
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4491543958793372}
+  - component: {fileID: 114772003913864866}
+  m_Layer: 0
+  m_Name: GameControl
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &4070422991308062
 Transform:
   m_ObjectHideFlags: 1
@@ -561,7 +577,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4378347669719852}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 65.454, y: 0, z: 0}
 --- !u!4 &4378347669719852
 Transform:
@@ -573,12 +589,26 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 4491543958793372}
   - {fileID: 4200462237275370}
-  - {fileID: 224040470709734316}
   - {fileID: 4635962590738774}
-  - {fileID: 4737256644805622}
+  - {fileID: 224040470709734316}
   - {fileID: 4070422991308062}
+  - {fileID: 4737256644805622}
   m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4491543958793372
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1996898960263244}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 158.73793, y: 156.50003, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4378347669719852}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4635962590738774
@@ -605,7 +635,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4378347669719852}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &20326491162637446
 Camera:
@@ -1481,7 +1511,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Loopy 2
+  m_Text: Green & Bubbly
 --- !u!114 &114758463366103462
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1498,6 +1528,106 @@ MonoBehaviour:
   DropZone: {fileID: 64141790622626420}
   CameraDistanceXZ: 2
   CameraYWhenFollowing: 1
+--- !u!114 &114772003913864866
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1996898960263244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3164a2475ab44ec68abe34385249e3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Inventory:
+    HamsterOwns: 0
+    hamsterStates:
+    - foodLevel: 5
+      WeightLevel: 1
+      SpeedLevel: 1
+      FrictionLevel: 1
+      TurnSpeedLevel: 1
+    - foodLevel: 5
+      WeightLevel: 1
+      SpeedLevel: 1
+      FrictionLevel: 1
+      TurnSpeedLevel: 1
+    - foodLevel: 5
+      WeightLevel: 1
+      SpeedLevel: 1
+      FrictionLevel: 1
+      TurnSpeedLevel: 1
+    - foodLevel: 5
+      WeightLevel: 1
+      SpeedLevel: 1
+      FrictionLevel: 1
+      TurnSpeedLevel: 1
+    - foodLevel: 5
+      WeightLevel: 1
+      SpeedLevel: 1
+      FrictionLevel: 1
+      TurnSpeedLevel: 1
+    - foodLevel: 5
+      WeightLevel: 1
+      SpeedLevel: 1
+      FrictionLevel: 1
+      TurnSpeedLevel: 1
+    - foodLevel: 5
+      WeightLevel: 1
+      SpeedLevel: 1
+      FrictionLevel: 1
+      TurnSpeedLevel: 1
+    - foodLevel: 5
+      WeightLevel: 1
+      SpeedLevel: 1
+      FrictionLevel: 1
+      TurnSpeedLevel: 1
+    - foodLevel: 5
+      WeightLevel: 1
+      SpeedLevel: 1
+      FrictionLevel: 1
+      TurnSpeedLevel: 1
+    - foodLevel: 5
+      WeightLevel: 1
+      SpeedLevel: 1
+      FrictionLevel: 1
+      TurnSpeedLevel: 1
+    foodAmount: 0
+    moneyAmount: 100
+  PlayerData:
+    numberCarrotsAllowed: 3
+    numberCatsAllowed: 3
+    highScore: 0
+    experience: 0
+  ShopData:
+    currentEpochTime: 0
+    hamsterStatesShop:
+    - foodLevel: 5
+      WeightLevel: 1
+      SpeedLevel: 1
+      FrictionLevel: 1
+      TurnSpeedLevel: 1
+    - foodLevel: 5
+      WeightLevel: 1
+      SpeedLevel: 1
+      FrictionLevel: 1
+      TurnSpeedLevel: 1
+    - foodLevel: 5
+      WeightLevel: 1
+      SpeedLevel: 1
+      FrictionLevel: 1
+      TurnSpeedLevel: 1
+    - foodLevel: 5
+      WeightLevel: 1
+      SpeedLevel: 1
+      FrictionLevel: 1
+      TurnSpeedLevel: 1
+    - foodLevel: 5
+      WeightLevel: 1
+      SpeedLevel: 1
+      FrictionLevel: 1
+      TurnSpeedLevel: 1
+    ownHamster: 0000000000000000000000000000000000000000
 --- !u!114 &114772458043599822
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2012,7 +2142,7 @@ RectTransform:
   - {fileID: 224828549483650202}
   - {fileID: 224084298730449504}
   m_Father: {fileID: 4378347669719852}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
