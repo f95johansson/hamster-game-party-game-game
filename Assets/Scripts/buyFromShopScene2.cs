@@ -18,7 +18,7 @@ public class buyFromShopScene2 : MonoBehaviour
     private ShopData shopstat;
     private Inventory inventorystat;
 
-    private int[] cost = new int[] { 10, 10, 10, 10, 10 };
+    private int[] cost = new int[] { 100, 100, 100, 100, 100 };
 
 
     //private string[] items = new string[] { "Food", "", "", "", "" };
