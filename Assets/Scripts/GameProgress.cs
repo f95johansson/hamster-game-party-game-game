@@ -32,6 +32,14 @@ public class GameProgress {
         _tracksProgress[level] = progress;
     }
 
+    public bool[] GetProgressOfTrack(string level) {
+        if (_tracksProgress.ContainsKey(level)) {
+            return _tracksProgress[level];
+        } else {
+            return new bool[] {false, false, false};
+        }
+    }
+
 
     public ProgressData Serialize() {
         ProgressData progress = new ProgressData();

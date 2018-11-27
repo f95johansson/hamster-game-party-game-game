@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class HamsterController : MonoBehaviour {
@@ -8,6 +9,7 @@ public class HamsterController : MonoBehaviour {
     public Camera camera;
     public GameObject hamster;
     public Text foodAmountText;
+    public Button exitButton;
 
     private float maxWidth;
 
@@ -37,6 +39,7 @@ public class HamsterController : MonoBehaviour {
         Vector3 targetWidth = camera.ScreenToWorldPoint(upperCorner);
         float hamsterWidth = hamster.GetComponent<Renderer>().bounds.extents.x;
         maxWidth = targetWidth.x - hamsterWidth;
+        exitButton.onClick.AddListener(ExitScene);
 
         UpdateFoodText();
         
@@ -48,7 +51,10 @@ public class HamsterController : MonoBehaviour {
         UpdateFoodText();
     }
 
-
+    void ExitScene()
+    {
+        SceneManager.LoadScene("LevelSelect");
+    }
 
     public void SpawnHamsters()
     {
