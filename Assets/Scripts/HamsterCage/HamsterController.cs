@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 public class HamsterController : MonoBehaviour {
 
@@ -35,12 +37,14 @@ public class HamsterController : MonoBehaviour {
         {
             camera = Camera.main;
         }
-        Vector3 upperCorner = new Vector3(Screen.width, Screen.height, 0);
+        Vector3 upperCorner = new Vector3(Screen.width, Screen.height, 10);
         Vector3 targetWidth = camera.ScreenToWorldPoint(upperCorner);
         float hamsterWidth = hamster.GetComponent<Renderer>().bounds.extents.x;
         maxWidth = targetWidth.x - hamsterWidth;
+
         exitButton.onClick.AddListener(ExitScene);
 
+        
         UpdateFoodText();
         
         SpawnHamsters();
