@@ -577,9 +577,20 @@ Prefab:
       propertyPath: WinCondition
       value: 
       objectReference: {fileID: 1714422339}
+    - target: {fileID: 114509130586206542, guid: bb3ae51f58f27224f99b6240c9d15190,
+        type: 2}
+      propertyPath: LevelName
+      value: 
+      objectReference: {fileID: 509218352}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bb3ae51f58f27224f99b6240c9d15190, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &509218352 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114756026024951562, guid: bb3ae51f58f27224f99b6240c9d15190,
+    type: 2}
+  m_PrefabInternal: {fileID: 509218351}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!4 &576212595 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4152682634715704, guid: 699cddc3e9b01074daf57cf864db4159,
