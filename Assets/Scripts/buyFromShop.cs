@@ -6,13 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class buyFromShop : MonoBehaviour {
 
-    public Button m_Button_1, m_Button_2, m_Button_3, m_Button_4, m_Button_5, m_exit, m_PreviusScene, m_NewShopPage;
-    public Text m_Text_1, m_Text_2, m_Text_3, m_Text_4, m_Text_5;
-    public Text m_TextCost_1, m_TextCost_2, m_TextCost_3, m_TextCost_4, m_TextCost_5;
+    public Button m_Button_1, m_Button_2, m_Button_3, m_exit, m_PreviusScene, m_NewShopPage;
+    public Text m_Text_1, m_Text_2, m_Text_3;
+    public Text m_TextCost_1, m_TextCost_2, m_TextCost_3;
     public Text M_TextMoney;
     //private string[] items = new string[] { "Food", "", "", "", "" };
-    private uint[] cost = new uint[] {10,100,100,1000,1000};
-    private int[] Max = new int[] { 100, 10, 10, 100, 100 };
+    private uint[] cost = new uint[] {10,100,100};
+    private int[] Max = new int[] { 100, 10, 10};
     // Use this for initialization
     private uint money;
 
@@ -37,8 +37,6 @@ public class buyFromShop : MonoBehaviour {
         m_Button_1.onClick.AddListener(delegate { TaskWithParameters(0); });
         m_Button_2.onClick.AddListener(delegate { TaskWithParameters(1); });
         m_Button_3.onClick.AddListener(delegate { TaskWithParameters(2); });
-        m_Button_4.onClick.AddListener(delegate { TaskWithParameters(3); });
-        m_Button_5.onClick.AddListener(delegate { TaskWithParameters(4); });
         m_exit.onClick.AddListener(ExitScene);
         m_NewShopPage.onClick.AddListener(NextShopScene);
     }
@@ -54,7 +52,7 @@ public class buyFromShop : MonoBehaviour {
 	}
 
     void ExitScene() {
-        //SceneManager.LoadScene("Scenes/HamsterShopScene2", LoadSceneMode.Additive);
+        SceneManager.LoadScene("LevelSelect");
     }
 
     void NextShopScene()
@@ -116,35 +114,6 @@ public class buyFromShop : MonoBehaviour {
                     SetStateOfButton();
                 }
                 break;
-            case 3:
-                /*item = GameControl.Control.Inventory.foodAmount;
-                money = GameControl.Control.Inventory.moneyAmount;
-                if (cost[ButtonId] < money)
-                {
-                    if (item < Max[ButtonId])
-                    {
-                        GameControl.Control.Inventory.moneyAmount = money - (cost[ButtonId] ^ (item - 2));
-                        GameControl.Control.Inventory.foodAmount = item + 1;
-                        m_Text_4.text = (item + 1).ToString();
-                    }
-                }*/
-                SetStateOfButton();
-                break;
-            case 4:
-                /*
-                 * item = GameControl.Control.Inventory.foodAmount;
-                money = GameControl.Control.Inventory.moneyAmount;
-                if (cost[ButtonId] < money)
-                {
-                    if (item < Max[ButtonId])
-                    {
-                        GameControl.Control.Inventory.moneyAmount = money - cost[ButtonId];
-                        GameControl.Control.Inventory.foodAmount = item + 1;
-                        m_Text_5.text = (item + 1).ToString();
-                    }
-                }*/
-                SetStateOfButton();
-                break;
             default:
 
                 break;
@@ -152,7 +121,7 @@ public class buyFromShop : MonoBehaviour {
     }
 
     void updateMoneyText() {
-        M_TextMoney.text = "The Money you have: " + GameControl.Control.Inventory.moneyAmount;
+        M_TextMoney.text = "Money: " + GameControl.Control.Inventory.moneyAmount;
     }
 
     void updatePriceOfItem() {
@@ -179,16 +148,6 @@ public class buyFromShop : MonoBehaviour {
         {
             m_Button_3.interactable = false;
             m_Button_3.GetComponent<CanvasGroup>().alpha = 0.5f;
-        }
-        if (100 >= Max[3])
-        {
-            m_Button_4.interactable = false;
-            m_Button_4.GetComponent<CanvasGroup>().alpha = 0.5f;
-        }
-        if (100 >= Max[4])
-        {
-            m_Button_5.interactable = false;
-            m_Button_5.GetComponent<CanvasGroup>().alpha = 0.5f;
         }
     }
 }

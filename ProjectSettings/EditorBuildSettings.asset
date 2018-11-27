@@ -14,21 +14,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Tracks/Track01.unity
     guid: 16e68b3cfa5a51440a43f77f1f26c6d9
-  - enabled: 1
-    path: Assets/Scenes/Tracks/Track02.unity
-    guid: 2f5fc0e28c87dff4dab9855fe35ca46a
-  - enabled: 1
-    path: Assets/Scenes/Tracks/Track03.unity
-    guid: ce1f6e827acc806429fa57335f971c25
-  - enabled: 1
-    path: Assets/Scenes/Tracks/Track04.unity
-    guid: 4894079442fc7854492bf04ecad436e3
-  - enabled: 1
-    path: Assets/Scenes/Tracks/Track05.unity
-    guid: bd7d9e0335ec1164ca1b63a4e0e2d285
   - enabled: 0
-    path: Assets/__DELETED_GUID_Trash/4007146904f697a4abfd10c38195dac6
-    guid: 4007146904f697a4abfd10c38195dac6
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/TrackWrapper.unity
     guid: 8c6fba4bf1f2c9d499e713eb938a169b
