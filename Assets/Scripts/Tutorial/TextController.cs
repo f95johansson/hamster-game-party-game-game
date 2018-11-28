@@ -10,31 +10,46 @@ public class TextController : MonoBehaviour {
 	public Button NextButton;
 	private WaitForSecondsOrCancel _currentWaiting = null;
 	private Clippy _clippy;
+	public WinCondition WinCondition;
+	
+	public int TutorialNumber = 0;
+	public bool ShouldRunEndOfTutorial = false;
 
+	private bool won = false;
 	private bool _tutorialRunning = true;
 
 	private void Start()
 	{
 		_clippy = FindObjectOfType<Clippy>();
-
 		NextButton.onClick.AddListener(ButtonClicked);
 		_clippy.GetComponent<Button>().onClick.AddListener(ClippyClicked);
 
-		StartCoroutine(DelayedNextText());
+		if (ShouldRunEndOfTutorial) {
+			WinCondition.OnWin().AddListener(() => {
+				won = true;
+				if (_currentWaiting != null) {
+					_currentWaiting.cancel();
+				}
+				StartCoroutine(RunTutorial(TutorialText.Completed));
+			});
+		}
+
+		StartCoroutine(DelayedNextText(TutorialText.Tutorial[TutorialNumber]));
 	}
 
-	IEnumerator DelayedNextText() {
+	IEnumerator DelayedNextText(string[] monolog) {
 		yield return new WaitForSeconds(0.8f);;
-		StartCoroutine(NextText());
+		StartCoroutine(RunTutorial(monolog));
 	}
 
-	IEnumerator NextText()
+	IEnumerator RunTutorial(string[] monolog)
     {
 		_tutorialRunning = true;
 
 		bool first = true; // I know ugly, but I don't care anymore
-		foreach (string text in TutorialText.Tutorial1)
+		foreach (string text in monolog)
 		{
+			// only fade out if not first
 			if (first) {
 				first = false;
 			} else {
@@ -91,8 +106,12 @@ public class TextController : MonoBehaviour {
 
 	void ClippyClicked() {
 		if (!_tutorialRunning) {
-			StartCoroutine(NextText());
+			StartCoroutine(RunTutorial(TutorialText.Tutorial[TutorialNumber]));
 		}
+	}
+
+	public void NextLevel() {
+		Navigation.StartTrack("IntroTrack2");
 	}
 }
 
@@ -110,7 +129,6 @@ class WaitForSecondsOrCancel : CustomYieldInstruction
 	}
 
 	public void cancel() {
-		Debug.Log("canceled");
 		canceled = true;
 	}
  
