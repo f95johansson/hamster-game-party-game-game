@@ -64,7 +64,7 @@ public class GameProgress {
         return progress;
     }
 
-    public string ToString() {
+    override public string ToString() {
         string build = "";
         foreach (var track in _tracksProgress) {
             build += String.Format("[ {0}: {1}, {2}, {3} ], ", track.Key, track.Value[0].ToString(), track.Value[1].ToString(), track.Value[2].ToString());

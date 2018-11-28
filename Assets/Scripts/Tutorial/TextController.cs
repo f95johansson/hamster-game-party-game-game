@@ -15,7 +15,6 @@ public class TextController : MonoBehaviour {
 	public int TutorialNumber = 0;
 	public bool ShouldRunEndOfTutorial = false;
 
-	private bool won = false;
 	private bool _tutorialRunning = true;
 
 	private void Start()
@@ -26,7 +25,6 @@ public class TextController : MonoBehaviour {
 
 		if (ShouldRunEndOfTutorial) {
 			WinCondition.OnWin().AddListener(() => {
-				won = true;
 				if (_currentWaiting != null) {
 					_currentWaiting.cancel();
 				}
