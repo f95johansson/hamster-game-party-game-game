@@ -11,18 +11,51 @@ public class HamsterPrefab : MonoBehaviour
     public GameObject objectTypeToEat;
     public Slider foodBar;
 
+    public Image destroyer;
+    
+
+    private bool isGrabbed = false;
+    //private bool isDropped = false;
+
 
     public void Start()
     {
         foodBar = gameObject.GetComponentInChildren<Slider>();
-        /*
-        Events.OnEvent(UnityEngine.EventSystems.EventTriggerType.PointerDown, gameObject, e =>
-        {
-            
-
-        });*/
+        
     }
 
+    private void OnMouseDown()
+    {
+        isGrabbed = true;
+        //isDropped = false;
+    }
+
+
+
+    void Update()
+    {
+
+
+        if (isGrabbed)
+        {
+           
+            var mousePos = Input.mousePosition;
+
+            var mousePosWorld = VectorMath.ToWorldPoint(Camera.main, mousePos, Vector3.zero, new Vector3(0, 0, 1));
+            this.gameObject.transform.position = (Vector2)mousePosWorld;
+
+
+            if (Input.GetMouseButtonUp(0))
+            {
+                isGrabbed = false;
+                //isDropped = true;
+                //Is it on the trash ?
+            }
+        }
+        
+    }
+
+    
 
     public void FixedUpdate()
     {
