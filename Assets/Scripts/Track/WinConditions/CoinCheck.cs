@@ -32,6 +32,11 @@ public class CoinCheck : WinCondition {
         return CoinHandler.CurrentAmount() + "/" + CoinHandler.Total();
     }
 
+    public void Start()
+    {
+        ChangedState();
+    }
+
     private uint _nrOfCoins;
 
     public void Update()
