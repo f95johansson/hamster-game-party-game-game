@@ -62,7 +62,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1189327239070606
 GameObject:
   m_ObjectHideFlags: 0
@@ -163,7 +163,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1301386803854636
 GameObject:
   m_ObjectHideFlags: 1
@@ -333,12 +333,12 @@ GameObject:
   - component: {fileID: 114091475925010546}
   - component: {fileID: 114603022536590020}
   m_Layer: 5
-  m_Name: Continue
+  m_Name: Stay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1699513952220844
 GameObject:
   m_ObjectHideFlags: 0
@@ -444,7 +444,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1920649840403820
 GameObject:
   m_ObjectHideFlags: 1
@@ -477,7 +477,7 @@ GameObject:
   - component: {fileID: 114544556842615730}
   - component: {fileID: 114772838823598638}
   m_Layer: 5
-  m_Name: Button
+  m_Name: NextLevelButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -688,7 +688,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: b1fb77808f33e674f9dbaa57790b0c28, type: 2}
+  - {fileID: 2100000, guid: fe4c11d46e64de94086bab45485320c5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1122,7 +1122,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WinCondition: {fileID: 0}
-  LevelName: {fileID: 114756026024951562}
 --- !u!114 &114544249266358556
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1189,8 +1188,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114772838823598638}
-        m_MethodName: GoToLevelSelect
+      - m_Target: {fileID: 0}
+        m_MethodName: NextLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1512,7 +1511,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Green & Bubbly
+  m_Text: Zig zag
 --- !u!114 &114758463366103462
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1548,51 +1547,61 @@ MonoBehaviour:
       SpeedLevel: 1
       FrictionLevel: 1
       TurnSpeedLevel: 1
+      HamsterName: 
     - foodLevel: 5
       WeightLevel: 1
       SpeedLevel: 1
       FrictionLevel: 1
       TurnSpeedLevel: 1
+      HamsterName: 
     - foodLevel: 5
       WeightLevel: 1
       SpeedLevel: 1
       FrictionLevel: 1
       TurnSpeedLevel: 1
+      HamsterName: 
     - foodLevel: 5
       WeightLevel: 1
       SpeedLevel: 1
       FrictionLevel: 1
       TurnSpeedLevel: 1
+      HamsterName: 
     - foodLevel: 5
       WeightLevel: 1
       SpeedLevel: 1
       FrictionLevel: 1
       TurnSpeedLevel: 1
+      HamsterName: 
     - foodLevel: 5
       WeightLevel: 1
       SpeedLevel: 1
       FrictionLevel: 1
       TurnSpeedLevel: 1
+      HamsterName: 
     - foodLevel: 5
       WeightLevel: 1
       SpeedLevel: 1
       FrictionLevel: 1
       TurnSpeedLevel: 1
+      HamsterName: 
     - foodLevel: 5
       WeightLevel: 1
       SpeedLevel: 1
       FrictionLevel: 1
       TurnSpeedLevel: 1
+      HamsterName: 
     - foodLevel: 5
       WeightLevel: 1
       SpeedLevel: 1
       FrictionLevel: 1
       TurnSpeedLevel: 1
+      HamsterName: 
     - foodLevel: 5
       WeightLevel: 1
       SpeedLevel: 1
       FrictionLevel: 1
       TurnSpeedLevel: 1
+      HamsterName: 
     foodAmount: 0
     moneyAmount: 100
   PlayerData:
@@ -1608,26 +1617,31 @@ MonoBehaviour:
       SpeedLevel: 1
       FrictionLevel: 1
       TurnSpeedLevel: 1
+      HamsterName: 
     - foodLevel: 5
       WeightLevel: 1
       SpeedLevel: 1
       FrictionLevel: 1
       TurnSpeedLevel: 1
+      HamsterName: 
     - foodLevel: 5
       WeightLevel: 1
       SpeedLevel: 1
       FrictionLevel: 1
       TurnSpeedLevel: 1
+      HamsterName: 
     - foodLevel: 5
       WeightLevel: 1
       SpeedLevel: 1
       FrictionLevel: 1
       TurnSpeedLevel: 1
+      HamsterName: 
     - foodLevel: 5
       WeightLevel: 1
       SpeedLevel: 1
       FrictionLevel: 1
       TurnSpeedLevel: 1
+      HamsterName: 
     ownHamster: 0000000000000000000000000000000000000000
 --- !u!114 &114772458043599822
 MonoBehaviour:
@@ -1755,7 +1769,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Level select
+  m_Text: Next Level
 --- !u!114 &114949822151234562
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1961,7 +1975,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Continue
+  m_Text: Next Level
 --- !u!222 &222014219962167634
 CanvasRenderer:
   m_ObjectHideFlags: 1
