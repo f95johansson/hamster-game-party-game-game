@@ -4,6 +4,8 @@ public class LapCheck : WinCondition
 {
 	private readonly UnityEvent _onProgress = new UnityEvent();
 	private readonly UnityEvent _onWin = new UnityEvent();
+	private readonly UnityEvent _onTestWin = new UnityEvent();
+	
 	private CheckPoint[] _checkPoints;
 	public uint LapsToWin = 1;
 
@@ -62,7 +64,7 @@ public class LapCheck : WinCondition
 	}
 
 	private uint _clearedLaps; //= 0
-	
+
 	private void Update()
 	{
 		var currentLap = GetLap();
@@ -70,9 +72,16 @@ public class LapCheck : WinCondition
 		{
 			_clearedLaps = currentLap;
 			_onProgress.Invoke();
-			if (_clearedLaps >= LapsToWin && FindObjectOfType<EffectorHolder>().IsGoTime())
+			if (_clearedLaps >= LapsToWin)
 			{
-				_onWin.Invoke();
+				if (FindObjectOfType<EffectorHolder>().IsGoTime())
+				{
+					_onWin.Invoke();
+				}
+				else
+				{
+					_onTestWin.Invoke();
+				}
 			}
 		}
 	}
@@ -80,6 +89,11 @@ public class LapCheck : WinCondition
 	public override UnityEvent OnWin()
 	{
 		return _onWin;
+	}
+
+	public override UnityEvent OnTestWin()
+	{
+		return _onTestWin;
 	}
 
 	public override UnityEvent OnStateChange()
