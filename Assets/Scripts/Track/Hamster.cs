@@ -81,7 +81,7 @@ public class Hamster : MonoBehaviour
 		foreach (var coin in FindObjectsOfType<Coin>())
 		{
 			var distance = VectorMath.ToXZ(transform.position - coin.transform.position).magnitude;
-			if (distance < _radius + coin.Radius)
+			if (distance < (_radius + coin.Radius)/2)
 			{
 				_coinHandler.Add(coin.transform.position);
 				Destroy(coin.gameObject);
