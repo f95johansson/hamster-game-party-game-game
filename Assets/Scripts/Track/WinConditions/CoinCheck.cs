@@ -2,6 +2,7 @@
 
 public class CoinCheck : WinCondition {
     private readonly UnityEvent _onWin = new UnityEvent();
+    private readonly UnityEvent _onTestWin = new UnityEvent();
     private readonly UnityEvent _onStateChange = new UnityEvent();
 
     public CoinHandler CoinHandler;
@@ -9,6 +10,11 @@ public class CoinCheck : WinCondition {
     public override UnityEvent OnWin()
     {
         return _onWin;
+    }
+
+    public override UnityEvent OnTestWin()
+    {
+        return _onTestWin;
     }
 
     public override UnityEvent OnStateChange()
@@ -36,9 +42,16 @@ public class CoinCheck : WinCondition {
             _nrOfCoins = total;
             _onStateChange.Invoke();
 
-            if (_nrOfCoins >= CoinHandler.Total() && FindObjectOfType<EffectorHolder>().IsGoTime())
+            if (_nrOfCoins >= CoinHandler.Total())
             {
-                _onWin.Invoke();
+                if (FindObjectOfType<EffectorHolder>().IsGoTime())
+                {
+                    _onWin.Invoke();   
+                }
+                else
+                {
+                    _onTestWin.Invoke();
+                }
             }
         }
     }
