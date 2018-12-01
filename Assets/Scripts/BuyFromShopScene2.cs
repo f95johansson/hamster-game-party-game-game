@@ -4,9 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class buyFromShopScene2 : MonoBehaviour
+public class BuyFromShopScene2 : MonoBehaviour
 {
-
     public Button[] m_Button;
     public Text[] m_TextCost;
     public Text[] m_HamsterName;
@@ -46,7 +45,7 @@ public class buyFromShopScene2 : MonoBehaviour
         GameControl.Control.SaveShopData();
     }
 
-    void Start()
+    private void Start()
     {
 
         for (int i = 0; i < GameControl.Control.ShopData.hamsterStatesShop.Length; i++)
@@ -81,13 +80,11 @@ public class buyFromShopScene2 : MonoBehaviour
 
     private void ExitScene()
     {
-        //SceneManager.LoadScene("Scenes/HamsterShopScene2", LoadSceneMode.Additive);
         SceneManager.LoadScene("LevelSelect");
     }
 
     private void PreviousShopScene()
     {
-        //SceneManager.LoadScene(2);
         SceneManager.LoadScene("HamsterShop");
     }
 
@@ -99,27 +96,26 @@ public class buyFromShopScene2 : MonoBehaviour
         }
     }
 
-    private void TaskWithParameters(int ButtonId)
+    private void TaskWithParameters(int buttonId)
     {
-        switch (ButtonId)
+        switch (buttonId)
         {
             case 0:
-                buyHamster(ButtonId);
+                buyHamster(buttonId);
                 break;
             case 1:
-                buyHamster(ButtonId);
+                buyHamster(buttonId);
                 break;
             case 2:
-                buyHamster(ButtonId);
+                buyHamster(buttonId);
                 break;
             case 3:
-                buyHamster(ButtonId);
+                buyHamster(buttonId);
                 break;
             case 4:
-                buyHamster(ButtonId);
+                buyHamster(buttonId);
                 break;
             default:
-
                 break;
         }
     }
@@ -156,5 +152,191 @@ public class buyFromShopScene2 : MonoBehaviour
         }
 
     }
+    
+    public static string getRandomName()
+    {
+        var index = (uint) Random.Range(0, names.Length);
+        return names[index];
+    }
+
+    private static readonly string[] names = {"Ace"
+        ,"Acey"
+        ,"Abrico"
+        ,"Alfy"
+        ,"Archie"
+        ,"Argola"
+        ,"Bram"
+        ,"Bruno"
+        ,"Bubba"
+        ,"Buddy"
+        ,"Buzz"
+        ,"Caesar"
+        ,"Chuck"
+        ,"Cirrus"
+        ,"Cooper"
+        ,"Cotton"
+        ,"Dexter"
+        ,"Dion"
+        ,"Ditto"
+        ,"Dots"
+        ,"Elmo"
+        ,"Gus"
+        ,"Hairy"
+        ,"Happy"
+        ,"Jasper"
+        ,"Jo Jo"
+        ,"Larry"
+        ,"Lucius"
+        ,"Mindy"
+        ,"Muffy"
+        ,"Mugs"
+        ,"Pablo"
+        ,"Pepper"
+        ,"Rex"
+        ,"Ripley"
+        ,"Taz"
+        ,"Teddy"
+        ,"Tiny"
+        ,"Aggy"
+        ,"Amber"
+        ,"Amelia"
+        ,"Agnus"
+        ,"Annie"
+        ,"Apple"
+        ,"April"
+        ,"Ashes"
+        ,"Ashley"
+        ,"Babs"
+        ,"Beans"
+        ,"Bella"
+        ,"Bertha"
+        ,"Bijou"
+        ,"Bitz"
+        ,"Blitz"
+        ,"Bonnie"
+        ,"Boots"
+        ,"Boress"
+        ,"Candis"
+        ,"Catnip"
+        ,"Charm"
+        ,"Cheeks"
+        ,"Cheska"
+        ,"Chili"
+        ,"Chuu"
+        ,"Conrad"
+        ,"Cookie"
+        ,"Curd"
+        ,"Dolly"
+        ,"Erma"
+        ,"Foo  Foo"
+        ,"Ginger"
+        ,"Gretel"
+        ,"Holly"
+        ,"Honey"
+        ,"Lady"
+        ,"Lily"
+        ,"Loulou"
+        ,"Maggy"
+        ,"Mini"
+        ,"Minnie"
+        ,"Pearl"
+        ,"Windie"
+        ,"Ally"
+        ,"Axel"
+        ,"Baby"
+        ,"Bilbo"
+        ,"Buffy"
+        ,"Buster"
+        ,"Button"
+        ,"Cheeky"
+        ,"Chewy"
+        ,"Chip"
+        ,"Chubby"
+        ,"Cindy"
+        ,"Disco"
+        ,"Domino"
+        ,"Ebi"
+        ,"Elvis"
+        ,"Emeril"
+        ,"Flick"
+        ,"Fluffy"
+        ,"Hamlet"
+        ,"Hammy"
+        ,"Hank"
+        ,"Henry"
+        ,"Herman"
+        ,"Jojo"
+        ,"Karma"
+        ,"Kernel"
+        ,"Kitkat"
+        ,"Kiwi"
+        ,"Kobe"
+        ,"Kujo"
+        ,"Latte"
+        ,"Lilly"
+        ,"Lucky"
+        ,"Marble"
+        ,"Mimi"
+        ,"Missy"
+        ,"Mocha"
+        ,"Muffin"
+        ,"Nemo"
+        ,"Niblet"
+        ,"Nugget"
+        ,"Odie"
+        ,"Olly"
+        ,"Oreo"
+        ,"Panda"
+        ,"Pauly"
+        ,"Pedro"
+        ,"Perogy"
+        ,"Pooky"
+        ,"Ringo"
+        ,"Rocky"
+        ,"Shaggy"
+        ,"Shrimp"
+        ,"Skippy"
+        ,"Sleepy"
+        ,"Sparky"
+        ,"Stitch"
+        ,"Taco"
+        ,"Tot"
+        ,"Tippy"
+        ,"Trixie"
+        ,"Tofu"
+        ,"Toffee"
+        ,"Turbo"
+        ,"Uni"
+        ,"Ziggy"
+        ,"Zippy"
+        ,"Boo  Bear"
+        ,"Bunny"
+        ,"Cocoa"
+        ,"Dale"
+        ,"Desert"
+        ,"Echo"
+        ,"Fu-Fu"
+        ,"Fufu"
+        ,"Furry"
+        ,"Fuzzy"
+        ,"Gem"
+        ,"Gin"
+        ,"Guava"
+        ,"Gummie"
+        ,"Hazel"
+        ,"Mickey"
+        ,"Mojo"
+        ,"Mouse"
+        ,"Paws"
+        ,"Peewee"
+        ,"Pepe"
+        ,"Powder"
+        ,"Sweety"
+        ,"Abster"
+        ,"Alfie"
+        ,"Axe"
+        ,"Bigon"
+        ,"Butter"
+    };
 
 }
