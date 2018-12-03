@@ -22,4 +22,9 @@ public class Navigation : MonoBehaviour
 	{
 		StartLevelSelect();
 	}
+	
+	public void GoToIntro()
+	{
+		StartTrack("IntroTrack");
+	}
 }

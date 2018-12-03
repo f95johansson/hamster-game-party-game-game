@@ -21,7 +21,7 @@ public class SelectHamsterStats : MonoBehaviour
 		{
 			var state = GameControl.Control.Inventory.hamsterStates[i];
 
-			if (state != null)
+			if (state != null && state.HamsterName.Length > 0)
 			{
 				var nue = Instantiate(HS);
 				nue.SetState(state);
