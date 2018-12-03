@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 [Serializable]
 public class Inventory {
@@ -61,4 +62,8 @@ public class Inventory {
         HamsterOwns = 0;
     }
 
+    public bool HasAHamster()
+    {
+        return hamsterStates.Any(s => s != null && s.HamsterName.Length > 0);
+    }
 }

@@ -21,7 +21,7 @@ public class GameProgress {
 
     public void SaveTrackProgress(string level, int starNumber, bool star) {
         if (starNumber < 1 || 3 < starNumber) {
-            throw new ArgumentException(String.Format("Invalid star number, should be between 1 and 3, was {0}", starNumber), "starNumber");
+            throw new ArgumentException(string.Format("Invalid star number, should be between 1 and 3, was {0}", starNumber), "starNumber");
         }
 
         if (!_tracksProgress.ContainsKey(level)) {
@@ -36,15 +36,15 @@ public class GameProgress {
         if (_tracksProgress.ContainsKey(level)) {
             return _tracksProgress[level];
         } else {
-            return new bool[] {false, false, false};
+            return new[] {false, false, false};
         }
     }
 
 
     public ProgressData Serialize() {
-        ProgressData progress = new ProgressData();
-        string[] names = new string[_tracksProgress.Count];
-        bool[][] values = new bool[_tracksProgress.Count][];
+        var progress = new ProgressData();
+        var names = new string[_tracksProgress.Count];
+        var values = new bool[_tracksProgress.Count][];
         var i = 0;
         foreach (var track in _tracksProgress) {
             names[i] = track.Key;
@@ -57,19 +57,24 @@ public class GameProgress {
     }
 
     public static GameProgress FromSerialized(ProgressData data) {
-        GameProgress progress = new GameProgress();
-        for (int i = 0; i < data.trackNames.Length; i++) {
+        var progress = new GameProgress();
+        for (var i = 0; i < data.trackNames.Length; i++) {
             progress.SaveTrackProgress(data.trackNames[i], data.trackProgress[i]);
         }
         return progress;
     }
 
-    override public string ToString() {
-        string build = "";
+    public override string ToString() {
+        var build = "";
         foreach (var track in _tracksProgress) {
-            build += String.Format("[ {0}: {1}, {2}, {3} ], ", track.Key, track.Value[0].ToString(), track.Value[1].ToString(), track.Value[2].ToString());
+            build += string.Format("[ {0}: {1}, {2}, {3} ], ", track.Key, track.Value[0].ToString(), track.Value[1].ToString(), track.Value[2].ToString());
         }
         return build;
+    }
+
+    public bool HasCleared(string levelName)
+    {
+        return _tracksProgress.ContainsKey(levelName);
     }
 }
 
