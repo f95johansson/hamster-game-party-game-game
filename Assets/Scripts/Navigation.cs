@@ -27,4 +27,8 @@ public class Navigation : MonoBehaviour
 	{
 		StartTrack("IntroTrack");
 	}
+
+    public void GoToIntroOfTheGame_NotTheTrack() {
+        SceneManager.LoadScene("Intro", LoadSceneMode.Single);
+    }
 }
