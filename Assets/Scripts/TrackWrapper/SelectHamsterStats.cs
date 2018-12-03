@@ -14,23 +14,45 @@ public class SelectHamsterStats : MonoBehaviour
 
 	private void Start ()
 	{		
+		GameControl.Control.LoadInventory();
 		_hamsterStats = new List<HamsterStats>();
+
 		for (var i = 0; i < 6; i++)
 		{
-			var nue = Instantiate(HS);
-			nue.Index = (uint) i;
-			nue.transform.SetParent(transform, false);
-			nue.transform.localPosition = PositionFromIndex(i);
-			_hamsterStats.Add(nue);
-			
-			nue.OnSelected.AddListener(() =>
+			var state = GameControl.Control.Inventory.hamsterStates[i];
+
+			if (state != null)
 			{
-				var canvas = GetComponent<CanvasGroup>();
-				canvas.interactable = false;
-				canvas.alpha = 0;
-				canvas.blocksRaycasts = false;
-			});
+				var nue = Instantiate(HS);
+				nue.SetState(state);
+				nue.transform.SetParent(transform, false);
+				nue.transform.localPosition = PositionFromIndex(i);
+				_hamsterStats.Add(nue);
+			
+				nue.OnSelected.AddListener(() =>
+				{
+					var canvas = GetComponent<CanvasGroup>();
+					canvas.interactable = false;
+					canvas.alpha = 0;
+					canvas.blocksRaycasts = false;
+					Select(nue);
+				});
+			} 
 		}
+
+		if (_hamsterStats.Count > 0)
+		{
+			Select(_hamsterStats[0]);
+		}
+		else
+		{
+			Debug.Log("Does not have hamster, we should do something here");
+		}
+	}
+
+	private void Select(HamsterStats hamster)
+	{
+		FindObjectOfType<HamsterStart>().NewStats(hamster.SpeedPoints, hamster.WeightPoints, hamster.TurnSpeedPoints, hamster.FrictionPoints);
 	}
 
 	private Vector3 PositionFromIndex(int i)
@@ -46,13 +68,5 @@ public class SelectHamsterStats : MonoBehaviour
 		var width = (NrPerRow - 1) * OffX;
 		var height = OffY;
 		return new Vector3(width/2, height/2, 0);
-	}
-
-	private void Update()
-	{
-		foreach (var nue in _hamsterStats)
-		{
-			nue.transform.localPosition = PositionFromIndex((int) nue.Index);
-		}
 	}
 }

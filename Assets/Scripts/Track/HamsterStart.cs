@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class HamsterStart : MonoBehaviour
 {
@@ -52,6 +53,7 @@ public class HamsterStart : MonoBehaviour
 	public uint Friction = 2;
 	public uint TurnSpeed = 2;
 	public uint Weight = 2;
+	private bool _restart = false;
 
 	public void NewStats(uint speed, uint friction, uint turnSpeed, uint weight)
 	{
@@ -59,9 +61,10 @@ public class HamsterStart : MonoBehaviour
 		Friction = friction;
 		TurnSpeed = turnSpeed;
 		Weight = weight;
-		
-		RestartEverything();
+
+		_restart = true;
 	}
+
 
 	private void Reset()
 	{
@@ -80,8 +83,9 @@ public class HamsterStart : MonoBehaviour
 
 	private void LateUpdate () {
 
-		if (_currentHamster && _currentHamster.transform.position.y < -10)
+		if (_currentHamster && _currentHamster.transform.position.y < -10 || _restart)
 		{
+			_restart = false;
 			RestartEverything();
 		}
 		

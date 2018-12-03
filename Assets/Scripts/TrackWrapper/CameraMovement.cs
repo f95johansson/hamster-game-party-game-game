@@ -21,7 +21,6 @@ public class CameraMovement : MonoBehaviour
         Assert.IsNotNull(_camera, "We must have a camera tagged Main in scene");
         _zoomedOutPosition = transform.position;
         _zoomedOutFieldOfView = _camera.fieldOfView;
-        _lastNormalPos = transform.position;
     }
     
     private Vector3 ClosestPointInDropZone(Vector3 point)
@@ -104,11 +103,12 @@ public class CameraMovement : MonoBehaviour
         var before = VectorMath.ToWorldPoint(_camera, Input.mousePosition, Vector3.zero, Vector3.up);
         _camera.fieldOfView = Mathf.Clamp(_camera.fieldOfView + zoom, MinFieldOfView, _zoomedOutFieldOfView);
         var after = VectorMath.ToWorldPoint(_camera, Input.mousePosition, Vector3.zero, Vector3.up);
-
+        
         if (zoom < 0)
         {
             var target = transform.position + before - after;
-            transform.position = ClosestPointInDropZone(target);
+            //transform.position = ClosestPointInDropZone(target);
+            transform.position = target;
         }
         else if (zoom > 0)
         {
@@ -132,7 +132,10 @@ public class CameraMovement : MonoBehaviour
     public void NotGoTime()
     {
         _coolMovement = false;
+
         transform.position = _lastNormalPos;
         transform.rotation = _lastNormalRotation;
+        
+        Debug.Log("Not game time, resetting camera");
     }
 }

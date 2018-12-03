@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class HamsterStats : MonoBehaviour
 {
-	public uint Index;
 	private Stat _speed;
 	private Stat _weight;
 	private Stat _turnSpeed;
@@ -12,18 +12,28 @@ public class HamsterStats : MonoBehaviour
 	
 	public readonly UnityEvent OnSelected = new UnityEvent();
 
-	private void Start ()
+	public uint SpeedPoints
 	{
-		var state = GameControl.Control.Inventory.hamsterStates[Index];
+		get { return _speed.Points; }
+	}
+	
+	public uint WeightPoints
+	{
+		get { return _weight.Points; }
+	}
+	
+	public uint TurnSpeedPoints
+	{
+		get { return _turnSpeed.Points; }
+	}
+	
+	public uint FrictionPoints
+	{
+		get { return _friction.Points; }
+	}
 
-		if (state == null)
-		{
-			var cg = GetComponent<CanvasGroup>();
-			cg.alpha = 0;
-			cg.interactable = false;
-			return;
-		}
-		
+	public void SetState(HamsterState state)
+	{
 		var stats = GetComponentsInChildren<Stat>(); //Speed, Weight, Turn speed, Friction
 
 		_speed = stats[0];
@@ -36,6 +46,8 @@ public class HamsterStats : MonoBehaviour
 		_turnSpeed.Points = state.TurnSpeedLevel;
 		_friction.Points = state.FrictionLevel;
 
+		GetComponent<Text>().text = state.HamsterName;
+
 		foreach (var c in GetComponentsInChildren<Component>())
 		{
 			Events.OnEvent(EventTriggerType.PointerClick, c, ev =>
@@ -45,9 +57,8 @@ public class HamsterStats : MonoBehaviour
 		}
 	}
 
-	private void SelectMe()
+	public void SelectMe()
 	{
-		FindObjectOfType<HamsterStart>().NewStats(_speed.Points, _weight.Points, _turnSpeed.Points, _friction.Points);
 		OnSelected.Invoke();
 	}
 }

@@ -9,7 +9,7 @@ public class CoinHandler : MonoBehaviour
 
 	private uint _total;
 
-	public void Invoke()
+	public void Awake()
 	{
 		_total = (uint) FindObjectsOfType<Coin>().Length;
 	}

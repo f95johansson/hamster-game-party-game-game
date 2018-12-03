@@ -35,12 +35,12 @@ public class GameControl : MonoBehaviour
         }
     }
 
-    void OnApplicationPause() // pause because iOS does not call quit
+    private void OnApplicationPause() // pause because iOS does not call quit
     {
         SaveProgress();
     }
 
-    void OnApplicationQuit()
+    private void OnApplicationQuit()
     {
         SaveProgress();
     }
@@ -183,5 +183,4 @@ public class GameControl : MonoBehaviour
     {
         SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
     }
-
 }

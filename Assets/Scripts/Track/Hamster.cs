@@ -19,9 +19,10 @@ public class Hamster : MonoBehaviour
 	
 	private Vector3 _force;
 
-	private BallCollision _collision;
+	private BallCollision _collision = new BallCollision(0, 0); // just until we create a real ball collision
 
 	private CoinHandler _coinHandler;
+	
 	private void Start()
 	{
 		_coinHandler = FindObjectOfType<CoinHandler>();
