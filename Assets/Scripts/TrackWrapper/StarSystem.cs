@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class StarSystem : MonoBehaviour
 {
-    public WinCondition WinCondition;
+    private WinCondition _winCondition;
     public Image GoButton;
 
     private Text _goal;
@@ -18,19 +18,21 @@ public class StarSystem : MonoBehaviour
         var texts = GetComponentsInChildren<Text>();
         _goal = texts[0];
         _status = texts[1];
-        
-        _goal.text = WinCondition.Description();
-        _status.text = WinCondition.ChangedState();
 
-        WinCondition.OnWin().AddListener(() =>
+        _winCondition = FindObjectOfType<WinCondition>();
+        
+        _goal.text = _winCondition.Description();
+        _status.text = _winCondition.ChangedState();
+
+        _winCondition.OnWin().AddListener(() =>
         {
             GameControl.Control.Progress.SaveTrackProgress(SceneManager.GetActiveScene().name, true, true, true);
             FindObjectOfType<WinInformation>().Show();
         });
         
-        WinCondition.OnStateChange().AddListener(() => { _status.text = WinCondition.ChangedState(); });
+        _winCondition.OnStateChange().AddListener(() => { _status.text = _winCondition.ChangedState(); });
 
-        WinCondition.OnTestWin().AddListener(() => { 
+        _winCondition.OnTestWin().AddListener(() => { 
             Color buttonColor = GoButton.color;
             Color blinkColor = new Color(99/255f, 224/255f, 65/255f);
             StartCoroutine(blink(GoButton, .3f, buttonColor, blinkColor, () => {

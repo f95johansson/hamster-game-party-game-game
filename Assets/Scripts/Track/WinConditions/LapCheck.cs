@@ -103,7 +103,7 @@ public class LapCheck : WinCondition
 
 	public override string Description()
 	{
-		return "Complete " + LapsToWin + " laps to win";
+		return "Complete " + LapsToWin + " lap" + (LapsToWin > 1 ? "s" : "") + " to win";
 	}
 
 	public override string ChangedState()
