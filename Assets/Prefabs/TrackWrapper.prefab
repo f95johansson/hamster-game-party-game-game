@@ -390,7 +390,7 @@ GameObject:
   - component: {fileID: 114091475925010546}
   - component: {fileID: 114603022536590020}
   m_Layer: 5
-  m_Name: Continue
+  m_Name: Stay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1657,7 +1657,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Zig zag
+  m_Text: Big O
 --- !u!114 &114758463366103462
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2044,7 +2044,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Continue
+  m_Text: Stay
 --- !u!222 &222014219962167634
 CanvasRenderer:
   m_ObjectHideFlags: 1

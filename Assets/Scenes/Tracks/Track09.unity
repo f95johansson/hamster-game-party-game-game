@@ -183,7 +183,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Island
+  m_Text: Coin Island
 --- !u!222 &31273819
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4454,6 +4454,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WinCondition: {fileID: 291844652}
+  GoButton: {fileID: 0}
 --- !u!114 &1728549214
 MonoBehaviour:
   m_ObjectHideFlags: 0

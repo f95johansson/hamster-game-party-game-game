@@ -591,6 +591,11 @@ Prefab:
       propertyPath: WinCondition
       value: 
       objectReference: {fileID: 2002183531}
+    - target: {fileID: 114756026024951562, guid: bb3ae51f58f27224f99b6240c9d15190,
+        type: 2}
+      propertyPath: m_Text
+      value: Knot
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bb3ae51f58f27224f99b6240c9d15190, type: 2}
   m_IsPrefabParent: 0
