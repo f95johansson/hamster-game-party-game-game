@@ -541,6 +541,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114509130586206542, guid: bb3ae51f58f27224f99b6240c9d15190,
+        type: 2}
+      propertyPath: WinCondition
+      value: 
+      objectReference: {fileID: 1415534010}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bb3ae51f58f27224f99b6240c9d15190, type: 2}
   m_IsPrefabParent: 0

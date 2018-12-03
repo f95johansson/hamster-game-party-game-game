@@ -6,9 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/LevelSelect.unity
-    guid: c4131262d4cbda9478928047215560f5
-  - enabled: 1
     path: Assets/Scenes/Tracks/IntroTrack.unity
     guid: cbe2d86aa6e1a49bab6f6a26a72b80ba
   - enabled: 1
@@ -29,6 +26,21 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Tracks/Track05.unity
     guid: bd7d9e0335ec1164ca1b63a4e0e2d285
+  - enabled: 1
+    path: Assets/Scenes/Tracks/Track06.unity
+    guid: a99fb769e735aac4da437c9a5bab9d60
+  - enabled: 1
+    path: Assets/Scenes/Tracks/Track07.unity
+    guid: 50631be9a1133b247b27fcf49d29bf0f
+  - enabled: 1
+    path: Assets/Scenes/Tracks/Track08.unity
+    guid: 91284be4543ca8f43b7888eded163ab9
+  - enabled: 1
+    path: Assets/Scenes/Tracks/Track09.unity
+    guid: 02ccb6a917c08e9488257d6b3c295d15
+  - enabled: 1
+    path: Assets/Scenes/LevelSelect.unity
+    guid: c4131262d4cbda9478928047215560f5
   - enabled: 0
     path: Assets/Scenes/Oskar.unity
     guid: 8dd98aaeb537f8f46a9b198c1d9090dd
