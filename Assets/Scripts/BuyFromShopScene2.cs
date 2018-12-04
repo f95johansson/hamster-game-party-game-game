@@ -17,7 +17,7 @@ public class BuyFromShopScene2 : MonoBehaviour
     private ShopData shopstat;
     private Inventory inventorystat;
 
-    private int[] cost = new int[] { 100, 100, 100, 100, 100 };
+    private uint[] cost = new uint[] { 100, 100, 100, 100, 100 };
 
 
     //private string[] items = new string[] { "Food", "", "", "", "" };
@@ -128,6 +128,7 @@ public class BuyFromShopScene2 : MonoBehaviour
             {
                 shopstat.ownHamster[id] = 1;
                 inventorystat.AddHamster(shopstat.hamsterStatesShop[id]);
+                inventorystat.moneyAmount -= cost[id];
             }
 
         }

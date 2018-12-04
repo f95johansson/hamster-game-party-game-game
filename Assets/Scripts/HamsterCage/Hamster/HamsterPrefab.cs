@@ -11,7 +11,7 @@ public class HamsterPrefab : MonoBehaviour
     public GameObject objectTypeToEat;
     public Slider foodBar;
 
-    public Image destroyer;
+    //public Image destroyer;
     
 
     private bool isGrabbed = false;
@@ -30,7 +30,10 @@ public class HamsterPrefab : MonoBehaviour
         //isDropped = false;
     }
 
-
+    public bool getIsGrabbed()
+    {
+        return isGrabbed;
+    }
 
     void Update()
     {
@@ -55,7 +58,10 @@ public class HamsterPrefab : MonoBehaviour
         
     }
 
-    
+    public uint getIndex() {
+        return index;
+    }
+
 
     public void FixedUpdate()
     {
@@ -109,5 +115,27 @@ public class HamsterPrefab : MonoBehaviour
         
     }
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        Debug.Log("Woho");
+        var trash = collision.gameObject.GetComponent<DestroyOnRelease>();
+
+        if (trash) {
+            trash.HamsterOnYou(this);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        var trash = collision.gameObject.GetComponent<DestroyOnRelease>();
+
+        if (trash)
+        {
+            trash.OnHamsterLeave();
+        }
+    }
     
+    
+
+
 }

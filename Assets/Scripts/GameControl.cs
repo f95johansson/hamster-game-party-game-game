@@ -64,7 +64,7 @@ public class GameControl : MonoBehaviour
         {
             Inventory.RemoveAllHamsters();
             //inventory.foodAmount = 0;
-            //inventory.moneyAmount = 100;
+            Inventory.moneyAmount = 200;
         }
     }
 
