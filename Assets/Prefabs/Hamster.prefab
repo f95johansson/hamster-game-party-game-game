@@ -460,6 +460,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectTypeToEat: {fileID: 1561712134843028, guid: 40a1eb4fbd8c6254fbf87424f57958e4,
     type: 2}
+  foodBar: {fileID: 114682167690903848}
 --- !u!114 &114682167690903848
 MonoBehaviour:
   m_ObjectHideFlags: 1

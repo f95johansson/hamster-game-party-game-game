@@ -11,7 +11,7 @@ public class HamsterPrefab : MonoBehaviour
     public GameObject objectTypeToEat;
     public Slider foodBar;
 
-    public Image destroyer;
+    //public Image destroyer;
     
 
     private bool isGrabbed = false;
@@ -30,7 +30,10 @@ public class HamsterPrefab : MonoBehaviour
         //isDropped = false;
     }
 
-
+    public bool getIsGrabbed()
+    {
+        return isGrabbed;
+    }
 
     void Update()
     {
@@ -55,7 +58,12 @@ public class HamsterPrefab : MonoBehaviour
         
     }
 
-    
+    public void OnDestroy()
+    {
+        GameControl.Control.Inventory.hamsterStates[index] = null;
+    }
+
+
 
     public void FixedUpdate()
     {

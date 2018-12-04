@@ -12,43 +12,43 @@ EditorBuildSettings:
     path: Assets/Scenes/Tracks/IntroTrack2.unity
     guid: 63338b9da51f6b946bf5a0627c5f629b
   - enabled: 1
-    path: Assets/Scenes/Tracks/Track01.unity
+    path: Assets/Scenes/Tracks/Blob.unity
     guid: 16e68b3cfa5a51440a43f77f1f26c6d9
   - enabled: 1
-    path: Assets/Scenes/Tracks/Track02.unity
+    path: Assets/Scenes/Tracks/BigO.unity
     guid: 2f5fc0e28c87dff4dab9855fe35ca46a
   - enabled: 1
-    path: Assets/Scenes/Tracks/Track03.unity
+    path: Assets/Scenes/Tracks/Bone.unity
     guid: ce1f6e827acc806429fa57335f971c25
   - enabled: 1
-    path: Assets/Scenes/Tracks/Track06.unity
+    path: Assets/Scenes/Tracks/Narrow.unity
     guid: a99fb769e735aac4da437c9a5bab9d60
   - enabled: 1
-    path: Assets/Scenes/Tracks/Track07.unity
+    path: Assets/Scenes/Tracks/Knot.unity
     guid: 50631be9a1133b247b27fcf49d29bf0f
   - enabled: 1
-    path: Assets/Scenes/Tracks/Track08.unity
+    path: Assets/Scenes/Tracks/Master.unity
     guid: 91284be4543ca8f43b7888eded163ab9
   - enabled: 1
-    path: Assets/Scenes/Tracks/Track09.unity
+    path: Assets/Scenes/Tracks/CoinIsland.unity
     guid: 02ccb6a917c08e9488257d6b3c295d15
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Tracks/Track04.unity
     guid: 4894079442fc7854492bf04ecad436e3
   - enabled: 1
-    path: Assets/Scenes/Tracks/Track05.unity
+    path: Assets/Scenes/Tracks/Twist.unity
     guid: bd7d9e0335ec1164ca1b63a4e0e2d285
   - enabled: 1
-    path: Assets/Scenes/Tracks/Track06.unity
+    path: Assets/Scenes/Tracks/Narrow.unity
     guid: a99fb769e735aac4da437c9a5bab9d60
   - enabled: 1
-    path: Assets/Scenes/Tracks/Track07.unity
+    path: Assets/Scenes/Tracks/Knot.unity
     guid: 50631be9a1133b247b27fcf49d29bf0f
   - enabled: 1
-    path: Assets/Scenes/Tracks/Track08.unity
+    path: Assets/Scenes/Tracks/Master.unity
     guid: 91284be4543ca8f43b7888eded163ab9
   - enabled: 1
-    path: Assets/Scenes/Tracks/Track09.unity
+    path: Assets/Scenes/Tracks/CoinIsland.unity
     guid: 02ccb6a917c08e9488257d6b3c295d15
   - enabled: 1
     path: Assets/Scenes/LevelSelect.unity

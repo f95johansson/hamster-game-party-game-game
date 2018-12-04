@@ -63,23 +63,36 @@ public class HamsterController : MonoBehaviour {
     IEnumerator SpawnHamsters()
     {
         uint i = 0;
-        while ((i<GameControl.Control.Inventory.hamsterStates.Length) && (GameControl.Control.Inventory.hamsterStates[i]!=null))
+        for (i=0;  i<GameControl.Control.Inventory.hamsterStates.Length; i++)
         {
-            Vector3 spawnPosition = new Vector3(
-                Random.Range(-maxWidth+2* hamster.GetComponent<Renderer>().bounds.extents.x, maxWidth),
+            if (GameControl.Control.Inventory.hamsterStates[i] != null && GameControl.Control.Inventory.hamsterStates[i].HamsterName != "")
+            {
+                Vector3 spawnPosition = new Vector3(
+                Random.Range(-maxWidth + 2 * hamster.GetComponent<Renderer>().bounds.extents.x, maxWidth),
                 transform.position.y,
                 transform.position.z);
-            GameObject hamsterInScene = Instantiate(hamster, spawnPosition, Quaternion.identity);
-            
+                GameObject hamsterInScene = Instantiate(hamster, spawnPosition, Quaternion.identity);
 
-            hamsterInScene.GetComponent<HamsterPrefab>().setIndex(i);
+
+                hamsterInScene.GetComponent<HamsterPrefab>().setIndex(i);
+
+                hamsterInScene.GetComponent<HamsterPrefab>().UpdateScaleWeight();
+                yield return new WaitForSeconds(0.5f);
+            }
             
-            hamsterInScene.GetComponent<HamsterPrefab>().UpdateScaleWeight();
-            yield return new WaitForSeconds(0.5f);
             i++;
         }
        
         
+    }
+
+    public void SpawnOneHamster(GameObject hamsterToGenerate)
+    {
+        Vector3 spawnPosition = new Vector3(
+            Random.Range(-maxWidth + 2 * hamster.GetComponent<Renderer>().bounds.extents.x, maxWidth),
+            transform.position.y,
+            transform.position.z);
+        hamsterToGenerate.transform.position = spawnPosition; 
     }
 
     public void UpdateFoodText()
