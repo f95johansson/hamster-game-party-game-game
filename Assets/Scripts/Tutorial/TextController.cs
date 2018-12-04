@@ -10,7 +10,7 @@ public class TextController : MonoBehaviour {
 	public Button NextButton;
 	private WaitForSecondsOrCancel _currentWaiting = null;
 	private Clippy _clippy;
-	public WinCondition WinCondition;
+	private WinCondition _winCondition;
 	
 	public int TutorialNumber = 0;
 	public bool ShouldRunEndOfTutorial = false;
@@ -19,12 +19,14 @@ public class TextController : MonoBehaviour {
 
 	private void Start()
 	{
+		_winCondition = FindObjectOfType<WinCondition>();
+		
 		_clippy = FindObjectOfType<Clippy>();
 		NextButton.onClick.AddListener(ButtonClicked);
 		_clippy.GetComponent<Button>().onClick.AddListener(ClippyClicked);
 
 		if (ShouldRunEndOfTutorial) {
-			WinCondition.OnWin().AddListener(() => {
+			_winCondition.OnWin().AddListener(() => {
 				if (_currentWaiting != null) {
 					_currentWaiting.cancel();
 				}

@@ -13,6 +13,7 @@ public class PushEffector : MonoBehaviour
 	private LineRenderer _line;
 	
 	public Handle Handle;
+	private ParticleSystem _ps;
 
 	private void Awake ()
 	{
@@ -24,6 +25,7 @@ public class PushEffector : MonoBehaviour
 		Handle.transform.parent = transform;
 		Handle.transform.localPosition = new Vector3(1, 0, 0) * Far;
 		Handle.OnChange.AddListener(HandleChanged);
+		_ps = GetComponentInChildren<ParticleSystem>();
 	}
 
 	private void Start()
@@ -42,6 +44,14 @@ public class PushEffector : MonoBehaviour
 		transform.rotation = Quaternion.LookRotation(diff);
 		Handle.transform.position = position;
 		RecomputePoints();
+		RecomputeParticles();
+	}
+
+	private void RecomputeParticles()
+	{
+		var newSpeed = -1 * Far / ( _ps.main.startLifetime.constant);
+		var ps = _ps.main;
+		ps.startSpeedMultiplier = newSpeed;
 	}
 
 	public void RecomputePoints()
@@ -78,7 +88,7 @@ public class PushEffector : MonoBehaviour
 				var mag = (Mathf.Abs(Far) <= float.Epsilon) ? 0 : 1 - distance/Far;
 				var force = (Handle.transform.position - transform.position).normalized * Strength * mag;
 
-				return force;
+				return force * Far;
 			}
 		}
 
