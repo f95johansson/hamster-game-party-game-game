@@ -58,11 +58,9 @@ public class HamsterPrefab : MonoBehaviour
         
     }
 
-    public void OnDestroy()
-    {
-        GameControl.Control.Inventory.hamsterStates[index] = null;
+    public uint getIndex() {
+        return index;
     }
-
 
 
     public void FixedUpdate()
@@ -117,5 +115,27 @@ public class HamsterPrefab : MonoBehaviour
         
     }
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        Debug.Log("Woho");
+        var trash = collision.gameObject.GetComponent<DestroyOnRelease>();
+
+        if (trash) {
+            trash.HamsterOnYou(this);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        var trash = collision.gameObject.GetComponent<DestroyOnRelease>();
+
+        if (trash)
+        {
+            trash.OnHamsterLeave();
+        }
+    }
     
+    
+
+
 }
