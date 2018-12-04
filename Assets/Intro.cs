@@ -3,7 +3,6 @@ using UnityEngine.UI;
 
 public class Intro : MonoBehaviour
 {
-	public Button Big;
 	public Button Fast;
 	public Button Agile;
 	public Button Thoughtful;
@@ -48,8 +47,7 @@ public class Intro : MonoBehaviour
 
 		Add(Thoughtful, 3, 2, 2, 2);
 		Add(Fast, 2, 3, 2, 2);
-		Add(Big, 2, 2, 3, 2);
-		Add(Agile, 2, 2, 2, 3);
+		Add(Agile, 2, 2, 1, 3);
 	}
 
 	public void Add(Button b, uint friction, uint speed, uint weight, uint turnSpeed)
