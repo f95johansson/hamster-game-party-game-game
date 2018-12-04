@@ -11,14 +11,14 @@ public class DestroyOnContact : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.gameObject.GetComponent<HamsterPrefab>())
+        {
+            //hamsterController.SpawnOneHamster(other.gameObject);
+        }
+
         if (other.gameObject.name == objectTypeToDestroy.name + "(Clone)"  )
         {
             Destroy(other.gameObject);
-        }
-
-        if (other.gameObject.name == objectTypeToGenerate.name+"(Clone")
-        {
-            hamsterController.SpawnOneHamster(other.gameObject);
         }
         
     }

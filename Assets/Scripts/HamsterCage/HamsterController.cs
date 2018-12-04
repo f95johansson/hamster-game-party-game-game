@@ -27,6 +27,7 @@ public class HamsterController : MonoBehaviour {
     private void OnDestroy()
     {
         GameControl.Control.SaveInventory();
+        //Debug.Log("Save Inventory " + GameControl.Control.Inventory.hamsterStates[0].HamsterName);
         GameControl.Control.SavePlayerData();
     }
 
@@ -79,8 +80,7 @@ public class HamsterController : MonoBehaviour {
                 hamsterInScene.GetComponent<HamsterPrefab>().UpdateScaleWeight();
                 yield return new WaitForSeconds(0.5f);
             }
-            
-            i++;
+            //Debug.Log("Checked hamsterStates");
         }
        
         
@@ -92,7 +92,8 @@ public class HamsterController : MonoBehaviour {
             Random.Range(-maxWidth + 2 * hamster.GetComponent<Renderer>().bounds.extents.x, maxWidth),
             transform.position.y,
             transform.position.z);
-        hamsterToGenerate.transform.position = spawnPosition; 
+        hamsterToGenerate.transform.position = spawnPosition;
+        Debug.Log("SpawnOneHamster CALLED");
     }
 
     public void UpdateFoodText()
