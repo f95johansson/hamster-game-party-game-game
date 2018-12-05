@@ -45,8 +45,8 @@ public class Intro : MonoBehaviour
 		
 		_inventory = GameControl.Control.Inventory;
 
-		Add(Thoughtful, 3, 2, 2, 2);
-		Add(Fast, 2, 3, 2, 2);
+		Add(Thoughtful, 3, 1, 2, 2);
+		Add(Fast, 2, 3, 2, 3);
 		Add(Agile, 2, 2, 1, 3);
 	}
 

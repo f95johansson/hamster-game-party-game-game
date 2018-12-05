@@ -7,6 +7,7 @@ public class HamsterStart : MonoBehaviour
 	private Hamster _currentHamster;
 	private EffectorHolder _holder;
 
+
 	private void Start() {
 		Spawn();
 
