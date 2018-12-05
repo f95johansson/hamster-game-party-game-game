@@ -11,13 +11,20 @@ public class TutorialText {
             "When you think the hamster will complete the track you can press GO! to test your solution.",
         },
         new string[] {
-            "Hey. I see you got a corrot now too.",
+            "Use multiple fans when necessary.",
+        },
+        new string[] {
+            "Hey. I see you got a carrot now too.",
             "Maybe it will give the hamster reasons to turn. Just drag and drop it to try it.",
             "Use the undo button if you feel like you made a misstake. Dragging and object to the trashcan works too."
+        },
+        new string[] {
+            "Often a combinations of carrots and fans are necessary. Are you up for the challenge?",
+            "Some more text"
         }
     };
 
     public static string[] Completed = new string[] {
-        "Great! I think you got the hang of this. You are ready to explore the rest of the levels now"
+        "Great! I think you got the hang of this. You are ready to explore the rest of the levels now!"
     };
 }

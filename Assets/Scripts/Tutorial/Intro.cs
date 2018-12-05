@@ -13,8 +13,12 @@ public class Intro : MonoBehaviour
 
 	public Text ResultText;
 
-	private const string LevelOne = "IntroTrack";
-	private const string LevelTwo = "IntroTrack2";
+	private readonly string[] _levels = new[] {
+		"IntroTrack",
+		"IntroTrack2",
+		"IntroTrack3",
+		"IntroTrack4"	
+	};
 
 	private void Start ()
 	{
@@ -22,17 +26,13 @@ public class Intro : MonoBehaviour
 		if (GameControl.Control.Inventory.HasAHamster())
 		{
 			var progress = GameControl.Control.Progress;
-
-			if (progress.HasCleared(LevelTwo))
+			foreach (var level in _levels)
 			{
-				Navigation.StartLevelSelect();	
+				if (!progress.HasCleared(level)) {
+					Navigation.StartTrack(level);
+					return;
+				}
 			}
-			else
-			{
-				var goTo = (progress.HasCleared(LevelOne)) ? LevelTwo : LevelOne;
-				Navigation.StartTrack(goTo);
-			}
-			return;
 		}
 		
 		Buttons.alpha = 1;
