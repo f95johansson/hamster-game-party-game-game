@@ -1,13 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class WorldMapNode : MonoBehaviour {
-	private void OnMouseUpAsButton()
-	{
-		Navigation.StartTrack(gameObject.name);
-	}
-
 	private const float BIG = 1.4f;
 	private float _normal = 1.4f;
 	private float _goal;
@@ -28,7 +21,7 @@ public class WorldMapNode : MonoBehaviour {
 	
 	private void OnMouseEnter()
 	{
-		_goal = BIG;
+		_goal = BIG * _normal;
 	}
 
 	private void OnMouseExit()

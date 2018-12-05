@@ -6,7 +6,7 @@ public class Stat : MonoBehaviour
 	public uint Points;
 	public Sprite[] ListOfSprites = new Sprite[6];
 	private Image _statImage;
-	private uint _prevPoints;
+	private uint _prevPoints; 
 	
 	private void Start ()
 	{

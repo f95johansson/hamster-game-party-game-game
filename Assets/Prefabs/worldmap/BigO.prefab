@@ -36,8 +36,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4110825691956544}
   - component: {fileID: 212502449049258778}
-  - component: {fileID: 114436450843345492}
   - component: {fileID: 58522879421611060}
+  - component: {fileID: 114627933088758624}
   m_Layer: 0
   m_Name: BigO
   m_TagString: Untagged
@@ -87,7 +87,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 3.9282684
---- !u!114 &114436450843345492
+--- !u!114 &114627933088758624
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -95,7 +95,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1667012247344084}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3713b9e4b6bc4dd4085dd47b160e52fd, type: 3}
+  m_Script: {fileID: 11500000, guid: 61a3a4bebf1c0bf47a0c608b36430753, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &212502449049258778

@@ -9,13 +9,8 @@ public class Navigation : MonoBehaviour
 	}
 
     public static void StartLevelSelect() {
-        SceneManager.LoadScene("LevelSelect", LoadSceneMode.Single);   
+        SceneManager.LoadScene("WorldMap", LoadSceneMode.Single);   
     }
-
-	public static void AddWrapper()
-	{
-		SceneManager.LoadScene("TrackWrapper", LoadSceneMode.Additive);
-	}
 
 	// This is not static so it can be used as a target for OnClickListener
 	public void GoToLevelSelect()
@@ -31,4 +26,14 @@ public class Navigation : MonoBehaviour
     public void GoToIntroOfTheGame_NotTheTrack() {
         SceneManager.LoadScene("Intro", LoadSceneMode.Single);
     }
+
+	public static void StartHome()
+	{
+		SceneManager.LoadScene("HamsterCage", LoadSceneMode.Single); 
+	}
+
+	public static void StartShop()
+	{
+		SceneManager.LoadScene("HamsterShop", LoadSceneMode.Single); 
+	}
 }
