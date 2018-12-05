@@ -8,7 +8,7 @@ public class TextController : MonoBehaviour {
 	public CanvasGroup TextBox;
 	public Text _text;
 	public Button NextButton;
-	private WaitForSecondsOrCancel _currentWaiting = null;
+	private WaitForCancel _currentWaiting = null;
 	private Clippy _clippy;
 	private WinCondition _winCondition;
 	
@@ -22,7 +22,7 @@ public class TextController : MonoBehaviour {
 		_winCondition = FindObjectOfType<WinCondition>();
 		
 		_clippy = FindObjectOfType<Clippy>();
-		NextButton.onClick.AddListener(ButtonClicked);
+		NextButton.onClick.AddListener(NextClicked);
 		_clippy.GetComponent<Button>().onClick.AddListener(ClippyClicked);
 
 		if (ShouldRunEndOfTutorial) {
@@ -34,7 +34,7 @@ public class TextController : MonoBehaviour {
 			});
 		}
 
-		StartCoroutine(DelayedNextText(TutorialText.Tutorial[TutorialNumber]));
+		StartCoroutine(DelayedNextText(TutorialText.Tutorial[TutorialNumber-1]));
 	}
 
 	IEnumerator DelayedNextText(string[] monolog) {
@@ -46,7 +46,7 @@ public class TextController : MonoBehaviour {
     {
 		_tutorialRunning = true;
 
-		bool first = true; // I know ugly, but I don't care anymore
+		bool first = true;
 		foreach (string text in monolog)
 		{
 			// only fade out if not first
@@ -54,8 +54,7 @@ public class TextController : MonoBehaviour {
 				first = false;
 			} else {
 				StartCoroutine(FadeOut(TextBox, 0.5f));
-				_currentWaiting = new WaitForSecondsOrCancel(0.5f);
-				yield return _currentWaiting;
+				yield return new WaitForSeconds(0.5f);
 			}
 		
 			_text.text = text;
@@ -63,17 +62,16 @@ public class TextController : MonoBehaviour {
 			_clippy.Jump();
 
 			StartCoroutine(FadeIn(TextBox, 0.5f));
-			_currentWaiting = new WaitForSecondsOrCancel(0.5f);
-			yield return _currentWaiting;
+			yield return new WaitForSeconds(0.5f);
 			
-        	_currentWaiting = new WaitForSecondsOrCancel(5f);
+        	_currentWaiting = new WaitForCancel();
 			yield return _currentWaiting;
+			_currentWaiting = null;
 		}
 
 		_tutorialRunning = false;
 		StartCoroutine(FadeOut(TextBox, 0.5f));
-		_currentWaiting = new WaitForSecondsOrCancel(0.5f);
-		yield return _currentWaiting;
+		yield return new WaitForSeconds(0.5f);
     }
 
 	private IEnumerator FadeOut(CanvasGroup objekt, float time)  // seconds
@@ -98,15 +96,17 @@ public class TextController : MonoBehaviour {
 		yield return null;
 	}
 
-	void ButtonClicked() {
+	void NextClicked() {
 		if (_currentWaiting != null) {
 			_currentWaiting.cancel();
 		}
 	}
 
 	void ClippyClicked() {
-		if (!_tutorialRunning) {
-			StartCoroutine(RunTutorial(TutorialText.Tutorial[TutorialNumber]));
+		if (_currentWaiting != null) {
+			_currentWaiting.cancel();
+		} else {
+			StartCoroutine(RunTutorial(TutorialText.Tutorial[TutorialNumber-1]));
 		}
 	}
 
@@ -138,6 +138,27 @@ class WaitForSecondsOrCancel : CustomYieldInstruction
 		{
 			return Time.time - startTime < numSeconds
 				&& !canceled;
+		}
+	}
+}
+
+class WaitForCancel : CustomYieldInstruction
+{
+	private bool canceled = false;
+ 
+	public WaitForCancel()
+	{
+	}
+
+	public void cancel() {
+		canceled = true;
+	}
+ 
+	public override bool keepWaiting
+	{
+		get
+		{
+			return !canceled;
 		}
 	}
 }
