@@ -71,4 +71,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/HamsterCage.unity
     guid: 3b27707547a5bd944be1e449f3dfe298
+  - enabled: 1
+    path: Assets/Scenes/WorldMap.unity
+    guid: 8b89bec52820aa544897386671fde080
+  - enabled: 1
+    path: Assets/Scenes/Tracks/Snail.unity
+    guid: 542e99f7fba7f9b4aab0f04618d8d926
   m_configObjects: {}
