@@ -13,7 +13,7 @@ public class DestroyOnContact : MonoBehaviour
     {
         if (other.gameObject.GetComponent<HamsterPrefab>())
         {
-            //hamsterController.SpawnOneHamster(other.gameObject);
+            hamsterController.SpawnOneHamster(other.gameObject);
         }
 
         if (other.gameObject.name == objectTypeToDestroy.name + "(Clone)"  )

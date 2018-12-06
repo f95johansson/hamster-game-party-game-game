@@ -11,11 +11,7 @@ public class HamsterPrefab : MonoBehaviour
     public GameObject objectTypeToEat;
     public Slider foodBar;
 
-    //public Image destroyer;
-    
-
     private bool isGrabbed = false;
-    //private bool isDropped = false;
 
 
     public void Start()
@@ -27,7 +23,6 @@ public class HamsterPrefab : MonoBehaviour
     private void OnMouseDown()
     {
         isGrabbed = true;
-        //isDropped = false;
     }
 
     public bool getIsGrabbed()
@@ -51,8 +46,6 @@ public class HamsterPrefab : MonoBehaviour
             if (Input.GetMouseButtonUp(0))
             {
                 isGrabbed = false;
-                //isDropped = true;
-                //Is it on the trash ?
             }
         }
         
@@ -94,11 +87,13 @@ public class HamsterPrefab : MonoBehaviour
     {
         if (other.gameObject.name == objectTypeToEat.name + "(Clone)")
         {
-            GameControl.Control.Inventory.hamsterStates[index].foodLevel++;
-            
-            GameControl.Control.Inventory.RemoveFood(1);
+            if (GameControl.Control.Inventory.hamsterStates[index].foodLevel < 5)
+            {
+                GameControl.Control.Inventory.hamsterStates[index].foodLevel++;
 
-
+                GameControl.Control.Inventory.RemoveFood(1);
+            }
+           
             Destroy(other.gameObject);
 
         }
@@ -117,11 +112,14 @@ public class HamsterPrefab : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        Debug.Log("Woho");
-        var trash = collision.gameObject.GetComponent<DestroyOnRelease>();
+        
+        //var trash = collision.gameObject.GetComponent<DestroyOnRelease>();
 
-        if (trash) {
-            trash.HamsterOnYou(this);
+
+        if (collision.gameObject.name == "TrashImage") {
+            Debug.Log("Woho");
+            collision.gameObject.GetComponent<DestroyOnRelease>().HamsterOnYou(this);
+            Debug.Log("Woho fin");
         }
     }
 
