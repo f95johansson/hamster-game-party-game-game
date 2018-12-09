@@ -12,6 +12,8 @@ public class StarSystem : MonoBehaviour
     private Text _goal;
     private Text _status;
 
+    private bool _hasDecreased = false;
+
     private void Start()
     {
         var texts = GetComponentsInChildren<Text>();
@@ -29,31 +31,35 @@ public class StarSystem : MonoBehaviour
             var progress = GameControl.Control.Progress;
             var inventory = GameControl.Control.Inventory;
 
-            if (!progress.HasCleared(levelName))
+            inventory.AddMoney(!progress.HasCleared(levelName) ? 60 : (uint) 30);
+
+            GameControl.Control.SaveInventory();
+
+            if (!_hasDecreased)
             {
-                inventory.AddMoney(50);
-                GameControl.Control.SaveInventory();
-            }
+                _hasDecreased = true;
+                var selectHamsterState = FindObjectOfType<SelectHamsterStats>();
 
-            var selectHamsterState = FindObjectOfType<SelectHamsterStats>();
-
-            if (selectHamsterState != null) // on intro levels
-            {
-                var currentHamsterId = selectHamsterState.CurrentHamsterID;
-
-                if (currentHamsterId != null)
+                if (selectHamsterState != null) // on intro levels
                 {
-                    foreach (var inventoryHamster in inventory.hamsterStates)
+                    var currentHamsterId = selectHamsterState.CurrentHamsterId;
+
+                    if (currentHamsterId != null)
                     {
-                        if (inventoryHamster.getUUID() == currentHamsterId)
+                        foreach (var inventoryHamster in inventory.hamsterStates)
                         {
-                            inventoryHamster.DecreaseFoodLevel(2);
+                            if (inventoryHamster == null || inventoryHamster.HamsterName.Length == 0) continue;
+                        
+                            if (inventoryHamster.getUUID() == currentHamsterId)
+                            {
+                                inventoryHamster.DecreaseFoodLevel(2);
+                                GameControl.Control.SaveInventory();
+                            }
                         }
                     }
                 }
             }
             
-            GameControl.Control.SaveInventory();
             progress.SaveTrackProgress(levelName, true, true, true);
             FindObjectOfType<WinInformation>().Show();
         });

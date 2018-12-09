@@ -13,11 +13,11 @@ public class Intro : MonoBehaviour
 
 	public Text ResultText;
 
-	private readonly string[] _levels = new[] {
+	private readonly string[] _levels = {
 		"IntroTrack",
 		"IntroTrack2",
 		"IntroTrack3",
-		"IntroTrack4"	
+		"IntroTrack4"
 	};
 
 	private void Start ()
@@ -63,6 +63,8 @@ public class Intro : MonoBehaviour
 				HamsterName = BuyFromShopScene2.getRandomName(),
 				foodLevel = 5
 			};
+			
+			hamster.GenerateUUID();
 
 			_inventory.AddHamster(hamster);
 			GameControl.Control.SaveInventory();

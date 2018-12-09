@@ -11,7 +11,7 @@ public class SelectHamsterStats : MonoBehaviour
 	public float OffY;
 
 	private List<HamsterStats> _hamsterStats;
-	public string CurrentHamsterID;
+	public string CurrentHamsterId;
 	public CanvasGroup HungerExplanation;
 
 	private void Start ()
@@ -67,7 +67,7 @@ public class SelectHamsterStats : MonoBehaviour
 	private void Select(HamsterStats hamster)
 	{
 		FindObjectOfType<HamsterStart>().NewStats(hamster.SpeedPoints, hamster.WeightPoints, hamster.TurnSpeedPoints, hamster.FrictionPoints);
-		CurrentHamsterID = hamster.Id;
+		CurrentHamsterId = hamster.Id;
 	}
 
 	private Vector3 PositionFromIndex(int i)

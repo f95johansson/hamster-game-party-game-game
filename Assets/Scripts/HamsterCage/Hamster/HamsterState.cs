@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class HamsterState //: MonoBehaviour
 {
     
-    private string UUID;
+    public string UUID;
     [Range(1, 5)]
     public uint foodLevel = 5; //0,1,2
     [Range(1, 5)]
@@ -30,7 +30,7 @@ public class HamsterState //: MonoBehaviour
 
     public void DecreaseFoodLevel(uint amountDecrease)
     {
-        foodLevel = Math.Max(0, foodLevel + amountDecrease);
+        foodLevel = (uint) Math.Max(0, (int) (foodLevel - amountDecrease));
     }
 
     public void GenerateUUID() {

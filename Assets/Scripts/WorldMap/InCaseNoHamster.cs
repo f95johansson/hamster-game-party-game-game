@@ -36,6 +36,8 @@ public class InCaseNoHamster : MonoBehaviour {
 				WeightLevel = 2,
 				HamsterName = BuyFromShopScene2.getRandomName()
 			};
+			
+			hs.GenerateUUID();
 
 			GameControl.Control.Inventory.AddHamster(hs);
 			GameControl.Control.SaveInventory();
