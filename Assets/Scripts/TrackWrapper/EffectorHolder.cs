@@ -4,6 +4,7 @@ using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class EffectorHolder : MonoBehaviour
 {
@@ -13,8 +14,8 @@ public class EffectorHolder : MonoBehaviour
 
     public CanvasGroup Interactive;
 
-    public Component TurnButton;
-    public Component PushButton;
+    public Image TurnButton;
+    public Image PushButton;
     public Trash Trash;
     private readonly Stack<State> _redos = new Stack<State>();
     private readonly Stack<State> _states = new Stack<State>();
@@ -39,6 +40,8 @@ public class EffectorHolder : MonoBehaviour
     private List<PushEffector> _pushEffectors;
 
     public MeshCollider DropZone;
+    private uint _numberCarrotsAllowed;
+    private uint _numberFansAllowed;
 
     public void Awake()
     {
@@ -47,6 +50,11 @@ public class EffectorHolder : MonoBehaviour
 
     private void Start()
     {
+        var playerData = GameControl.Control.PlayerData;
+
+        _numberCarrotsAllowed = playerData.numberCarrotsAllowed;
+        _numberFansAllowed = playerData.numberCarrotsAllowed;
+        
         _camera = Camera.main;
         _turnEffectors = new List<TurnEffector>();
         _pushEffectors = new List<PushEffector>();
@@ -56,7 +64,7 @@ public class EffectorHolder : MonoBehaviour
         // Should these maybe be changed to run in update?
         Events.OnEvent(EventTriggerType.PointerDown, TurnButton, e =>
         {
-            if (!_gi.Grabbed && !_goTime)
+            if (!_gi.Grabbed && !_goTime && CarrotsLeft() > 0)
             {
                 Grab(CreateTurner(ToWorldPoint(Input.mousePosition)).gameObject);
             }
@@ -64,13 +72,27 @@ public class EffectorHolder : MonoBehaviour
 
         Events.OnEvent(EventTriggerType.PointerDown, PushButton, e =>
         {
-            if (!_gi.Grabbed && !_goTime)
+            if (!_gi.Grabbed && !_goTime && FansLeft() > 0)
             {
                 Grab(CreatePusher(ToWorldPoint(Input.mousePosition)).gameObject);
             }
         });
 
         Save();
+    }
+
+    private uint CarrotsLeft()
+    {
+        var current = FindObjectsOfType<TurnEffector>().Length;
+        var left = _numberCarrotsAllowed - current;
+        return (left > 0) ? (uint) left : 0;
+    }
+    
+    private uint FansLeft()
+    {
+        var current = FindObjectsOfType<PushEffector>().Length;
+        var left = _numberFansAllowed - current;
+        return (left > 0) ? (uint) left : 0;
     }
 
     private void Grab(GameObject toGrab)
@@ -115,6 +137,15 @@ public class EffectorHolder : MonoBehaviour
     {
         if (!_goTime)
         {
+            var carrotsLeft = CarrotsLeft();
+            var fansLeft = FansLeft();
+        
+            TurnButton.enabled = carrotsLeft > 0;
+            PushButton.enabled = fansLeft > 0;
+        
+            TurnButton.GetComponentInChildren<Text>().text = "" + carrotsLeft;
+            PushButton.GetComponentInChildren<Text>().text = "" + fansLeft;
+            
             var mousePos = Input.mousePosition;
 
             var mousePosWorld = ToWorldPoint(mousePos);
@@ -234,7 +265,7 @@ public class EffectorHolder : MonoBehaviour
     }
 
     private void Save()
-    {
+    {        
         _states.Push(new State(_turnEffectors, _pushEffectors));
     }
 

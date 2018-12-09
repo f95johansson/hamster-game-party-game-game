@@ -10,6 +10,7 @@ public class HamsterPrefab : MonoBehaviour
     private uint index;
     public GameObject objectTypeToEat;
     public Slider foodBar;
+    private Camera _camera;
 
     //public Image destroyer;
     
@@ -21,7 +22,7 @@ public class HamsterPrefab : MonoBehaviour
     public void Start()
     {
         foodBar = gameObject.GetComponentInChildren<Slider>();
-        
+        _camera = Camera.main;
     }
 
     private void OnMouseDown()
@@ -44,7 +45,7 @@ public class HamsterPrefab : MonoBehaviour
            
             var mousePos = Input.mousePosition;
 
-            var mousePosWorld = VectorMath.ToWorldPoint(Camera.main, mousePos, Vector3.zero, new Vector3(0, 0, 1));
+            var mousePosWorld = VectorMath.ToWorldPoint(_camera, mousePos, Vector3.zero, new Vector3(0, 0, 1));
             this.gameObject.transform.position = (Vector2)mousePosWorld;
 
 
