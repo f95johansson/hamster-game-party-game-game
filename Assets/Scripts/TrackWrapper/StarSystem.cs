@@ -41,7 +41,7 @@ public class StarSystem : MonoBehaviour
             {
                 var currentHamsterId = selectHamsterState.CurrentHamsterID;
 
-                if (currentHamsterId == null)
+                if (currentHamsterId != null)
                 {
                     foreach (var inventoryHamster in inventory.hamsterStates)
                     {

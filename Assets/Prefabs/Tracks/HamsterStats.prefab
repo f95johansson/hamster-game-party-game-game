@@ -310,7 +310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b46a7b112111e8f4f9aa41ff6fb5e7eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TooHungryText: {fileID: 0}
+  TooHungryText: {fileID: 114979427688183534}
 --- !u!114 &114350978934578620
 MonoBehaviour:
   m_ObjectHideFlags: 1

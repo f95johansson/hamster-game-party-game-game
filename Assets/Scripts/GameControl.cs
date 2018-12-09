@@ -28,6 +28,8 @@ public class GameControl : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             Control = this;
             LoadProgress();
+            LoadInventory();
+            LoadPlayerData();
         }
         else if (Control != this)
         {

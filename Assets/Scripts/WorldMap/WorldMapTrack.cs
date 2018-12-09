@@ -8,6 +8,6 @@ public class WorldMapTrack : WorldMapNode {
 	private void Start()
 	{
 		base.Start();
-		_current = 0;
+		Current = 0;
 	}
 }
