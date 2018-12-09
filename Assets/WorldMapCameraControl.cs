@@ -8,7 +8,13 @@ public class WorldMapCameraControl : MonoBehaviour {
 
 	public SpriteRenderer WorldMap;
 
+	private Vector3 _mapMax;
+	private Vector3 _mapMin;
+
 	private float _startSize;
+
+	public float BorderThickness = 10f;
+	public float CamSpeed = 2f;
 
 	private void Start ()
 	{
@@ -18,6 +24,12 @@ public class WorldMapCameraControl : MonoBehaviour {
 		
 		_startSize = _camera.orthographicSize;
 		_previousMousePosition = Input.mousePosition;
+		
+		_mapMin = WorldMap.bounds.min;
+		_mapMax = WorldMap.bounds.max;
+		
+		_mapMin.z = transform.position.z;
+		_mapMax.z = transform.position.z;
 	}
 
 	private Vector2 MoveDelta()
@@ -47,6 +59,12 @@ public class WorldMapCameraControl : MonoBehaviour {
 		}
 
 		_previousMousePosition = Input.mousePosition;
+
+		var mouseX = _camera.ScreenToWorldPoint(Input.mousePosition).x;
+		
+		if (mouseX - CameraMin().x < BorderThickness) return new Vector2(-CamSpeed, 0);
+		if (CameraMax().x - mouseX < BorderThickness) return new Vector2(CamSpeed, 0);
+		
 		return Vector2.zero;
 	}
 
@@ -60,20 +78,26 @@ public class WorldMapCameraControl : MonoBehaviour {
 		ClampCameraPosition();
 	}
 
-	private void ClampCameraPosition()
-	{	
-		var max = WorldMap.bounds.max;
-		var min = WorldMap.bounds.min;
-
-		var currentMin = _camera.ScreenToWorldPoint(Vector3.zero);
-		var currentMax = _camera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
-
-		var moveR = (currentMin.x < min.x) ? min.x - currentMin.x : 0; // positive
-		var moveL = (currentMax.x > max.x) ? max.x - currentMax.x : 0; // negative
-		
-		_camera.orthographicSize *= (max.x - min.y) / (currentMax.x - currentMin.x);
-		if (_camera.orthographicSize > _startSize) _camera.orthographicSize = _startSize;
+	private Vector3 CameraMin()
+	{
+		return _camera.ScreenToWorldPoint(Vector3.zero);
+	}
 	
+	private Vector3 CameraMax()
+	{
+		return _camera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
+	}
+
+	private void ClampCameraPosition()
+	{
+		var currentMin = CameraMin();
+		var currentMax = CameraMax();
+
+		var moveR = (currentMin.x < _mapMin.x) ? _mapMin.x - currentMin.x : 0; // positive
+		var moveL = (currentMax.x > _mapMax.x) ? _mapMax.x - currentMax.x : 0; // negative
+		
+		_camera.orthographicSize *= (_mapMax.x - _mapMin.y) / (currentMax.x - currentMin.x);
+		if (_camera.orthographicSize > _startSize) _camera.orthographicSize = _startSize;
 
 		_camera.transform.position += new Vector3(moveR + moveL, 0, 0);
 	}

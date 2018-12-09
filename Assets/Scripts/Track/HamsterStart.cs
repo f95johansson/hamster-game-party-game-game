@@ -84,7 +84,7 @@ public class HamsterStart : MonoBehaviour
 
 	private void LateUpdate () {
 
-		if (_currentHamster && _currentHamster.transform.position.y < -10 || _restart)
+		if (_currentHamster && _currentHamster.transform.position.y < -14 || _restart)
 		{
 			_restart = false;
 			RestartEverything();

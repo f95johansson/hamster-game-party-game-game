@@ -9,7 +9,7 @@ public class Navigation : MonoBehaviour
 	}
 
     public static void StartLevelSelect() {
-        SceneManager.LoadScene("WorldMap", LoadSceneMode.Single);   
+        SceneManager.LoadScene("LevelSelect", LoadSceneMode.Single);   
     }
 
 	// This is not static so it can be used as a target for OnClickListener

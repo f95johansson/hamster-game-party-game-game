@@ -12,7 +12,6 @@ public class StarSystem : MonoBehaviour
     private Text _goal;
     private Text _status;
 
-
     private void Start()
     {
         var texts = GetComponentsInChildren<Text>();
@@ -28,13 +27,33 @@ public class StarSystem : MonoBehaviour
         {
             var levelName = SceneManager.GetActiveScene().name;
             var progress = GameControl.Control.Progress;
+            var inventory = GameControl.Control.Inventory;
 
             if (!progress.HasCleared(levelName))
             {
-                GameControl.Control.Inventory.AddMoney(50);
+                inventory.AddMoney(50);
                 GameControl.Control.SaveInventory();
             }
+
+            var selectHamsterState = FindObjectOfType<SelectHamsterStats>();
+
+            if (selectHamsterState != null) // on intro levels
+            {
+                var currentHamsterId = selectHamsterState.CurrentHamsterID;
+
+                if (currentHamsterId == null)
+                {
+                    foreach (var inventoryHamster in inventory.hamsterStates)
+                    {
+                        if (inventoryHamster.getUUID() == currentHamsterId)
+                        {
+                            inventoryHamster.DecreaseFoodLevel(2);
+                        }
+                    }
+                }
+            }
             
+            GameControl.Control.SaveInventory();
             progress.SaveTrackProgress(levelName, true, true, true);
             FindObjectOfType<WinInformation>().Show();
         });

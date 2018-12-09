@@ -11,6 +11,7 @@ public class SelectHamsterStats : MonoBehaviour
 	public float OffY;
 
 	private List<HamsterStats> _hamsterStats;
+	public string CurrentHamsterID = null;
 
 	private void Start ()
 	{		
@@ -53,6 +54,7 @@ public class SelectHamsterStats : MonoBehaviour
 	private void Select(HamsterStats hamster)
 	{
 		FindObjectOfType<HamsterStart>().NewStats(hamster.SpeedPoints, hamster.WeightPoints, hamster.TurnSpeedPoints, hamster.FrictionPoints);
+		CurrentHamsterID = hamster.Id;
 	}
 
 	private Vector3 PositionFromIndex(int i)

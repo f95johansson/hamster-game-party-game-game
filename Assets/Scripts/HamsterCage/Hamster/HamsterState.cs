@@ -30,7 +30,7 @@ public class HamsterState //: MonoBehaviour
 
     public void DecreaseFoodLevel(uint amountDecrease)
     {
-        foodLevel += amountDecrease;
+        foodLevel = Math.Max(0, foodLevel + amountDecrease);
     }
 
     public void GenerateUUID() {

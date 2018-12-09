@@ -48,9 +48,28 @@ public class Hamster : MonoBehaviour
 		_force += (transform.forward * Speed);
 		
 		_force += VerticalStuff();
-		
-		transform.position += _force * Weakener;
-		
+
+		if (_ySpeed >= 0)
+		{
+			transform.position += _force * Weakener;
+		}
+		else
+		{
+			var newPos = transform.position + (_force * Weakener);
+
+			var collisionHere = _track.GroundAt(transform.position);
+			var collisionThere = _track.GroundAt(newPos);
+
+			if (!collisionHere && collisionThere)
+			{
+				transform.position += new Vector3(0, _force.y, 0) * Weakener;
+			}
+			else
+			{
+				transform.position = newPos;
+			}
+		}
+
 		_force *= 1 - Friction;
 	}
 
