@@ -32,30 +32,16 @@ public class WorldMapCameraControl : MonoBehaviour {
 		_mapMax.z = transform.position.z;
 	}
 
+	private Vector2 _previousMousePosition = Vector2.zero;
+
+
 	private Vector2 MoveDelta()
 	{
-		if (!Input.touchSupported || Application.platform == RuntimePlatform.WebGLPlayer) return MoveDeltaComputers();
-		if (Input.touchCount != 2) return Vector2.zero;
-
-		return (Input.touches[0].deltaPosition + Input.touches[1].deltaPosition) / 2;
-	}
-
-	private Vector2 _previousMousePosition = Vector2.zero;
-	private bool _middlePressed = false;
-
-
-	private Vector2 MoveDeltaComputers()
-	{
-		if (_middlePressed && Input.GetMouseButton(2))
+		if (Input.GetMouseButton(0))
 		{
 			var ret = _previousMousePosition - (Vector2) Input.mousePosition;
 			_previousMousePosition = Input.mousePosition;
 			return ret;
-		}
-		
-		if (Input.GetMouseButton(2))
-		{
-			_middlePressed = true;
 		}
 
 		_previousMousePosition = Input.mousePosition;

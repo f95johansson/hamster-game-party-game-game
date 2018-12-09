@@ -7,7 +7,7 @@ public class WorldMapTrack : WorldMapNode {
 
 	private void Start()
 	{
-		base.Start();
+		Init();
 		Current = 0;
 	}
 }

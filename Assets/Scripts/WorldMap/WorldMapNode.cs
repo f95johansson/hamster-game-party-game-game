@@ -6,7 +6,12 @@ public class WorldMapNode : MonoBehaviour {
 	private float _goal;
 	protected float Current;
 
-	protected void Start()
+	private void Start()
+	{
+		Init();
+	}
+
+	protected void Init()
 	{
 		_normal = transform.localScale.x;
 		_goal = _normal;
@@ -18,7 +23,7 @@ public class WorldMapNode : MonoBehaviour {
 			star.enabled = true;
 		}
 	}
-	
+
 	private void OnMouseEnter()
 	{
 		_goal = Big * _normal;
