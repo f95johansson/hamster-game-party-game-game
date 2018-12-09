@@ -4,4 +4,10 @@ public class WorldMapTrack : WorldMapNode {
 	{
 		Navigation.StartTrack(gameObject.name);
 	}
+
+	private void Start()
+	{
+		base.Start();
+		_current = 0;
+	}
 }

@@ -4,13 +4,13 @@ public class WorldMapNode : MonoBehaviour {
 	private const float BIG = 1.4f;
 	private float _normal = 1.4f;
 	private float _goal;
-	private float _current;
+	protected float _current;
 
-	private void Start()
+	protected void Start()
 	{
 		_normal = transform.localScale.x;
 		_goal = _normal;
-		_current = 0;
+		_current = _goal;
 
 		if (GameControl.Control.Progress.HasCleared(gameObject.name))
 		{

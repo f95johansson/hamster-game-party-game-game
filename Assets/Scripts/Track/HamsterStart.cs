@@ -7,6 +7,7 @@ public class HamsterStart : MonoBehaviour
 	private Hamster _currentHamster;
 	private EffectorHolder _holder;
 
+	public bool BlockPlay = false;
 
 	private void Start() {
 		Spawn();
@@ -17,7 +18,7 @@ public class HamsterStart : MonoBehaviour
 		{
 			if (_currentHamster)
 			{
-				DestroyCurrentHamster();
+				Pause();
 				Reset();
 			}
 			
@@ -29,9 +30,9 @@ public class HamsterStart : MonoBehaviour
 	{
 		if (_currentHamster)
 		{
-			DestroyCurrentHamster();
+			Pause();
 		}
-		else
+		else if (!BlockPlay)
 		{
 			Spawn();
 		}
@@ -43,11 +44,14 @@ public class HamsterStart : MonoBehaviour
 		_currentHamster.SetStats(Speed, Weight, TurnSpeed, Friction);
 	}
 
-	private void DestroyCurrentHamster()
+	public void Pause()
 	{
-		Destroy(_currentHamster.gameObject);
-		_currentHamster = null;
-		Reset();
+		if (_currentHamster)
+		{
+			Destroy(_currentHamster.gameObject);
+			_currentHamster = null;
+			Reset();
+		}
 	}
 
 	public uint Speed = 2;
@@ -98,7 +102,7 @@ public class HamsterStart : MonoBehaviour
 
 	private void RestartEverything()
 	{
-		DestroyCurrentHamster();
+		Pause();
 		_holder.HamsterDied();
 		Reset();
 		Spawn();

@@ -74,4 +74,9 @@ public class HamsterStats : MonoBehaviour
 	{
 		OnSelected.Invoke();
 	}
+
+	public bool CanRun()
+	{
+		return _hunger > 0;
+	}
 }

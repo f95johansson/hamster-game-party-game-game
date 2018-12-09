@@ -3,20 +3,19 @@ using System.Linq;
 
 [Serializable]
 public class Inventory {
-
-    public const int maxNumberHamsters = 6;
+    private const int MaxNumberHamsters = 6;
     public int HamsterOwns = 0;
 
-    public HamsterState[] hamsterStates = new HamsterState[maxNumberHamsters];
+    public HamsterState[] hamsterStates = new HamsterState[MaxNumberHamsters];
 
     public uint foodAmount = 0;
     public uint moneyAmount = 100;
 
     public void AddHamster(HamsterState hamsterToAdd)
     {
-        for (int i=0; i<hamsterStates.Length; ++i)
+        for (var i = 0; i<hamsterStates.Length; ++i)
         {
-            if (hamsterStates[i]==null)
+            if (hamsterStates[i]==null || hamsterStates[i].HamsterName.Length == 0)
             {
                 hamsterStates[i] = hamsterToAdd;
                 HamsterOwns += 1;
@@ -27,7 +26,7 @@ public class Inventory {
 
     public void RemoveHamster(HamsterState hamsterToRemove)
     {
-        for (int i = 0; i < hamsterStates.Length; ++i)
+        for (var i = 0; i < hamsterStates.Length; ++i)
         {
             if (hamsterStates[i] == hamsterToRemove)
             {
@@ -38,24 +37,24 @@ public class Inventory {
         }
     }
 
-    public void AddFood(uint amoutToAdd)
+    public void AddFood(uint amountToAdd)
     {
-        foodAmount += amoutToAdd;
+        foodAmount += amountToAdd;
     }
 
-    public void RemoveFood(uint amoutToRemove)
+    public void RemoveFood(uint amountToRemove)
     {
-        foodAmount -= amoutToRemove;
+        foodAmount -= amountToRemove;
     }
 
-    public void AddMoney(uint amoutToAdd)
+    public void AddMoney(uint amountToAdd)
     {
-        moneyAmount += amoutToAdd;
+        moneyAmount += amountToAdd;
     }
 
     public void RemoveAllHamsters()
     {
-        for (int i = 0; i < hamsterStates.Length; ++i)
+        for (var i = 0; i < hamsterStates.Length; ++i)
         {
             hamsterStates[i] = null;
         }
