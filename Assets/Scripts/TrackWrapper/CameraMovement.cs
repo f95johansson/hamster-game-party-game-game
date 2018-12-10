@@ -22,20 +22,6 @@ public class CameraMovement : MonoBehaviour
         _zoomedOutPosition = transform.position;
         _zoomedOutFieldOfView = _camera.fieldOfView;
     }
-    
-    private Vector3 ClosestPointInDropZone(Vector3 point)
-    {
-        var min = DropZone.bounds.min;
-        var max = DropZone.bounds.max;
-		
-        if (point.x < min.x) point.x = min.x;
-        else if (point.x > max.x) point.x = max.x;
-		
-        if (point.z < min.z) point.z = min.z;
-        else if (point.z > max.z) point.z = max.z;
-
-        return point;
-    }
 
     private float ZoomDelta()
     {
