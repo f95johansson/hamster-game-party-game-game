@@ -7,7 +7,6 @@ using UnityEngine.UI;
 [Serializable]
 public class HamsterState //: MonoBehaviour
 {
-    
     public string UUID;
     [Range(1, 5)]
     public uint foodLevel = 5; //0,1,2

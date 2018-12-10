@@ -1,40 +1,64 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.UI;
 
 public class DestroyOnRelease : MonoBehaviour {
+    private Camera _camera;
+    private Sprite _sprite;
+    private SpriteRenderer _spriteRenderer;
 
-    public GameObject objectTypeToDestroy;
-
-    private void OnTriggerEnter2D(Collider2D other)
+    private void Start()
     {
-        this.GetComponent<Image>().color = new Color32(0,0,0,255);
-        if (other.gameObject.name == objectTypeToDestroy.name + "(Clone)" && Input.GetMouseButtonUp(0))
+        _camera = Camera.main;
+        Assert.IsNotNull(_camera);
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _sprite = _spriteRenderer.sprite;
+    }
+
+    private void Update()
+    {
+        Vector2 pos = _camera.ViewportToWorldPoint(new Vector2(0, 1));
+        var off = _sprite.pivot / _sprite.pixelsPerUnit;
+        off.y = - off.y;
+        off.x *= transform.lossyScale.x;
+        off.y *= transform.lossyScale.y;
+
+        pos += off;
+
+        transform.position = new Vector3(pos.x, pos.y, transform.position.z);
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (IsHamster(other))
         {
-            GameControl.Control.Inventory.hamsterStates[other.gameObject.GetComponent<HamsterPrefab>().getIndex()] = null;
+            _spriteRenderer.color = Color.black;
+        }
+    }
+    
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if (IsHamster(other))
+        {
+            _spriteRenderer.color = Color.white;
+        }
+    }
+
+    private static bool IsHamster(Collision2D other)
+    {
+        return other.gameObject.GetComponent<HamsterPrefab>();
+    }
+
+    private void OnCollisionStay2D(Collision2D other)
+    {
+        var hamsterPrefab = other.gameObject.GetComponent<HamsterPrefab>();
+        
+        if (hamsterPrefab && Input.GetMouseButtonUp(0))
+        {
+            GameControl.Control.Inventory.hamsterStates[hamsterPrefab.GetIndex()] = null;
             Destroy(other.gameObject);
+            GameControl.Control.SaveInventory();
+            OnCollisionExit2D(other);
         }
-
-    }
-
-    public void HamsterOnYou(HamsterPrefab hamster) {
-        this.GetComponent<Image>().color = new Color32(0, 0, 0, 255);
-        if (Input.GetMouseButtonUp(0))
-        {
-            GameControl.Control.Inventory.hamsterStates[hamster.getIndex()] = null;
-            Destroy(hamster.gameObject);
-        }
-    }
-
-
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        Debug.Log("hi");
-    }
-
-    public void OnHamsterLeave()
-    {
-        this.GetComponent<Image>().color = new Color32(255,255,255,255);
     }
 }

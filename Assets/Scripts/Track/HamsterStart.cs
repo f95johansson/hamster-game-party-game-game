@@ -7,7 +7,7 @@ public class HamsterStart : MonoBehaviour
 	private Hamster _currentHamster;
 	private EffectorHolder _holder;
 
-	public bool BlockPlay = false;
+	public bool BlockPlay;
 
 	private void Start() {
 		Spawn();
@@ -58,7 +58,7 @@ public class HamsterStart : MonoBehaviour
 	public uint Friction = 2;
 	public uint TurnSpeed = 2;
 	public uint Weight = 2;
-	private bool _restart = false;
+	private bool _restart;
 
 	public void NewStats(uint speed, uint friction, uint turnSpeed, uint weight)
 	{

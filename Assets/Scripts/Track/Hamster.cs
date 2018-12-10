@@ -131,9 +131,9 @@ public class Hamster : MonoBehaviour
 
 	public void SetStats(uint speed, uint weight, uint turnSpeed, uint friction)
 	{
-		Speed = Range(.5f, 3f, speed);
-		TurnSpeed = Range(.015f, .09f, turnSpeed);
-		Friction = Range(0.05f, .25f, friction);
+		Speed = Range(.5f, 2.2f, speed);
+		TurnSpeed = Range(.03f, .09f, turnSpeed);
+		Friction = Range(0.05f, .15f, friction);
 		Weight = Range(.5f, 2f, weight);
 	}
 }
