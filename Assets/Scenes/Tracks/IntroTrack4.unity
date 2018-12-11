@@ -546,6 +546,16 @@ Prefab:
       propertyPath: WinCondition
       value: 
       objectReference: {fileID: 1415534010}
+    - target: {fileID: 114544556842615730, guid: bb3ae51f58f27224f99b6240c9d15190,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1140452988}
+    - target: {fileID: 114544556842615730, guid: bb3ae51f58f27224f99b6240c9d15190,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: NextLevel
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bb3ae51f58f27224f99b6240c9d15190, type: 2}
   m_IsPrefabParent: 0
@@ -795,6 +805,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5c117ea8edeeb48319d7c73683e63de4, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1140452988 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114674882223532054, guid: 5c117ea8edeeb48319d7c73683e63de4,
+    type: 2}
+  m_PrefabInternal: {fileID: 1140452987}
+  m_Script: {fileID: 11500000, guid: c4b3bb0ca99e64e7dafd960f95e4c6e0, type: 3}
 --- !u!4 &1259724108 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4566150296539812, guid: e082b20b3154d3b49ad4ffed3076069a,
