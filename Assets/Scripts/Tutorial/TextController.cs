@@ -115,22 +115,20 @@ public class TextController : MonoBehaviour {
 		if (SceneManager.GetActiveScene().name == "IntroTrack")
 		{
 			Navigation.StartTrack("IntroTrack2");
-		}
-		
-		if (SceneManager.GetActiveScene().name == "IntroTrack2")
+		} 
+		else if (SceneManager.GetActiveScene().name == "IntroTrack2")
 		{
 			Navigation.StartTrack("IntroTrack3");
-		}
-		
-		if (SceneManager.GetActiveScene().name == "IntroTrack3")
+		} 
+		else if (SceneManager.GetActiveScene().name == "IntroTrack3")
 		{
 			Navigation.StartTrack("IntroTrack4");
 		}
-		
-		if (SceneManager.GetActiveScene().name == "IntroTrack4")
+		else
 		{
-			Navigation.StartLevelSelect();
+			Navigation.StartLevelSelect();	
 		}
+
 	}
 }
 
