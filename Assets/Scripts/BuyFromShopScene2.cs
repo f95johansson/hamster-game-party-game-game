@@ -160,7 +160,8 @@ public class BuyFromShopScene2 : MonoBehaviour
         return names[index];
     }
 
-    private static readonly string[] names = {"Ace"
+    private static readonly string[] names = 
+        {"Ace"
         ,"Acey"
         ,"Abrico"
         ,"Alfy"
