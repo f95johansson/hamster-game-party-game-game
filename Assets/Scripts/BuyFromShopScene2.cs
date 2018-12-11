@@ -48,7 +48,7 @@ public class BuyFromShopScene2 : MonoBehaviour
     private void Start()
     {
 
-        for (int i = 0; i < GameControl.Control.ShopData.hamsterStatesShop.Length; i++)
+        for (var i = 0; i < GameControl.Control.ShopData.hamsterStatesShop.Length; i++)
         {
             var state = shopstat.hamsterStatesShop[i];
             var bars = HamsterBars[i];
@@ -88,35 +88,11 @@ public class BuyFromShopScene2 : MonoBehaviour
         SceneManager.LoadScene("HamsterShop");
     }
 
-    private void ChangeScene(string scene)
-    {
-        if (scene != SceneManager.GetActiveScene().name)
-        {
-            //SceneManager
-        }
-    }
-
     private void TaskWithParameters(int buttonId)
     {
-        switch (buttonId)
+        if (buttonId <= 4)
         {
-            case 0:
-                buyHamster(buttonId);
-                break;
-            case 1:
-                buyHamster(buttonId);
-                break;
-            case 2:
-                buyHamster(buttonId);
-                break;
-            case 3:
-                buyHamster(buttonId);
-                break;
-            case 4:
-                buyHamster(buttonId);
-                break;
-            default:
-                break;
+            buyHamster(buttonId);
         }
     }
 
