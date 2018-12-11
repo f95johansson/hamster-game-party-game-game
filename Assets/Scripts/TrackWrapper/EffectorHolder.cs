@@ -42,6 +42,7 @@ public class EffectorHolder : MonoBehaviour
     public MeshCollider DropZone;
     private uint _numberCarrotsAllowed;
     private uint _numberFansAllowed;
+    public bool Unlimited;
 
     public void Awake()
     {
@@ -54,6 +55,12 @@ public class EffectorHolder : MonoBehaviour
 
         _numberCarrotsAllowed = playerData.numberCarrotsAllowed;
         _numberFansAllowed = playerData.numberCarrotsAllowed;
+
+        if (Unlimited)
+        {
+            _numberCarrotsAllowed = 99;
+            _numberFansAllowed = 99;
+        }
         
         _camera = Camera.main;
         _turnEffectors = new List<TurnEffector>();

@@ -10,7 +10,6 @@ public class CameraMovement : MonoBehaviour
     private Vector3 _zoomedOutPosition;
     private float _zoomedOutFieldOfView;
     private const float MinFieldOfView = 15f;
-    public MeshCollider DropZone;
     
     private Vector3 _lastNormalPos;
     private Quaternion _lastNormalRotation;
@@ -77,7 +76,7 @@ public class CameraMovement : MonoBehaviour
         }
         else
         {
-            NotGoTime(); // goes back to boring mode automatically, TODO, maybe this should not be the cameras decision
+            NotGoTime();
         }
     }
 
@@ -120,8 +119,5 @@ public class CameraMovement : MonoBehaviour
         _coolMovement = false;
 
         transform.position = _lastNormalPos;
-        transform.rotation = _lastNormalRotation;
-        
-        Debug.Log("Not game time, resetting camera");
     }
 }
