@@ -34,7 +34,6 @@ public class TimeChallenge : WinCondition
 		_nextCheckPoint.Reset();
 		_clearedLaps = 0;
 		_onProgress.Invoke();
-		Debug.Log("Resetting");
 	}
 
 	private NextCheckPoint _nextCheckPoint;

@@ -66,7 +66,6 @@ public class HamsterStart : MonoBehaviour
 		Friction = friction;
 		TurnSpeed = turnSpeed;
 		Weight = weight;
-
 		_restart = true;
 	}
 
@@ -104,6 +103,8 @@ public class HamsterStart : MonoBehaviour
 		if (Input.GetButtonDown("Jump"))
 		{
 			PlayPauseToggle();
+			//un-comment to randomize stats
+			//NewStats((uint) Random.RandomRange(1, 6), (uint) Random.RandomRange(1, 6), (uint) Random.RandomRange(1, 6), (uint) Random.RandomRange(1, 6));
 		}
 	}
 
