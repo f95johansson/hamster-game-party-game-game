@@ -84,6 +84,13 @@ public class HamsterStart : MonoBehaviour
 		{
 			lapCheck.Reset();
 		}
+		
+		var timeCheck = FindObjectOfType<TimeChallenge>();
+		if (timeCheck)
+		{
+			timeCheck.Reset();
+		}
+	
 	}
 
 	private void LateUpdate () {
