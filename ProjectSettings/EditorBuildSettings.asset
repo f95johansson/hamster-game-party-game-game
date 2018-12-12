@@ -33,8 +33,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Tracks/Bone.unity
     guid: ce1f6e827acc806429fa57335f971c25
   - enabled: 1
+    path: Assets/Scenes/Tracks/Whirly Whirly.unity
+    guid: 7d73ee776177f4bde97cefee63ef7983
+  - enabled: 1
     path: Assets/Scenes/Tracks/Narrow.unity
     guid: a99fb769e735aac4da437c9a5bab9d60
+  - enabled: 1
+    path: Assets/Scenes/Tracks/Swan.unity
+    guid: f59c72ba7d09d40da8a380f0261a5be5
   - enabled: 1
     path: Assets/Scenes/Tracks/Knot.unity
     guid: 50631be9a1133b247b27fcf49d29bf0f
