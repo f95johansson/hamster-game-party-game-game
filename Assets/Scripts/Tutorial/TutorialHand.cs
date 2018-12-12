@@ -24,7 +24,7 @@ public class TutorialHand : MonoBehaviour
 	{
 		if (_finished) StartCoroutine(DoMove());
 
-		if (FindObjectOfType<PushEffector>())
+		if (FindObjectOfType<PushEffector>() || FindObjectOfType<TurnEffector>())
 		{
 			Destroy(gameObject);
 		}

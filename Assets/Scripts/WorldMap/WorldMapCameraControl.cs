@@ -48,8 +48,8 @@ public class WorldMapCameraControl : MonoBehaviour {
 
 		var mouseX = _camera.ScreenToWorldPoint(Input.mousePosition).x;
 		
-		if (mouseX - CameraMin().x < BorderThickness) return new Vector2(-CamSpeed, 0);
-		if (CameraMax().x - mouseX < BorderThickness) return new Vector2(CamSpeed, 0);
+		if (Math.Abs(mouseX - CameraMin().x) < BorderThickness) return new Vector2(-CamSpeed, 0);
+		if (Math.Abs(CameraMax().x - mouseX) < BorderThickness) return new Vector2(CamSpeed, 0);
 		
 		return Vector2.zero;
 	}
