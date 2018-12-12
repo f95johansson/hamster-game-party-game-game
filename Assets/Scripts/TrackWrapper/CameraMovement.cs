@@ -92,7 +92,6 @@ public class CameraMovement : MonoBehaviour
         if (zoom < 0)
         {
             var target = transform.position + before - after;
-            //transform.position = ClosestPointInDropZone(target);
             transform.position = target;
         }
         else if (zoom > 0)
@@ -119,5 +118,6 @@ public class CameraMovement : MonoBehaviour
         _coolMovement = false;
 
         transform.position = _lastNormalPos;
+        transform.rotation = _lastNormalRotation;
     }
 }
