@@ -54,7 +54,7 @@ public class EffectorHolder : MonoBehaviour
         var playerData = GameControl.Control.PlayerData;
 
         _numberCarrotsAllowed = playerData.numberCarrotsAllowed;
-        _numberFansAllowed = playerData.numberCarrotsAllowed;
+        _numberFansAllowed = playerData.numberCatsAllowed;
 
         if (Unlimited)
         {
