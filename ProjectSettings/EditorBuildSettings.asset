@@ -83,4 +83,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Tracks/Blazing.unity
     guid: a88dc57fe9b19304c980b8737d7aaa5c
+  - enabled: 1
+    path: Assets/Scenes/Tracks/Twin.unity
+    guid: a6236c95ce81c8e4b863883a708b2a67
   m_configObjects: {}

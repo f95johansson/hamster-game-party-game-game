@@ -35,6 +35,12 @@ public class CoinCheck : WinCondition {
     public void Start()
     {
         ChangedState();
+        Restart();
+    }
+
+    public override void Restart()
+    {
+        CoinHandler.ResetCoins();
     }
 
     private uint _nrOfCoins;

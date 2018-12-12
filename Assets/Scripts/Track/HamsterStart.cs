@@ -72,24 +72,11 @@ public class HamsterStart : MonoBehaviour
 
 	private void Reset()
 	{
-		var coinHandler = FindObjectOfType<CoinHandler>();
-		if (coinHandler)
+		var winCondition = FindObjectOfType<WinCondition>();
+		if (winCondition)
 		{
-			coinHandler.ResetCoins();	
+			winCondition.Restart();
 		}
-		
-		var lapCheck = FindObjectOfType<LapCheck>();
-		if (lapCheck)
-		{
-			lapCheck.Reset();
-		}
-		
-		var timeCheck = FindObjectOfType<TimeChallenge>();
-		if (timeCheck)
-		{
-			timeCheck.Reset();
-		}
-	
 	}
 
 	private void LateUpdate () {
@@ -103,7 +90,7 @@ public class HamsterStart : MonoBehaviour
 		if (Input.GetButtonDown("Jump"))
 		{
 			PlayPauseToggle();
-			//un-comment to randomize stats
+			//uncomment to randomize stats
 			//NewStats((uint) Random.RandomRange(1, 6), (uint) Random.RandomRange(1, 6), (uint) Random.RandomRange(1, 6), (uint) Random.RandomRange(1, 6));
 		}
 	}

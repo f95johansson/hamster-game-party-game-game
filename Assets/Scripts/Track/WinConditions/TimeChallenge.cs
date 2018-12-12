@@ -1,6 +1,4 @@
-﻿
-using UnityEngine;
-using UnityEngine.Events;
+﻿using UnityEngine.Events;
 
 public class TimeChallenge : WinCondition
 {
@@ -28,7 +26,7 @@ public class TimeChallenge : WinCondition
 		}
 	}
 
-	public void Reset()
+	public override void Restart()
 	{
 		_timeLeft = TimeToBeatInSeconds * 60;
 		_nextCheckPoint.Reset();
@@ -72,6 +70,8 @@ public class TimeChallenge : WinCondition
 	private void FixedUpdate()
 	{
 		_timeLeft--;
+		_onProgress.Invoke();
+		
 		OnStateChange().Invoke();
 		var currentLap = GetLap();
 		
