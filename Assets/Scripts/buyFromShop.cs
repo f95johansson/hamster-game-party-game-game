@@ -33,41 +33,41 @@ public class buyFromShop : MonoBehaviour {
         GameControl.Control.SavePlayerData();
     }
 
-    void Start () {
+    private void Start () {
         m_Button_1.onClick.AddListener(delegate { TaskWithParameters(0); });
         m_Button_2.onClick.AddListener(delegate { TaskWithParameters(1); });
         m_Button_3.onClick.AddListener(delegate { TaskWithParameters(2); });
         m_exit.onClick.AddListener(ExitScene);
         m_NewShopPage.onClick.AddListener(NextShopScene);
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    private void Update () {
         if(money != GameControl.Control.Inventory.moneyAmount) {
             money = GameControl.Control.Inventory.moneyAmount;
             updateMoneyText();
             updatePriceOfItem();
         }
-
+       
 	}
 
-    void ExitScene() {
+    private void ExitScene() {
         SceneManager.LoadScene("LevelSelect");
     }
 
-    void NextShopScene()
+    private void NextShopScene()
     {
         //SceneManager.LoadScene(2);
         SceneManager.LoadScene("HamsterShopScene2");
     }
 
-    void ChangeScene(string scene){
+    private void ChangeScene(string scene){
         if (scene != SceneManager.GetActiveScene().name) {
             //SceneManager
         }
     }
 
-    void TaskWithParameters(int ButtonId)
+    private void TaskWithParameters(int ButtonId)
     {
         uint item;
         uint costForItem;
@@ -120,11 +120,11 @@ public class buyFromShop : MonoBehaviour {
         }
     }
 
-    void updateMoneyText() {
+    private void updateMoneyText() {
         M_TextMoney.text = "Money: " + GameControl.Control.Inventory.moneyAmount;
     }
 
-    void updatePriceOfItem() {
+    private void updatePriceOfItem() {
         m_Text_1.text = "You own: " + (GameControl.Control.Inventory.foodAmount).ToString();
         m_TextCost_1.text = "" + cost[0];
         m_Text_2.text = "Your max: " + (GameControl.Control.PlayerData.numberCarrotsAllowed).ToString();
@@ -140,7 +140,7 @@ public class buyFromShop : MonoBehaviour {
         }
     }
 
-    void SetStateOfButton() {
+    private void SetStateOfButton() {
         if (GameControl.Control.Inventory.foodAmount >= Max[0])
         {
             m_Button_1.interactable = false;
