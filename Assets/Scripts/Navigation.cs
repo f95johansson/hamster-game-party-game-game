@@ -23,8 +23,9 @@ public class Navigation : MonoBehaviour
 		StartTrack("IntroTrack");
 	}
 
-    public void GoToIntroOfTheGame_NotTheTrack() {
-        SceneManager.LoadScene("Intro", LoadSceneMode.Single);
+    public void GoToIntroOfTheGame_NotTheTrack()
+    {
+	    GoToIntroTrackStatic();
     }
 
 	public static void StartHome()
@@ -35,5 +36,10 @@ public class Navigation : MonoBehaviour
 	public static void StartShop()
 	{
 		SceneManager.LoadScene("HamsterShop", LoadSceneMode.Single); 
+	}
+
+	public static void GoToIntroTrackStatic()
+	{
+		SceneManager.LoadScene("Intro", LoadSceneMode.Single);
 	}
 }
