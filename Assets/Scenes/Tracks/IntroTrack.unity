@@ -113,6 +113,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!224 &567780 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 224141250992500480, guid: bb3ae51f58f27224f99b6240c9d15190,
+    type: 2}
+  m_PrefabInternal: {fileID: 212869281}
 --- !u!4 &45906964 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4152682634715704, guid: 699cddc3e9b01074daf57cf864db4159,
@@ -163,7 +168,7 @@ Prefab:
     - target: {fileID: 224376641448667144, guid: 5c117ea8edeeb48319d7c73683e63de4,
         type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224376641448667144, guid: 5c117ea8edeeb48319d7c73683e63de4,
         type: 2}
@@ -215,11 +220,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114674882223532054, guid: 5c117ea8edeeb48319d7c73683e63de4,
+    - target: {fileID: 114406078746052620, guid: 5c117ea8edeeb48319d7c73683e63de4,
         type: 2}
-      propertyPath: TutorialNumber
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: _startPosition
+      value: 
+      objectReference: {fileID: 567780}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5c117ea8edeeb48319d7c73683e63de4, type: 2}
   m_IsPrefabParent: 0
@@ -307,7 +312,7 @@ Transform:
   m_LocalScale: {x: 2.7610667, y: 2.5896213, z: 1.99355}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1001 &212869281
 Prefab:
@@ -346,7 +351,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4378347669719852, guid: bb3ae51f58f27224f99b6240c9d15190, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114544556842615730, guid: bb3ae51f58f27224f99b6240c9d15190,
         type: 2}
@@ -502,7 +507,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &303408289
 Prefab:
@@ -826,7 +831,7 @@ Transform:
   m_LocalScale: {x: 19.566463, y: 1, z: 18.068926}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1259724108 stripped
 Transform:
@@ -869,7 +874,7 @@ Transform:
   - {fileID: 2054563547}
   - {fileID: 576212595}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &1516147164
 GameObject:
@@ -934,7 +939,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1001 &1529407217
 Prefab:
@@ -973,7 +978,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4473707214738298, guid: 83436afce83eb418ea220a2c9e2e80f7, type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 83436afce83eb418ea220a2c9e2e80f7, type: 2}
@@ -1017,7 +1022,7 @@ Transform:
   m_Children:
   - {fileID: 1259724108}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1886037389
 MonoBehaviour:
@@ -1071,7 +1076,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1955365078
 Prefab:
@@ -1110,7 +1115,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4884255603179448, guid: 9d016e1b27c02a8408ba9374c7e96cc5, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 64172961777469210, guid: 9d016e1b27c02a8408ba9374c7e96cc5,
         type: 2}

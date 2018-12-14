@@ -23,7 +23,7 @@ public class Track : MonoBehaviour
 	public bool GroundAt(Vector3 position)
 	{
 		Vector4 position4 = position;
-		position4.w = 1; // position has w = 1, direction has w = 0. We are dealing with a position
+		position4.w = 1; // positions always has w = 1
 		
 		var local = transform.worldToLocalMatrix * position4;
 
@@ -34,17 +34,12 @@ public class Track : MonoBehaviour
 		var tx = (int) (local.x * _pixels.width + (sprite.rect.center.x));
 		var ty = (int) (local.y * _pixels.height + (sprite.rect.center.y));
 
-		if (tx < 0 || ty < 0)
+		if (sprite.rect.Contains(new Vector2(tx, ty)))
 		{
-			return false;
-		}
-
-		if (tx >= sprite.rect.width || ty >= sprite.rect.height)
-		{
-			return false;
+			var color = _pixels.GetPixel(tx, ty);
+			return color.a > 0.6;
 		}
 		
-		var color = _pixels.GetPixel(tx, ty);
-		return color.a > 0.9;
+		return false;
 	}
 }

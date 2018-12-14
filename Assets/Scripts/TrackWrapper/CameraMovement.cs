@@ -10,7 +10,6 @@ public class CameraMovement : MonoBehaviour
     private Vector3 _zoomedOutPosition;
     private float _zoomedOutFieldOfView;
     private const float MinFieldOfView = 15f;
-    public MeshCollider DropZone;
     
     private Vector3 _lastNormalPos;
     private Quaternion _lastNormalRotation;
@@ -21,20 +20,6 @@ public class CameraMovement : MonoBehaviour
         Assert.IsNotNull(_camera, "We must have a camera tagged Main in scene");
         _zoomedOutPosition = transform.position;
         _zoomedOutFieldOfView = _camera.fieldOfView;
-    }
-    
-    private Vector3 ClosestPointInDropZone(Vector3 point)
-    {
-        var min = DropZone.bounds.min;
-        var max = DropZone.bounds.max;
-		
-        if (point.x < min.x) point.x = min.x;
-        else if (point.x > max.x) point.x = max.x;
-		
-        if (point.z < min.z) point.z = min.z;
-        else if (point.z > max.z) point.z = max.z;
-
-        return point;
     }
 
     private float ZoomDelta()
@@ -91,7 +76,7 @@ public class CameraMovement : MonoBehaviour
         }
         else
         {
-            NotGoTime(); // goes back to boring mode automatically, TODO, maybe this should not be the cameras decision
+            NotGoTime();
         }
     }
 
@@ -107,7 +92,6 @@ public class CameraMovement : MonoBehaviour
         if (zoom < 0)
         {
             var target = transform.position + before - after;
-            //transform.position = ClosestPointInDropZone(target);
             transform.position = target;
         }
         else if (zoom > 0)
@@ -135,7 +119,5 @@ public class CameraMovement : MonoBehaviour
 
         transform.position = _lastNormalPos;
         transform.rotation = _lastNormalRotation;
-        
-        Debug.Log("Not game time, resetting camera");
     }
 }

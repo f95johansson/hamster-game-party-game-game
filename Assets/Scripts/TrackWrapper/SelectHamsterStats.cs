@@ -11,6 +11,8 @@ public class SelectHamsterStats : MonoBehaviour
 	public float OffY;
 
 	private List<HamsterStats> _hamsterStats;
+	public string CurrentHamsterId;
+	public CanvasGroup HungerExplanation;
 
 	private void Start ()
 	{		
@@ -40,19 +42,32 @@ public class SelectHamsterStats : MonoBehaviour
 			} 
 		}
 
-		if (_hamsterStats.Count > 0)
+		var anyMatch = false;		
+		foreach (var h in _hamsterStats)
 		{
-			Select(_hamsterStats[0]);
+			if (h.CanRun())
+			{
+				Select(h);
+				anyMatch = true;
+				break;
+			}
 		}
-		else
+
+		if (!anyMatch)
 		{
-			Debug.Log("Does not have hamster, we should do something here");
+			var hamsterStart = FindObjectOfType<HamsterStart>();
+			hamsterStart.Pause();
+			hamsterStart.BlockPlay = true;
+			HungerExplanation.alpha = 1;
+			HungerExplanation.interactable = true;
+			HungerExplanation.blocksRaycasts = true;
 		}
 	}
 
 	private void Select(HamsterStats hamster)
 	{
 		FindObjectOfType<HamsterStart>().NewStats(hamster.SpeedPoints, hamster.WeightPoints, hamster.TurnSpeedPoints, hamster.FrictionPoints);
+		CurrentHamsterId = hamster.Id;
 	}
 
 	private Vector3 PositionFromIndex(int i)

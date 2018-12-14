@@ -33,8 +33,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Tracks/Bone.unity
     guid: ce1f6e827acc806429fa57335f971c25
   - enabled: 1
+    path: Assets/Scenes/Tracks/Whirly Whirly.unity
+    guid: 7d73ee776177f4bde97cefee63ef7983
+  - enabled: 1
     path: Assets/Scenes/Tracks/Narrow.unity
     guid: a99fb769e735aac4da437c9a5bab9d60
+  - enabled: 1
+    path: Assets/Scenes/Tracks/Swan.unity
+    guid: f59c72ba7d09d40da8a380f0261a5be5
   - enabled: 1
     path: Assets/Scenes/Tracks/Knot.unity
     guid: 50631be9a1133b247b27fcf49d29bf0f
@@ -60,9 +66,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Tracks/CoinIsland.unity
     guid: 02ccb6a917c08e9488257d6b3c295d15
   - enabled: 1
-    path: Assets/Scenes/LevelSelect.unity
-    guid: c4131262d4cbda9478928047215560f5
-  - enabled: 1
     path: Assets/Scenes/HamsterShop.unity
     guid: d7cc695f0a70a482a8f304f6f2275e40
   - enabled: 1
@@ -72,9 +75,15 @@ EditorBuildSettings:
     path: Assets/Scenes/HamsterCage.unity
     guid: 3b27707547a5bd944be1e449f3dfe298
   - enabled: 1
-    path: Assets/Scenes/WorldMap.unity
+    path: Assets/Scenes/LevelSelect.unity
     guid: 8b89bec52820aa544897386671fde080
   - enabled: 1
     path: Assets/Scenes/Tracks/Snail.unity
     guid: 542e99f7fba7f9b4aab0f04618d8d926
+  - enabled: 1
+    path: Assets/Scenes/Tracks/Blazing.unity
+    guid: a88dc57fe9b19304c980b8737d7aaa5c
+  - enabled: 1
+    path: Assets/Scenes/Tracks/Twin.unity
+    guid: a6236c95ce81c8e4b863883a708b2a67
   m_configObjects: {}

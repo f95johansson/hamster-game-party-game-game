@@ -95,20 +95,6 @@ public class PushEffector : MonoBehaviour
 		return Vector3.zero;
 	}
 
-	public Vector3 GetPushForce(Vector3 position3D)
-	{
-		if (_points == null) return Vector3.zero;
-		
-		float distance;
-		if (!ContainsPoint(position3D, out distance))
-		{
-			return Vector3.zero;
-		}
-		
-		var mag = 1 - distance/Far;
-		return (Handle.transform.position - transform.position).normalized * Strength * mag;
-	}
-
 	private bool ContainsPoint(Vector3 position, out float distance)
 	{
 		//positions order is {left, right, rightFar, leftFar}

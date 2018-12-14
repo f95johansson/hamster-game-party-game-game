@@ -9,6 +9,9 @@ public class HamsterStats : MonoBehaviour
 	private Stat _weight;
 	private Stat _turnSpeed;
 	private Stat _friction;
+
+	public Text TooHungryText;
+	private uint _hunger;
 	
 	public readonly UnityEvent OnSelected = new UnityEvent();
 
@@ -45,6 +48,11 @@ public class HamsterStats : MonoBehaviour
 		_weight.Points = state.WeightLevel;
 		_turnSpeed.Points = state.TurnSpeedLevel;
 		_friction.Points = state.FrictionLevel;
+		_hunger = state.foodLevel;
+
+		if (_hunger != 0) TooHungryText.text = "";
+		
+		_id = state.getUUID();
 
 		GetComponent<Text>().text = state.HamsterName;
 
@@ -52,13 +60,23 @@ public class HamsterStats : MonoBehaviour
 		{
 			Events.OnEvent(EventTriggerType.PointerClick, c, ev =>
 			{
-				SelectMe();
+				if (_hunger > 0) SelectMe();
 			});
 		}
+	}
+
+	private string _id;
+	public string Id {
+		get { return _id; }
 	}
 
 	public void SelectMe()
 	{
 		OnSelected.Invoke();
+	}
+
+	public bool CanRun()
+	{
+		return _hunger > 0;
 	}
 }

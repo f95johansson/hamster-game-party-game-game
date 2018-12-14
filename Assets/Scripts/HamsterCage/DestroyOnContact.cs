@@ -1,25 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class DestroyOnContact : MonoBehaviour
 {
-    public HamsterController hamsterController;
+    public HamsterController HamsterController;
     public GameObject objectTypeToDestroy;
 
-    public GameObject objectTypeToGenerate;
+    public bool CareAboutHamsters = true;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.GetComponent<HamsterPrefab>())
+        var hamster = other.gameObject.GetComponent<HamsterPrefab>();
+        if (CareAboutHamsters && hamster)
         {
-            hamsterController.SpawnOneHamster(other.gameObject);
+            HamsterController.SpawnOneHamster(hamster);
         }
-
-        if (other.gameObject.name == objectTypeToDestroy.name + "(Clone)"  )
+        else if (other.gameObject.name.StartsWith(objectTypeToDestroy.name))
         {
             Destroy(other.gameObject);
         }
-        
     }
 }

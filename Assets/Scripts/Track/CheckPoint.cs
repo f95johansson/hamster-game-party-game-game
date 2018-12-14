@@ -20,7 +20,7 @@ public class CheckPoint : MonoBehaviour
 	public IsHere HamsterIsHere;
 	public uint Index;
 
-	public void Awake()
+	public CheckPoint()
 	{
 		HamsterIsHere = new IsHere(this);
 	}

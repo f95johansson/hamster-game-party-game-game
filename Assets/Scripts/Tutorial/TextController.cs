@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TextController : MonoBehaviour {
@@ -111,7 +112,23 @@ public class TextController : MonoBehaviour {
 	}
 
 	public void NextLevel() {
-		Navigation.StartTrack("IntroTrack2");
+		if (SceneManager.GetActiveScene().name == "IntroTrack")
+		{
+			Navigation.StartTrack("IntroTrack2");
+		} 
+		else if (SceneManager.GetActiveScene().name == "IntroTrack2")
+		{
+			Navigation.StartTrack("IntroTrack3");
+		} 
+		else if (SceneManager.GetActiveScene().name == "IntroTrack3")
+		{
+			Navigation.StartTrack("IntroTrack4");
+		}
+		else
+		{
+			Navigation.StartLevelSelect();	
+		}
+
 	}
 }
 

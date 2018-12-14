@@ -9,4 +9,5 @@ public abstract class WinCondition : MonoBehaviour
     public abstract UnityEvent OnStateChange();
     public abstract string Description();
     public abstract string ChangedState();
+    public abstract void Restart();
 }

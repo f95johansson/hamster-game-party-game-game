@@ -1,16 +1,21 @@
 ﻿using UnityEngine;
 
 public class WorldMapNode : MonoBehaviour {
-	private const float BIG = 1.4f;
+	private const float Big = 1.4f;
 	private float _normal = 1.4f;
 	private float _goal;
-	private float _current;
+	protected float Current;
 
 	private void Start()
 	{
+		Init();
+	}
+
+	protected void Init()
+	{
 		_normal = transform.localScale.x;
 		_goal = _normal;
-		_current = 0;
+		Current = _goal;
 
 		if (GameControl.Control.Progress.HasCleared(gameObject.name))
 		{
@@ -18,10 +23,10 @@ public class WorldMapNode : MonoBehaviour {
 			star.enabled = true;
 		}
 	}
-	
+
 	private void OnMouseEnter()
 	{
-		_goal = BIG * _normal;
+		_goal = Big * _normal;
 	}
 
 	private void OnMouseExit()
@@ -31,7 +36,7 @@ public class WorldMapNode : MonoBehaviour {
 
 	private void Update()
 	{
-		_current = Mathf.Lerp(_current, _goal, .1f);
-		transform.localScale = new Vector3(_current, _current, transform.localScale.z);
+		Current = Mathf.Lerp(Current, _goal, .1f);
+		transform.localScale = new Vector3(Current, Current, transform.localScale.z);
 	}
 }

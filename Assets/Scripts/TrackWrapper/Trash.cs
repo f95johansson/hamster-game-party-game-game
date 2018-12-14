@@ -43,11 +43,11 @@ public class Trash : MonoBehaviour
 				dir *= (CloseRadius / magnitude);
 			}
 		
-			pos = transform.parent.position + dir;
+			pos = _trashStart + dir;
 		}
 		else
 		{
-			pos = transform.parent.position;
+			pos = _trashStart;
 		}
 		
 		transform.position = Vector3.Lerp(transform.position, pos, AnimationSpeed);

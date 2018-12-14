@@ -48,9 +48,28 @@ public class Hamster : MonoBehaviour
 		_force += (transform.forward * Speed);
 		
 		_force += VerticalStuff();
-		
-		transform.position += _force * Weakener;
-		
+
+		if (_ySpeed >= 0)
+		{
+			transform.position += _force * Weakener;
+		}
+		else
+		{
+			var newPos = transform.position + (_force * Weakener);
+
+			var collisionHere = _track.GroundAt(transform.position);
+			var collisionThere = _track.GroundAt(newPos);
+
+			if (!collisionHere && collisionThere)
+			{
+				transform.position += new Vector3(0, _force.y, 0) * Weakener;
+			}
+			else
+			{
+				transform.position = newPos;
+			}
+		}
+
 		_force *= 1 - Friction;
 	}
 
@@ -112,9 +131,9 @@ public class Hamster : MonoBehaviour
 
 	public void SetStats(uint speed, uint weight, uint turnSpeed, uint friction)
 	{
-		Speed = Range(.5f, 3f, speed);
-		TurnSpeed = Range(.015f, .09f, turnSpeed);
-		Friction = Range(0.05f, .25f, friction);
+		Speed = Range(.7f, 2f, speed);
+		TurnSpeed = Range(.03f, .09f, turnSpeed) * Speed / (1.35f); // one needs higher turning speed otherwise one cannot turn
+		Friction = Range(0.08f, .15f, friction);
 		Weight = Range(.5f, 2f, weight);
 	}
 }

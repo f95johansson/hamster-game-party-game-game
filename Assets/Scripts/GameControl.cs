@@ -1,16 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
-
+using System.Linq;
 using UnityEngine.SceneManagement;
 
 public class GameControl : MonoBehaviour
 {
-
-    private static string userDataPath { get { return Application.persistentDataPath; } }
+    private static string userDataPath
+    {
+        get { return Application.persistentDataPath; }
+    }
 
     public static GameControl Control;
 
@@ -28,6 +29,8 @@ public class GameControl : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             Control = this;
             LoadProgress();
+            LoadInventory();
+            LoadPlayerData();
         }
         else if (Control != this)
         {
@@ -52,7 +55,7 @@ public class GameControl : MonoBehaviour
             Debug.Log(userDataPath);
             var bf = new BinaryFormatter();
             var file = File.Open(userDataPath + "/Inventory.dat", FileMode.Open);
-            var data = (Inventory)bf.Deserialize(file);
+            var data = (Inventory) bf.Deserialize(file);
             file.Close();
 
             Inventory.foodAmount = data.foodAmount;
@@ -92,7 +95,7 @@ public class GameControl : MonoBehaviour
         if (File.Exists(userDataPath + "/PlayerData.dat"))
         {
             var file = File.Open(userDataPath + "/PlayerData.dat", FileMode.Open);
-            var data = (PlayerData)bf.Deserialize(file);
+            var data = (PlayerData) bf.Deserialize(file);
             file.Close();
 
             PlayerData.numberCarrotsAllowed = data.numberCarrotsAllowed;
@@ -101,6 +104,11 @@ public class GameControl : MonoBehaviour
             //PlayerData.numberCarrotsAllowed = 3;
             //reset state of numberCatsAllowed
             //PlayerData.numberCatsAllowed = 3;
+        }
+        else
+        {
+            PlayerData.numberCarrotsAllowed = 3;
+            PlayerData.numberCatsAllowed = 3;
         }
     }
 
@@ -127,7 +135,7 @@ public class GameControl : MonoBehaviour
         if (File.Exists(userDataPath + "/ShopData.dat"))
         {
             var file = File.Open(userDataPath + "/ShopData.dat", FileMode.Open);
-            var data = (ShopData)bf.Deserialize(file);
+            var data = (ShopData) bf.Deserialize(file);
             file.Close();
 
             ShopData.currentEpochTime = data.currentEpochTime;
@@ -153,15 +161,14 @@ public class GameControl : MonoBehaviour
             currentEpochTime = ShopData.currentEpochTime,
             hamsterStatesShop = ShopData.hamsterStatesShop,
             ownHamster = ShopData.ownHamster
-
         };
-            
 
         bf.Serialize(file, data);
         file.Close();
     }
 
-    public void LoadProgress() {
+    public void LoadProgress()
+    {
         var bf = new BinaryFormatter();
         if (File.Exists(userDataPath + "/Progress.dat"))
         {
@@ -169,18 +176,45 @@ public class GameControl : MonoBehaviour
             var data = (ProgressData) bf.Deserialize(file);
             file.Close();
             Progress = GameProgress.FromSerialized(data);
-        }  
+        }
     }
 
-    public void SaveProgress() {
+    public void SaveProgress()
+    {
         var bf = new BinaryFormatter();
         var file = File.Create(userDataPath + "/Progress.dat");
         bf.Serialize(file, Progress.Serialize());
         file.Close();
     }
 
-    public  void GoToScene(string sceneName)
+    public void GoToScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
+    }
+
+    public void ClearAllData()
+    {
+        var files = new[]
+        {
+            userDataPath + "/Progress.dat", userDataPath + "/ShopData.dat", userDataPath + "/PlayerData.dat",
+            userDataPath + "/Inventory.dat"
+        };
+
+        foreach (var fileName in files)
+        {
+            File.Delete(fileName);
+        }
+
+        LoadInventory();
+        LoadPlayerData();
+        LoadProgress();
+        LoadShopData();
+    }
+
+    public static bool HasNoSaveDate()
+    {
+        if (File.Exists(userDataPath + "/Inventory.dat")) return false;
+        if (!Control.Progress.HasClearedAnything()) return false;
+        return true;
     }
 }

@@ -7,7 +7,7 @@ public class LapCheck : WinCondition
 	private readonly UnityEvent _onTestWin = new UnityEvent();
 	
 	private CheckPoint[] _checkPoints;
-	public uint LapsToWin = 1;
+	public uint LapsToWin = 2;
 
 	private struct NextCheckPoint
 	{
@@ -22,13 +22,6 @@ public class LapCheck : WinCondition
 		{
 			Next = 0;
 		}
-	}
-
-	public void Reset()
-	{
-		_nextCheckPoint.Reset();
-		_clearedLaps = 0;
-		_onProgress.Invoke();
 	}
 
 	private NextCheckPoint _nextCheckPoint;
@@ -109,5 +102,12 @@ public class LapCheck : WinCondition
 	public override string ChangedState()
 	{
 		return "" + _clearedLaps + "/" + LapsToWin;
+	}
+
+	public override void Restart()
+	{
+		_nextCheckPoint.Reset();
+		_clearedLaps = 0;
+		_onProgress.Invoke();
 	}
 }

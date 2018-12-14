@@ -7,6 +7,7 @@ public class HamsterStart : MonoBehaviour
 	private Hamster _currentHamster;
 	private EffectorHolder _holder;
 
+	public bool BlockPlay;
 
 	private void Start() {
 		Spawn();
@@ -17,7 +18,7 @@ public class HamsterStart : MonoBehaviour
 		{
 			if (_currentHamster)
 			{
-				DestroyCurrentHamster();
+				Pause();
 				Reset();
 			}
 			
@@ -29,9 +30,9 @@ public class HamsterStart : MonoBehaviour
 	{
 		if (_currentHamster)
 		{
-			DestroyCurrentHamster();
+			Pause();
 		}
-		else
+		else if (!BlockPlay)
 		{
 			Spawn();
 		}
@@ -43,18 +44,21 @@ public class HamsterStart : MonoBehaviour
 		_currentHamster.SetStats(Speed, Weight, TurnSpeed, Friction);
 	}
 
-	private void DestroyCurrentHamster()
+	public void Pause()
 	{
-		Destroy(_currentHamster.gameObject);
-		_currentHamster = null;
-		Reset();
+		if (_currentHamster)
+		{
+			Destroy(_currentHamster.gameObject);
+			_currentHamster = null;
+			Reset();
+		}
 	}
 
 	public uint Speed = 2;
 	public uint Friction = 2;
 	public uint TurnSpeed = 2;
 	public uint Weight = 2;
-	private bool _restart = false;
+	private bool _restart;
 
 	public void NewStats(uint speed, uint friction, uint turnSpeed, uint weight)
 	{
@@ -62,29 +66,22 @@ public class HamsterStart : MonoBehaviour
 		Friction = friction;
 		TurnSpeed = turnSpeed;
 		Weight = weight;
-
 		_restart = true;
 	}
 
 
 	private void Reset()
 	{
-		var coinHandler = FindObjectOfType<CoinHandler>();
-		if (coinHandler)
+		var winCondition = FindObjectOfType<WinCondition>();
+		if (winCondition)
 		{
-			coinHandler.ResetCoins();	
-		}
-		
-		var lapCheck = FindObjectOfType<LapCheck>();
-		if (lapCheck)
-		{
-			lapCheck.Reset();
+			winCondition.Restart();
 		}
 	}
 
 	private void LateUpdate () {
 
-		if (_currentHamster && _currentHamster.transform.position.y < -10 || _restart)
+		if (_currentHamster && _currentHamster.transform.position.y < -14 || _restart)
 		{
 			_restart = false;
 			RestartEverything();
@@ -93,12 +90,14 @@ public class HamsterStart : MonoBehaviour
 		if (Input.GetButtonDown("Jump"))
 		{
 			PlayPauseToggle();
+			//uncomment to randomize stats
+			//NewStats((uint) Random.RandomRange(1, 6), (uint) Random.RandomRange(1, 6), (uint) Random.RandomRange(1, 6), (uint) Random.RandomRange(1, 6));
 		}
 	}
 
 	private void RestartEverything()
 	{
-		DestroyCurrentHamster();
+		Pause();
 		_holder.HamsterDied();
 		Reset();
 		Spawn();

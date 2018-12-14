@@ -76,6 +76,11 @@ public class GameProgress {
     {
         return _tracksProgress.ContainsKey(levelName);
     }
+
+    public bool HasClearedAnything()
+    {
+        return _tracksProgress.Count > 0;
+    }
 }
 
 [Serializable]
