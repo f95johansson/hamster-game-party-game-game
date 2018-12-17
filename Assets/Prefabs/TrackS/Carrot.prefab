@@ -38,7 +38,6 @@ GameObject:
   - component: {fileID: 4925183961666080}
   - component: {fileID: 33930018556105422}
   - component: {fileID: 23258887244298486}
-  - component: {fileID: 95984216378922086}
   m_Layer: 0
   m_Name: carrotLeaf
   m_TagString: Untagged
@@ -56,7 +55,6 @@ GameObject:
   - component: {fileID: 4465416113456770}
   - component: {fileID: 33739039372923088}
   - component: {fileID: 23417126859534820}
-  - component: {fileID: 95086066976264614}
   m_Layer: 0
   m_Name: carrot
   m_TagString: Untagged
@@ -74,7 +72,6 @@ GameObject:
   - component: {fileID: 4559100818861414}
   - component: {fileID: 33129155180139104}
   - component: {fileID: 23860484050298770}
-  - component: {fileID: 95105556343222000}
   m_Layer: 0
   m_Name: carrotLeaf (1)
   m_TagString: Untagged
@@ -277,75 +274,21 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1619095466502052}
-  m_Mesh: {fileID: 4300000, guid: 8d3df986605505647a019d38bba82f25, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 05587d4f0a55db24488ab93127da4c33, type: 2}
 --- !u!33 &33739039372923088
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1535354346076908}
-  m_Mesh: {fileID: 4300002, guid: 3753f23f04572cf4d9217c9c92b2eddc, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 949d05806e1a88f4cbc6d7b273e7defd, type: 2}
 --- !u!33 &33930018556105422
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1451444352599674}
-  m_Mesh: {fileID: 4300000, guid: 8d3df986605505647a019d38bba82f25, type: 3}
---- !u!95 &95086066976264614
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1535354346076908}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 3753f23f04572cf4d9217c9c92b2eddc, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!95 &95105556343222000
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1619095466502052}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 8d3df986605505647a019d38bba82f25, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!95 &95984216378922086
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1451444352599674}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 8d3df986605505647a019d38bba82f25, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_Mesh: {fileID: 4300000, guid: 05587d4f0a55db24488ab93127da4c33, type: 2}
 --- !u!114 &114747335469638224
 MonoBehaviour:
   m_ObjectHideFlags: 1

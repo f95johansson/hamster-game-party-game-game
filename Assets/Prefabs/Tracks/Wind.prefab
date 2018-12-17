@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4449436378125784}
   - component: {fileID: 33663761588767382}
   - component: {fileID: 23960403343747984}
-  - component: {fileID: 95698706035669186}
   - component: {fileID: 114739433716101490}
   m_Layer: 0
   m_Name: wind
@@ -187,7 +186,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: a22b68c1a3419af45931907c6f520d8e, type: 3}
+  - {fileID: 2100000, guid: f5491b459fff7af498a2449d6c24f030, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -220,7 +219,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1266992960846058}
-  m_Mesh: {fileID: 4300000, guid: a22b68c1a3419af45931907c6f520d8e, type: 3}
+  m_Mesh: {fileID: 4300000, guid: c3c1bf642af4bb34cb6a7bf6de83e0cd, type: 2}
 --- !u!65 &65969126963627784
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -233,24 +232,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!95 &95698706035669186
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1266992960846058}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: a22b68c1a3419af45931907c6f520d8e, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114739433716101490
 MonoBehaviour:
   m_ObjectHideFlags: 1
