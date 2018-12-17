@@ -8,6 +8,7 @@ public class Feeder : MonoBehaviour {
     public Component foodImage;
     public GameObject foodPrefab;
     public Text missingFood;
+    public Text foodAmountText;
 
     private GameObject newFood;
     private Camera camera; 
@@ -16,6 +17,8 @@ public class Feeder : MonoBehaviour {
     // Use this for initialization
     void Start () {
         camera = Camera.main;
+        UpdateFoodText();
+
         Events.OnEvent(UnityEngine.EventSystems.EventTriggerType.PointerDown, foodImage, e =>
         {
             if (GameControl.Control.Inventory.foodAmount > 0)
@@ -42,6 +45,7 @@ public class Feeder : MonoBehaviour {
             if (Input.GetMouseButtonUp(0))
             {
                 newFood = null;
+                UpdateFoodText();
             }
         }
 
@@ -58,5 +62,11 @@ public class Feeder : MonoBehaviour {
 
     }
 
-    
+
+    public void UpdateFoodText()
+    {
+        foodAmountText.text = (GameControl.Control.Inventory.foodAmount).ToString();
+    }
+
+
 }
