@@ -11,7 +11,7 @@ public class NewGame : MonoBehaviour
 
 	private void Start ()
 	{
-		if (GameControl.HasNoSaveDate())
+		if (GameControl.HasNoSaveData())
 		{
 			Destroy(gameObject);
 		}

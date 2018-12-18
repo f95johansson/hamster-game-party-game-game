@@ -23,6 +23,7 @@ public class Intro : MonoBehaviour
 	private void Start ()
 	{
 		GameControl.Control.LoadInventory();
+		GameControl.Control.LoadProgress();
 		if (GameControl.Control.Inventory.HasAHamster())
 		{
 			var progress = GameControl.Control.Progress;
