@@ -33,6 +33,9 @@ public class Intro : MonoBehaviour
 					return;
 				}
 			}
+			
+			Navigation.StartLevelSelect();
+			return;
 		}
 		
 		Buttons.alpha = 1;
