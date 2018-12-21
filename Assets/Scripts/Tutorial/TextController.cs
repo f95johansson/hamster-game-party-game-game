@@ -16,7 +16,9 @@ public class TextController : MonoBehaviour {
 	public int TutorialNumber = 0;
 	public bool ShouldRunEndOfTutorial = false;
 
-	private bool _tutorialRunning = true;
+
+	private const float FADE_TIME = 0.5f;
+
 
 	private void Start()
 	{
@@ -45,7 +47,6 @@ public class TextController : MonoBehaviour {
 
 	IEnumerator RunTutorial(string[] monolog)
     {
-		_tutorialRunning = true;
 
 		bool first = true;
 		foreach (string text in monolog)
@@ -54,25 +55,24 @@ public class TextController : MonoBehaviour {
 			if (first) {
 				first = false;
 			} else {
-				StartCoroutine(FadeOut(TextBox, 0.5f));
-				yield return new WaitForSeconds(0.5f);
+				StartCoroutine(FadeOut(TextBox, FADE_TIME));
+				yield return new WaitForSeconds(FADE_TIME);
 			}
 		
 			_text.text = text;
 
 			_clippy.Jump();
 
-			StartCoroutine(FadeIn(TextBox, 0.5f));
-			yield return new WaitForSeconds(0.5f);
+			StartCoroutine(FadeIn(TextBox, FADE_TIME));
+			yield return new WaitForSeconds(FADE_TIME);
 			
         	_currentWaiting = new WaitForCancel();
 			yield return _currentWaiting;
 			_currentWaiting = null;
 		}
 
-		_tutorialRunning = false;
-		StartCoroutine(FadeOut(TextBox, 0.5f));
-		yield return new WaitForSeconds(0.5f);
+		StartCoroutine(FadeOut(TextBox, FADE_TIME));
+		yield return new WaitForSeconds(FADE_TIME);
     }
 
 	private IEnumerator FadeOut(CanvasGroup objekt, float time)  // seconds
