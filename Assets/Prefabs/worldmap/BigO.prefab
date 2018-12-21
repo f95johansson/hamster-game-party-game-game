@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4032718957549926}
   - component: {fileID: 212857105460242682}
+  - component: {fileID: 114563065256782772}
   m_Layer: 0
   m_Name: Star
   m_TagString: Untagged
@@ -38,6 +39,7 @@ GameObject:
   - component: {fileID: 212502449049258778}
   - component: {fileID: 58522879421611060}
   - component: {fileID: 114627933088758624}
+  - component: {fileID: 114599571152323850}
   m_Layer: 0
   m_Name: BigO
   m_TagString: Untagged
@@ -53,7 +55,7 @@ Transform:
   m_GameObject: {fileID: 1016611372641098}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.09, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 4110825691956544}
   m_RootOrder: 0
@@ -65,7 +67,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1667012247344084}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -19.6, y: 6.9, z: 0}
+  m_LocalPosition: {x: -21.7, y: -5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4032718957549926}
@@ -87,6 +89,34 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 3.9282684
+--- !u!114 &114563065256782772
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1016611372641098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 298b8b733b7bd4d58a7782ddce38c58b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Axis: z
+  RotateSpeed: -40
+--- !u!114 &114599571152323850
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1667012247344084}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 735432da95b6b4e55870338c1ba0820e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  XMovement: 1
+  YMovement: 0.5
+  XOffset: 0
+  YOffset: 20
 --- !u!114 &114627933088758624
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -132,7 +162,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 14e3eb6d1012cce4d989bad29c9e65e1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -177,8 +207,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 58d4c1a0eca2b4f4c96bf46d988633db, type: 3}
+  m_SortingOrder: 3
+  m_Sprite: {fileID: 21300000, guid: dce3bb06938b64dbf8859b26aaa078c5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
