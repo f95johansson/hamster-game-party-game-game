@@ -981,35 +981,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 64172961777469210, guid: 9d016e1b27c02a8408ba9374c7e96cc5,
-        type: 2}
-      propertyPath: m_Convex
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4884255603179448, guid: 9d016e1b27c02a8408ba9374c7e96cc5, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 114508224497389406, guid: 9d016e1b27c02a8408ba9374c7e96cc5,
-        type: 2}
-      propertyPath: Speed
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114508224497389406, guid: 9d016e1b27c02a8408ba9374c7e96cc5,
-        type: 2}
-      propertyPath: Friction
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114508224497389406, guid: 9d016e1b27c02a8408ba9374c7e96cc5,
-        type: 2}
-      propertyPath: TurnSpeed
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114508224497389406, guid: 9d016e1b27c02a8408ba9374c7e96cc5,
-        type: 2}
-      propertyPath: Weight
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9d016e1b27c02a8408ba9374c7e96cc5, type: 2}
   m_IsPrefabParent: 0

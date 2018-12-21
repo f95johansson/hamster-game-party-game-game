@@ -9,9 +9,8 @@ public class HamsterState //: MonoBehaviour
 {
     public string UUID;
     [Range(1, 5)]
-    public uint foodLevel = 5; //0,1,2
+    public uint foodLevel = 5;
     [Range(1, 5)]
-
     public uint WeightLevel = 1; //0,1,2
     [Range(1, 5)]
     public uint SpeedLevel = 1; //0,1,2

@@ -107,7 +107,7 @@ public class GameControl : MonoBehaviour
         }
         else
         {
-            PlayerData.numberCarrotsAllowed = 3;
+            PlayerData.numberCarrotsAllowed = 4;
             PlayerData.numberCatsAllowed = 3;
         }
     }
@@ -177,6 +177,10 @@ public class GameControl : MonoBehaviour
             file.Close();
             Progress = GameProgress.FromSerialized(data);
         }
+        else
+        {
+            Progress = new GameProgress();
+        }
     }
 
     public void SaveProgress()
@@ -196,8 +200,8 @@ public class GameControl : MonoBehaviour
     {
         var files = new[]
         {
-            userDataPath + "/Progress.dat", userDataPath + "/ShopData.dat", userDataPath + "/PlayerData.dat",
-            userDataPath + "/Inventory.dat"
+            userDataPath + "/Progress.dat", userDataPath + "/ShopData.dat",
+            userDataPath + "/PlayerData.dat", userDataPath + "/Inventory.dat"
         };
 
         foreach (var fileName in files)
@@ -211,7 +215,7 @@ public class GameControl : MonoBehaviour
         LoadShopData();
     }
 
-    public static bool HasNoSaveDate()
+    public static bool HasNoSaveData()
     {
         if (File.Exists(userDataPath + "/Inventory.dat")) return false;
         if (!Control.Progress.HasClearedAnything()) return false;

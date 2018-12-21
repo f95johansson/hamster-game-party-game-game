@@ -11,7 +11,6 @@ public class HamsterController : MonoBehaviour {
 
     private Camera _camera;
     public HamsterPrefab Hamster;
-    public Text foodAmountText;
     public Button exitButton;
 
     public SpriteRenderer Cage;
@@ -21,13 +20,13 @@ public class HamsterController : MonoBehaviour {
     {
         Debug.Log(Application.persistentDataPath);
         GameControl.Control.LoadInventory();
-        GameControl.Control.LoadPlayerData();
+        //GameControl.Control.LoadPlayerData();
     }
 
     private void OnDestroy()
     {
         GameControl.Control.SaveInventory();
-        GameControl.Control.SavePlayerData();
+        //GameControl.Control.SavePlayerData();
     }
 
     private void Start()
@@ -36,8 +35,6 @@ public class HamsterController : MonoBehaviour {
         Assert.IsNotNull(_camera);
 
         exitButton.onClick.AddListener(ExitScene);
-        
-        UpdateFoodText();
         
         StartCoroutine(SpawnHamsters());
     }
@@ -49,11 +46,6 @@ public class HamsterController : MonoBehaviour {
                        _camera.ViewportToWorldPoint(new Vector2(0, 0)).x;
 
         _camera.orthographicSize *= cageWidth / camWidth;
-    }
-
-    public void FixedUpdate()
-    {
-        UpdateFoodText();
     }
 
     private static void ExitScene()
@@ -95,8 +87,4 @@ public class HamsterController : MonoBehaviour {
         Debug.Log("SpawnOneHamster CALLED");
     }
 
-    public void UpdateFoodText()
-    {
-        foodAmountText.text = (GameControl.Control.Inventory.foodAmount).ToString();
-    }
 }

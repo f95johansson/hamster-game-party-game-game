@@ -24,6 +24,8 @@ public class HamsterPrefab : MonoBehaviour
 
     private void Update()
     {
+        foodBar.value = GameControl.Control.Inventory.hamsterStates[_index].foodLevel;
+
         if (_isGrabbed)
         {
             var mousePos = Input.mousePosition;
@@ -39,12 +41,6 @@ public class HamsterPrefab : MonoBehaviour
 
     public uint GetIndex() {
         return _index;
-    }
-
-
-    public void FixedUpdate()
-    {
-        foodBar.value = GameControl.Control.Inventory.hamsterStates[_index].foodLevel;
     }
 
     public void UpdateScaleWeight()
@@ -70,13 +66,15 @@ public class HamsterPrefab : MonoBehaviour
     {
         if (other.gameObject.name.StartsWith(objectTypeToEat.name))
         {
-            GameControl.Control.Inventory.hamsterStates[_index].foodLevel++;
-            
-            GameControl.Control.Inventory.RemoveFood(1);
-
+            if (GameControl.Control.Inventory.hamsterStates[_index].foodLevel < 5)
+            {
+                GameControl.Control.Inventory.hamsterStates[_index].foodLevel++;
+                GameControl.Control.Inventory.RemoveFood(1);
+            }
             Destroy(other.gameObject);
         }
     }
+
 
     public void SetWeightLevel(uint weight) {
         GameControl.Control.Inventory.hamsterStates[_index].WeightLevel = weight;

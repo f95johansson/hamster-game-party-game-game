@@ -27,26 +27,14 @@ public class InCaseNoHamster : MonoBehaviour {
 
 		if (stuck)
 		{
-			var hs = new HamsterState
-			{
-				foodLevel = 5,
-				FrictionLevel = 2,
-				SpeedLevel = 2,
-				TurnSpeedLevel = 2,
-				WeightLevel = 2,
-				HamsterName = BuyFromShopScene2.getRandomName()
-			};
-			
-			hs.GenerateUUID();
-
-			GameControl.Control.Inventory.AddHamster(hs);
+			GameControl.Control.Inventory.AddMoney(100);
 			GameControl.Control.SaveInventory();
 
-			StartCoroutine(ShowHamsterGot());
+			StartCoroutine(ShowMoneyGot());
 		}
 	}
 
-	private IEnumerator ShowHamsterGot()
+	private IEnumerator ShowMoneyGot()
 	{
 		var cg = GetComponent<CanvasGroup>();
 		cg.alpha = 1;

@@ -210,6 +210,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114606210351316532, guid: ac831208103fa485f9cb2537db1ecf24,
+        type: 2}
+      propertyPath: m_Text
+      value: Weight
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ac831208103fa485f9cb2537db1ecf24, type: 2}
   m_IsPrefabParent: 0
@@ -431,7 +436,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 903a96081bcad4df6a9af4b356f5f98f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6ed9a2f3186df4fda80aff5d92308681, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1028,6 +1033,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8977ff4e2e43f4f87a3259b8a49b1db8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debug: 0
 --- !u!1 &579005948
 GameObject:
   m_ObjectHideFlags: 0
@@ -1874,6 +1880,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114606210351316532, guid: ac831208103fa485f9cb2537db1ecf24,
+        type: 2}
+      propertyPath: m_Text
+      value: Weight
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ac831208103fa485f9cb2537db1ecf24, type: 2}
   m_IsPrefabParent: 0
@@ -1985,6 +1996,11 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114606210351316532, guid: ac831208103fa485f9cb2537db1ecf24,
+        type: 2}
+      propertyPath: m_Text
+      value: Weight
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ac831208103fa485f9cb2537db1ecf24, type: 2}
@@ -2179,6 +2195,11 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114606210351316532, guid: ac831208103fa485f9cb2537db1ecf24,
+        type: 2}
+      propertyPath: m_Text
+      value: Weight
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ac831208103fa485f9cb2537db1ecf24, type: 2}
@@ -2547,6 +2568,11 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114606210351316532, guid: ac831208103fa485f9cb2537db1ecf24,
+        type: 2}
+      propertyPath: m_Text
+      value: Weight
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ac831208103fa485f9cb2537db1ecf24, type: 2}

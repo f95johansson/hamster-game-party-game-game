@@ -321,7 +321,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 903a96081bcad4df6a9af4b356f5f98f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6ed9a2f3186df4fda80aff5d92308681, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -647,7 +647,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: Buy some additionnal fans allowance so you can use more fans in the tracks!
 --- !u!222 &403385419
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -721,7 +721,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Some Text
+  m_Text: Buy some food so you can feed your hamsters after they ran the tracks!
 --- !u!222 &431891673
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2771,7 +2771,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Some Text
+  m_Text: Buy some additionnal carrots allowance so you can use more carrots in the
+    tracks!
 --- !u!222 &2109260377
 CanvasRenderer:
   m_ObjectHideFlags: 0
